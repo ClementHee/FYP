@@ -3,7 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <title>Create Profile</title>
+=======
+    <title>Document</title>
+>>>>>>> ee1183e4f746c1e1557446dd71db7dca58775d6e
     @vite('resources/css/app.css')
 </head>
 <body>
