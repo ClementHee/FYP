@@ -27,15 +27,7 @@
             {{ $profile->name }}
         </h4>
 
-<<<<<<< HEAD
-        
-=======
-        <div class="block lg:flex flex-row">
-            <div class="basis-9/12 text-center sm:block sm:text-left">
-                
-            </div>
-        </div>
->>>>>>> ee1183e4f746c1e1557446dd71db7dca58775d6e
+
 
         <div class="pt-10 pb-10 text-gray-900 text-xl">
             <p class="font-bold text-2xl text-black pt-10">
