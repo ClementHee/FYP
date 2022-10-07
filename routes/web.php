@@ -15,20 +15,24 @@ use App\Http\Controllers\congregationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [Controller::class,'index']);
 //Route::get('/blog',[usersController::class,'index']);
 
-Route::get('/profiles/create', [profileController::class,'create'])->name('profile.createprofile');
-Route::get('/profiles/create', [congregationController::class,'index'])->name('profile.createprofile');;
-Route::get('/profiles', [profileController::class,'index'])->name('profile.index');
-Route::get('/profiles/{userId}', [profileController::class,'show'])->name('profile.showprofile');
+Route::prefix('/profiles')->group(function(){
+    Route::get('/create', [profileController::class,'create'])->name('profile.createprofile');
+   
+    Route::get('/edit/{userId}', [profileController::class,'edit'])->name('profile.editprofile');
+    Route::post('/', [profileController::class,'store'])->name('profile.storeprofile');
+    
+    
+    
+    
 
+    Route::get('/{userId}', [profileController::class,'show'])->name('profile.showprofile');
 
-Route::post('/profiles', [profileController::class,'store'])->name('profile.storeprofile');
-
-Route::get('/profiles/edit/1', [profileController::class,'edit']);
-Route::patch('/profiles/1', [profileController::class,'update']);
-
-Route::delete('/profiles/1', [profileController::class,'delete']);
-
-//Route::get('/profiles/create', [congregationController::class, 'index'])->name('');
+    
+    Route::patch('/{userId}', [profileController::class,'update'])->name('profile.updateprofile');
+    Route::delete('/{userId}', [profileController::class,'destroy'])->name('profile.deleteprofile');
+    
+    Route::get('/', [profileController::class,'index'])->name('profile.index');
+});

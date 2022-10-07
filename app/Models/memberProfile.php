@@ -20,8 +20,8 @@ class memberProfile extends Model
     'email' ,
     'address' ,
     'congregation' ,
-    'isVolunteer',
-    'isStaff',
+    'is_volunteer',
+    'is_staff',
     'gender',
     'designation'];
     protected  static  function  boot()

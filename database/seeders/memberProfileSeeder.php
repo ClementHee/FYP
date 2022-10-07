@@ -28,7 +28,7 @@ class memberProfileSeeder extends Seeder
             'email' => "johndoe@email.com",
             'address' => "This is an address text, can't think of one now",
             'congregation' => "congregation 1",
-            'isVolunteer' => false,
+            
             'gender' => "male",
             'designation' => 'Mr',
             ],
@@ -40,7 +40,7 @@ class memberProfileSeeder extends Seeder
                 'email' => "johndoe@eail.com",
                 'address' => "This is address text, can't think of one now",
                 'congregation' => "congregation 2",
-                'isVolunteer' => false,
+               
                 'gender' => "male",
                 'designation' => 'Mr',
             ]

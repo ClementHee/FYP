@@ -3,14 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Profile</title>
+    <title>Edit Profile</title>
     @vite('resources/css/app.css')
 </head>
 <body>
 <div class="w-4/5 mx-auto">
     <div class="text-center pt-20">
         <h1 class="text-3xl text-gray-700">
-            Create new profile
+            Edit Profile
         </h1>
         <hr class="border border-1 border-gray-300 mt-10">
     </div>
@@ -31,51 +31,52 @@
         @endif
     </div>
     <form
-        action="{{route('profile.storeprofile')}}"
+        action="{{route('profile.updateprofile', $editProfile->userId)}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
 
         <input
         type="text"
         name="designation"
-        placeholder="Designation"
+        value="{{$editProfile->designation}}"
         class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="text"
             name="name"
-            placeholder="Name"
+            value="{{$editProfile->name}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="text"
             name="phone"
-            placeholder="Phone"
+            value="{{$editProfile->phone}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
        
         <input
             type="text"
             name="handphoneNo"
-            placeholder="Mobile Phone"
+            value="{{$editProfile->handphoneNo}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="email"
             name="email"
-            placeholder="Email"
+            value="{{$editProfile->email}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         
        
         <textarea
             name="address"
             placeholder="Address"
-            class="py-10 bg-transparent block border-b-2 w-full h-50 text-xl outline-none"></textarea>
+            class="py-10 bg-transparent block border-b-2 w-full h-50 text-xl outline-none">{{$editProfile->address}}</textarea>
         
     
             <select name = "gender" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3">
                 
-                <option value = "Male">Male</option>
+                <option value = "Male" {{$editProfile->gender == "Male" ? 'selected':''}}>Male</option>
                 <option value = "Female">Female</option>
                 
             </select>
@@ -83,7 +84,9 @@
       
         <select name = "congregation" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3 ml-20">
             @foreach ($congregations as $selection )
-                <option value = "{{$selection->name}}">{{$selection->name}}</option>
+                <option value = "{{$selection->name}}" {{$editProfile->congregation == $selection->name ? 'selected':''}}>
+                    {{$selection->name}}
+                </option>
             @endforeach
             
         </select>
@@ -95,6 +98,7 @@
     
         <input
             type="checkbox"
+            {{$editProfile->is_volunteer == true ? 'checked':''}}
             class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 mt-10"
             name="is_volunteer">
       
@@ -105,6 +109,7 @@
     
         <input
             type="checkbox"
+            {{$editProfile->is_staff == true ? 'checked':''}}
             class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 "
             name="is_staff">
         </br>
@@ -112,7 +117,7 @@
         <button
             type="submit"
             class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-            Create Profile
+            Save
         </button>
     </form>
 </div>

@@ -12,10 +12,7 @@
     <title>
         Laravel App
     </title>
-    <link
-        rel="stylesheet"
-        href="{{ asset('css/app.css') }}"
-    />
+    @vite('resources/css/app.css')
 </head>
 <body>
     <div class="w-4/5 mx-auto">
@@ -30,19 +27,7 @@
             {{ $profile->name }}
         </h4>
 
-        <div class="block lg:flex flex-row">
-            <div class="basis-9/12 text-center sm:block sm:text-left">
-                <span class="text-left sm:text-center sm:text-left sm:inline block text-gray-900 pb-10 sm:pt-0 pt-0 sm:pt-10 pl-0 sm:pl-4 -mt-8 sm:-mt-0">
-                    Made by:
-                    <a
-                        href=""
-                        class="font-bold text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
-                        Code With Dary
-                    </a>
-                    On 17-07-2022
-                </span>
-            </div>
-        </div>
+        
 
         <div class="pt-10 pb-10 text-gray-900 text-xl">
             <p class="font-bold text-2xl text-black pt-10">
@@ -53,6 +38,17 @@
                 {{ $profile->email }}
             </p>
         </div>
+       
+        <a  class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400" href= "{{route('profile.editprofile',$profile->userId)}} ">
+            Edit Profile
+        </a>
+        <form action=" {{route ('profile.deleteprofile',$profile->userId)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="primary-btn inline text-base sm:text-xl bg-red-500 mt-10 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-red-400">
+                Delete
+            </button>
+        </form>
     </div>
     </body>
 </html>

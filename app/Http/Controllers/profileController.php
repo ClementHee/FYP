@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+
+use App\Models\congregation;
 use Illuminate\Http\Request;
 use App\Models\memberProfile;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class profileController extends Controller
 {
@@ -16,8 +19,9 @@ class profileController extends Controller
      */
     public function index()
     {
-        return view ('profile.index',[
-            'profiles' => memberProfile::orderby('updated_at','desc')->get()
+        return view ('profile.profiles',[
+            'profiles' => memberProfile::orderby('updated_at','desc')->get(),
+            'congregations' => congregation::get()
         ]);
     }
 
@@ -28,7 +32,9 @@ class profileController extends Controller
      */
     public function create()
     {
-        return view('profile.createprofile');
+        return view ('profile.createprofile',[
+            'congregations' => congregation::get()
+        ]);
     }
 
     /**
@@ -39,6 +45,13 @@ class profileController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:member_profiles',
+            
+            'handphoneNo' => 'required|unique:member_profiles',
+            'email' => 'required|email',
+            'address' => 'required',
+        ]);
      
         memberProfile::create([
             'userId' => Str::uuid(),
@@ -48,8 +61,8 @@ class profileController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'congregation' => $request->congregation,
-            'isVolunteer' => $request->isVolunteer==='on',
-            'isStaff' => $request->isStaff==='on',
+            'is_volunteer' => $request->is_volunteer==='on',
+            'is_staff' => $request->is_staff==='on',
             'gender' => $request->gender,
             'designation' => $request->designation,
    
@@ -78,7 +91,11 @@ class profileController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('profile.editprofile',[
+            'editProfile' => memberProfile::where('userId',$id)->first(),
+            'congregations' => congregation::get()
+          
+        ]);
     }
 
     /**
@@ -90,7 +107,20 @@ class profileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        memberProfile::where('userId',$id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'handphoneNo' => $request->handphoneNo,
+            'email' => $request->email,
+            'address' => $request->address,
+            'congregation' => $request->congregation,
+            'is_volunteer' => $request->is_volunteer==='on',
+            'is_staff' => $request->is_staff==='on',
+            'gender' => $request->gender,
+            'designation' => $request->designation,
+        ]);
+
+        return redirect(route('profile.index'));
     }
 
     /**
@@ -101,6 +131,7 @@ class profileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        memberProfile::destroy($id);
+        return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
 }
