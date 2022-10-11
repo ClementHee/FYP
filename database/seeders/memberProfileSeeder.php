@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
-class member_profileSeeder extends Seeder
+class memberProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,16 +21,15 @@ class member_profileSeeder extends Seeder
     {
         $member_profiles = [
             [
-            'profileId' => Str::uuid(),
-            'name' => 'John Doe',
-            'phone' => "0123456789",
-            'handphoneNo' => "012384357",
-            'email' => "johndoe@email.com",
-            'address' => "This is an address text, can't think of one now",
-            'congregation' => "congregation 1",
-            
-            'gender' => "male",
-            'designation' => 'Mr',
+                'profileId' => Str::uuid(),
+                'name' => 'John Doe',
+                'phone' => "0123456789",
+                'handphoneNo' => "012384357",
+                'email' => "johndoe@email.com",
+                'address' => "This is an address text, can't think of one now",
+                'congregation' => "congregation 1",
+                'gender' => "male",
+                'designation' => 'Mr',
             ],
             [
                 'profileId' => Str::uuid(),
@@ -40,7 +39,6 @@ class member_profileSeeder extends Seeder
                 'email' => "johndoe@eail.com",
                 'address' => "This is address text, can't think of one now",
                 'congregation' => "congregation 2",
-               
                 'gender' => "male",
                 'designation' => 'Mr',
             ]
