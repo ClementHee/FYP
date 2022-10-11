@@ -39,10 +39,10 @@
             </p>
         </div>
        
-        <a  class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400" href= "{{route('profile.editprofile',$profile->userId)}} ">
+        <a  class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400" href= "{{route('profile.editprofile',$profile->profileId)}} ">
             Edit Profile
         </a>
-        <form action=" {{route ('profile.deleteprofile',$profile->userId)}}" method="POST">
+        <form action=" {{route ('profile.deleteprofile',$profile->profileId)}}" method="POST">
             @csrf
             @method('DELETE')
             <button class="primary-btn inline text-base sm:text-xl bg-red-500 mt-10 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-red-400">

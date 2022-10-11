@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class memberProfile extends Model
+class member_profile extends Model
 {
     use HasFactory;
-    protected $primaryKey ="userId";
+    protected $primaryKey ="profileId";
     protected $keyType = 'string';
     protected $fillable = [
-    'userId',
+    'profileId',
     'name',
     'phone',
     'handphoneNo',
@@ -29,7 +29,7 @@ class memberProfile extends Model
     parent::boot();
 
     static::creating(function  ($model)  {
-        $model->userId = (string) Str::uuid();
+        $model->profileId = (string) Str::uuid();
     });
 }
 

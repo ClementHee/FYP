@@ -47,7 +47,7 @@
             <div class="bg-white pt-10 rounded-lg drop-shadow-2xl sm:basis-3/4 basis-full sm:mr-8 pb-10 sm:pb-0">
                 <div class="w-11/12 mx-auto pb-10">
                     <h2 class="text-gray-900 text-2xl font-bold pt-6 pb-0 sm:pt-0 hover:text-gray-700 transition-all " >
-                        <a href="{{route('profile.showprofile',$profile->userId)}}">
+                        <a href="{{route('profile.showprofile',$profile->profileId)}}">
                             {{ $profile->name }}
                         </a>
                     </h2>

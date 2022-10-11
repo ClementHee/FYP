@@ -6,11 +6,11 @@ use Illuminate\Support\Str;
 
 use App\Models\congregation;
 use Illuminate\Http\Request;
-use App\Models\memberProfile;
+use App\Models\member_profile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class profileController extends Controller
+class profile_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class profileController extends Controller
     public function index()
     {
         return view ('profile.profiles',[
-            'profiles' => memberProfile::orderby('updated_at','desc')->get(),
+            'profiles' => member_profile::orderby('updated_at','desc')->get(),
             'congregations' => congregation::get()
         ]);
     }
@@ -53,8 +53,8 @@ class profileController extends Controller
             'address' => 'required',
         ]);
      
-        memberProfile::create([
-            'userId' => Str::uuid(),
+        member_profile::create([
+            'profileId' => Str::uuid(),
             'name' => $request->name,
             'phone' => $request->phone,
             'handphoneNo' => $request->handphoneNo,
@@ -76,10 +76,10 @@ class profileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($userId)
+    public function show($profileId)
     {
         return view('profile.showprofile',[
-            'profile'=>memberProfile::findOrFail($userId)
+            'profile'=>member_profile::findOrFail($profileId)
         ]);
     }
 
@@ -92,7 +92,7 @@ class profileController extends Controller
     public function edit($id)
     {
         return view ('profile.editprofile',[
-            'editProfile' => memberProfile::where('userId',$id)->first(),
+            'edit_profile' => member_profile::where('profileId',$id)->first(),
             'congregations' => congregation::get()
           
         ]);
@@ -107,7 +107,7 @@ class profileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        memberProfile::where('userId',$id)->update([
+        member_profile::where('profileId',$id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
             'handphoneNo' => $request->handphoneNo,
@@ -131,7 +131,7 @@ class profileController extends Controller
      */
     public function destroy($id)
     {
-        memberProfile::destroy($id);
+        member_profile::destroy($id);
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
 }

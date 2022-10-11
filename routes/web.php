@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\congregationController;
 
 /*
@@ -19,20 +19,20 @@ Route::get('/', [Controller::class,'index']);
 //Route::get('/blog',[usersController::class,'index']);
 
 Route::prefix('/profiles')->group(function(){
-    Route::get('/create', [profileController::class,'create'])->name('profile.createprofile');
+    Route::get('/create', [profile_controller::class,'create'])->name('profile.createprofile');
    
-    Route::get('/edit/{userId}', [profileController::class,'edit'])->name('profile.editprofile');
-    Route::post('/', [profileController::class,'store'])->name('profile.storeprofile');
+    Route::get('/edit/{profileId}', [profile_controller::class,'edit'])->name('profile.editprofile');
+    Route::post('/', [profile_controller::class,'store'])->name('profile.storeprofile');
     
     
     
     
 
-    Route::get('/{userId}', [profileController::class,'show'])->name('profile.showprofile');
+    Route::get('/{profileId}', [profile_controller::class,'show'])->name('profile.showprofile');
 
     
-    Route::patch('/{userId}', [profileController::class,'update'])->name('profile.updateprofile');
-    Route::delete('/{userId}', [profileController::class,'destroy'])->name('profile.deleteprofile');
+    Route::patch('/{profileId}', [profile_controller::class,'update'])->name('profile.updateprofile');
+    Route::delete('/{profileId}', [profile_controller::class,'destroy'])->name('profile.deleteprofile');
     
-    Route::get('/', [profileController::class,'index'])->name('profile.index');
+    Route::get('/', [profile_controller::class,'index'])->name('profile.index');
 });

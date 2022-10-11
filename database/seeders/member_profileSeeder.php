@@ -4,13 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
-use App\Models\memberProfile;
+use App\Models\member_profile;
 use Illuminate\Database\Seeder;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
-class memberProfileSeeder extends Seeder
+class member_profileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,9 +19,9 @@ class memberProfileSeeder extends Seeder
      */
     public function run()
     {
-        $memberProfiles = [
+        $member_profiles = [
             [
-            'userId' => Str::uuid(),
+            'profileId' => Str::uuid(),
             'name' => 'John Doe',
             'phone' => "0123456789",
             'handphoneNo' => "012384357",
@@ -33,7 +33,7 @@ class memberProfileSeeder extends Seeder
             'designation' => 'Mr',
             ],
             [
-                'userId' => Str::uuid(),
+                'profileId' => Str::uuid(),
                 'name' => 'John x',
                 'phone' => "012356789",
                 'handphoneNo' => "01284357",
@@ -45,8 +45,8 @@ class memberProfileSeeder extends Seeder
                 'designation' => 'Mr',
             ]
         ];
-        foreach($memberProfiles as $key => $value) {
-            memberProfile::create($value);
+        foreach($member_profiles as $key => $value) {
+            member_profile::create($value);
         }
     }
 }

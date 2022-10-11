@@ -31,7 +31,7 @@
         @endif
     </div>
     <form
-        action="{{route('profile.updateprofile', $editProfile->userId)}}"
+        action="{{route('profile.updateprofile', $edit_profile->profileId)}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -40,43 +40,43 @@
         <input
         type="text"
         name="designation"
-        value="{{$editProfile->designation}}"
+        value="{{$edit_profile->designation}}"
         class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="text"
             name="name"
-            value="{{$editProfile->name}}"
+            value="{{$edit_profile->name}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="text"
             name="phone"
-            value="{{$editProfile->phone}}"
+            value="{{$edit_profile->phone}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
        
         <input
             type="text"
             name="handphoneNo"
-            value="{{$editProfile->handphoneNo}}"
+            value="{{$edit_profile->handphoneNo}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
         <input
             type="email"
             name="email"
-            value="{{$editProfile->email}}"
+            value="{{$edit_profile->email}}"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         
        
         <textarea
             name="address"
             placeholder="Address"
-            class="py-10 bg-transparent block border-b-2 w-full h-50 text-xl outline-none">{{$editProfile->address}}</textarea>
+            class="py-10 bg-transparent block border-b-2 w-full h-50 text-xl outline-none">{{$edit_profile->address}}</textarea>
         
     
             <select name = "gender" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3">
                 
-                <option value = "Male" {{$editProfile->gender == "Male" ? 'selected':''}}>Male</option>
+                <option value = "Male" {{$edit_profile->gender == "Male" ? 'selected':''}}>Male</option>
                 <option value = "Female">Female</option>
                 
             </select>
@@ -84,7 +84,7 @@
       
         <select name = "congregation" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3 ml-20">
             @foreach ($congregations as $selection )
-                <option value = "{{$selection->name}}" {{$editProfile->congregation == $selection->name ? 'selected':''}}>
+                <option value = "{{$selection->name}}" {{$edit_profile->congregation == $selection->name ? 'selected':''}}>
                     {{$selection->name}}
                 </option>
             @endforeach
@@ -98,7 +98,7 @@
     
         <input
             type="checkbox"
-            {{$editProfile->is_volunteer == true ? 'checked':''}}
+            {{$edit_profile->is_volunteer == true ? 'checked':''}}
             class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 mt-10"
             name="is_volunteer">
       
@@ -109,7 +109,7 @@
     
         <input
             type="checkbox"
-            {{$editProfile->is_staff == true ? 'checked':''}}
+            {{$edit_profile->is_staff == true ? 'checked':''}}
             class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 "
             name="is_staff">
         </br>
