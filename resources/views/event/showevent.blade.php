@@ -12,7 +12,7 @@
     <title>
         Laravel App
     </title>
-    @vite('resources/css/app.css')
+
 </head>
 <body>
     <div class="w-4/5 mx-auto">

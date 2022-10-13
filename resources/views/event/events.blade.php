@@ -13,7 +13,7 @@
         Church Management System
     </title>
     
-    @vite('resources/css/app.css')
+
 </head>
 <body class="w-full h-full bg-gray-100">
     <div class="w-4/5 mx-auto">
