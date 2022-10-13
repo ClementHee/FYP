@@ -1,23 +1,11 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="ie=edge"
-    />
-    <title>
-        Church Management System
-    </title>
-    
+@extends('layouts.app')
 
-</head>
+<title> Profiles </title>
+
+@section('content')
 <body>
-    <div>
-        <div>
+    <div class="container">
+        <div class="row justify-content-center">
             <h1>
                 Profiles
             </h1>
@@ -25,43 +13,48 @@
         </div>
 
         <div>
-            <a
-               href="{{route('profile.createprofile')}}">
+            <a href="{{route('profile.createprofile')}}">
                 Create Profile
             </a>
         </div>
     </div>
     @if (session()->has('message'))
-        <div>
-            <div>
+        <div class="container">
+            <div class = "invalid-feedback">
                 Warning
             </div>
-            <div>
+            <div class = "invalid-feedback">
                 {{session()->get('message')}}
             </div>
         </div>
     @endif
 
     @foreach($profiles as $profile)
-        <div>
-            <div>
-                <div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
                     <h2>
-                        <a href="{{route('profile.showprofile',$profile->profileId)}}">
+                        <a class=""
+                        href="{{route('profile.showprofile',$profile->profileId)}}">
                             {{ $profile->name }}
                         </a>
                     </h2>
+                </div>
 
+                <div>
                     <p>
                         {{ $profile->email }}
+                    </p>
+
+                    <p>
                         {{ $profile->handphoneNo }}
                     </p>
-                    
-                   
-                    
+  
                 </div>
             </div>
         </div>
+        </div>
     @endforeach
 </body>
-</html>
+@endsection

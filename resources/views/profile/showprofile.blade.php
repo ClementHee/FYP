@@ -1,34 +1,22 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="ie=edge"
-    />
-    <title>
-        {{ $profile->name }}
-    </title>
+@extends('layouts.app')
 
-</head>
+<title> {{ $profile->name }} </title>
+
+@section('content')
 <body>
-    <div>
-        <div>
-            <a href="{{ URL::previous() }}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <a href="{{URL::previous()}}">
                 < Back to previous page
             </a>
         </div>
 
-        <h4>
+        <div class="card">
+        <h4 class="card-header">
             {{ $profile->name }}
         </h4>
 
-
-
-        <div>
+         <div>
             <p>
                 {{ $profile->name }}
             </p>
@@ -36,8 +24,9 @@
             <p>
                 {{ $profile->email }}
             </p>
-        </div>
-       
+         </div>
+       </div>
+
         <a  href= "{{route('profile.editprofile',$profile->profileId)}} ">
             Edit Profile
         </a>
@@ -50,4 +39,4 @@
         </form>
     </div>
     </body>
-</html>
+@endsection
