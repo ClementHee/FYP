@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class events extends Model
 {
-    use HasFactory;protected $primaryKey ="eventId";
+    use HasFactory;
+    protected $primaryKey ="eventId";
     protected $keyType = 'string';
     protected $fillable = [
         'eventId',
