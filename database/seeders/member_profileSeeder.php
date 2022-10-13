@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
-class memberProfileSeeder extends Seeder
+class member_profileSeeder extends Seeder
 {
     /**
      * Run the database seeds.

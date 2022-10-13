@@ -39,3 +39,6 @@ Route::prefix('/events')->group(function(){
     Route::delete('/{eventId}', [event_controller::class,'destroy'])->name('event.deleteevent');
     Route::get('/', [event_controller::class,'index'])->name('event.index');   
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
