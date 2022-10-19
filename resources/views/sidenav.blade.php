@@ -1,6 +1,6 @@
 <?php 
-$memberinfo=getMemberInfo();
-$usergroup=$memberinfo['group'];
+
+
 switch ($usergroup) {
 	case 'member':
 		# code...

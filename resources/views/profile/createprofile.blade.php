@@ -100,26 +100,7 @@
         </select>
         </p>
         
-        <p>
-        <label for="is_volunteer" class="text-gray-500 text-2xl">
-            Is Volunteer
-        </label>
-    
-        <input
-            type="checkbox"
-            class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 mt-10"
-            name="is_volunteer">
-        </p>
-        <p>
-        <label for="is_staff" class="text-gray-500 text-2xl ml-10" >
-            Is Staff
-        </label>
-
-        <input
-            type="checkbox"
-            class="bg-transparent block border-b-2 inline text-2xl outline-none mb-10 "
-            name="is_staff">
-        </p>
+        
 
         <button
             type="submit"

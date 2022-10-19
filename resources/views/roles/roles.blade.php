@@ -3,11 +3,11 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Church Management</h2>
+            <h2>Role Management</h2>
         </div>
         <div class="pull-right">
-        @can('profile-create')
-            <a class="btn btn-success" href="{{ route('profile.createprofile') }}"> Create New Profile</a>
+        @can('role-create')
+            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
             @endcan
         </div>
     </div>
@@ -24,17 +24,17 @@
         <th width="280px">Action</th>
     </tr>
     
-    @foreach ($profiles as $key => $profile)
+    @foreach ($roles as $key => $role)
     <tr>
         <td>{{ ++$i }}</td>
-        <td>{{ $profile->name }}</td>
+        <td>{{ $role->name }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('profile.showprofile',$profile->profileId) }}">Show</a>
-            @can('profile-edit')
-                <a class="btn btn-primary" href="{{ route('profile.editprofile',$profile->profileId) }}">Edit</a>
+            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+            @can('role-edit')
+                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
             @endcan
-            @can('profile-delete')
-                {!! Form::open(['method' => 'DELETE','route' => ['profile.deleteprofile', $profile->profileId],'style'=>'display:inline']) !!}
+            @can('role-delete')
+                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
             @endcan
@@ -42,6 +42,6 @@
     </tr>
     @endforeach
 </table>
-{!! $profiles->render() !!}
-
+{!! $roles->render() !!}
+<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
 @endsection

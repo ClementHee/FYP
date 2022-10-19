@@ -17,12 +17,18 @@ class profile_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        return view ('profile.profiles',[
-            'profiles' => member_profile::orderby('updated_at','desc')->get(),
-            'congregations' => congregation::get()
-        ]);
+         $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:profile-create', ['only' => ['create','store']]);
+         $this->middleware('permission:profile-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:profile-delete', ['only' => ['destroy']]);
+    }
+    public function index(Request $request)
+    {
+        $profiles = member_profile::orderBy('profileId','ASC')->paginate(5);
+        return view('profile.profiles',compact('profiles'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -47,7 +53,6 @@ class profile_controller extends Controller
     {
         $request->validate([
             'name' => 'required|unique:member_profiles',
-            
             'handphoneNo' => 'required|unique:member_profiles',
             'email' => 'required|email',
             'address' => 'required',
@@ -61,8 +66,6 @@ class profile_controller extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'congregation' => $request->congregation,
-            'is_volunteer' => $request->is_volunteer==='on',
-            'is_staff' => $request->is_staff==='on',
             'gender' => $request->gender,
             'designation' => $request->designation,
    
@@ -114,8 +117,6 @@ class profile_controller extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'congregation' => $request->congregation,
-            'is_volunteer' => $request->is_volunteer==='on',
-            'is_staff' => $request->is_staff==='on',
             'gender' => $request->gender,
             'designation' => $request->designation,
         ]);

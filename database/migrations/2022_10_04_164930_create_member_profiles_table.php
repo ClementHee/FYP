@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('email');
             $table->text('address');
             $table->string('congregation');
-            $table->boolean('is_volunteer')->default(false);
-            $table->boolean('is_staff')->default(false);
             $table->string('gender');
             $table->string('designation');
             $table->timestamps();

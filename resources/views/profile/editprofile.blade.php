@@ -101,26 +101,8 @@
         </p>
 
         <p>
-        <label for="is_volunteer">
-            Is Volunteer
-        </label>
-        <input
-            type="checkbox"
-            {{$edit_profile->is_volunteer == true ? 'checked':''}}
-            name="is_volunteer">
-        </p>
-        
-        <p>
-        <label for="is_staff" >
-            Is Staff
-        </label>
-        
-        <input
-            type="checkbox"
-            {{$edit_profile->is_staff == true ? 'checked':''}}
-            name="is_staff">
-        </p>
-        
+
+
         <button
             type="submit">
             Save
