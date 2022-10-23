@@ -5,3 +5,12 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Button
+@import "bootstrap";
+.btn-two {
+    color: #f8fafc;
+    $mynewcolor:#77cccc;
+    @include button-variant($mynewcolor, darken($mynewcolor, 7.5%), darken($mynewcolor, 10%), lighten($mynewcolor,5%), lighten($mynewcolor, 10%), darken($mynewcolor,30%));
+    background-color: #77cccc !important;
+}

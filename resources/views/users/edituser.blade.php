@@ -23,7 +23,7 @@
 {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->accountId]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        
+
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -50,9 +50,8 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </div>
 {!! Form::close() !!}
-<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
 @endsection

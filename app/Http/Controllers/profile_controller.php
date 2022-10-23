@@ -17,6 +17,7 @@ class profile_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     function __construct()
     {
          $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show']]);
@@ -57,7 +58,7 @@ class profile_controller extends Controller
             'email' => 'required|email',
             'address' => 'required',
         ]);
-     
+
         member_profile::create([
             'profileId' => Str::uuid(),
             'name' => $request->name,
@@ -68,7 +69,7 @@ class profile_controller extends Controller
             'congregation' => $request->congregation,
             'gender' => $request->gender,
             'designation' => $request->designation,
-   
+
         ]);
         return redirect(route('profile.index'));
     }
@@ -97,7 +98,7 @@ class profile_controller extends Controller
         return view ('profile.editprofile',[
             'edit_profile' => member_profile::where('profileId',$id)->first(),
             'congregations' => congregation::get()
-          
+
         ]);
     }
 
