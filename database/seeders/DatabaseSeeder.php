@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(congregationSeeder::class);
         $this->call(rolesSeeder::class);
         $this->call(volunteertypeSeeder::class);
+        $this->call(CreateAdminUserSeeder::class);
+        $this->call(PermissionTableSeeder::class);
     }
 }

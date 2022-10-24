@@ -3,32 +3,31 @@
     <title>Edit Profile</title>
 
 @section('content')
-<body>
-<div class="container">
-    <div class="row justify-content-center">
-        <h1>
-            Edit Profile
-        </h1>
-        <hr>
+
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Edit Profile</h2>
+        </div>
     </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        @if ($errors->any())
-            <div class='invalid-feedback'>
-                Something went wrong
-            </div>
-            <ul class='invalid-feedback'>
-                @foreach ($errors->all() as $error )
-                <li class="">
-                    {{$error}}
-                </li>    
-                @endforeach
-            </ul>
-        @endif
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
+    </div>
 </div>
 
-    <div class="card">
+{{-- Basic error catcher --}}
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
     <form
         action="{{route('profile.update', $edit_profile->profileId)}}"
         method="POST"
@@ -40,6 +39,7 @@
         <input
         type="text"
         name="designation"
+        class="col-xs-12 col-sm-12 col-md-12"
         value="{{$edit_profile->designation}}"
         >
         </p>
@@ -48,14 +48,16 @@
         <input
             type="text"
             name="name"
+            class="col-xs-12 col-sm-12 col-md-12"
             value="{{$edit_profile->name}}"
         >
         </p>
 
-        <p> Home Number: 
+        <p> Home Number:
         <input
             type="text"
             name="phone"
+            class="col-xs-12 col-sm-12 col-md-12"
             value="{{$edit_profile->phone}}"
         >
         </p>
@@ -64,6 +66,7 @@
         <input
             type="text"
             name="handphoneNo"
+            class="col-xs-12 col-sm-12 col-md-12"
             value="{{$edit_profile->handphoneNo}}"
         >
         </p>
@@ -72,26 +75,28 @@
         <input
             type="email"
             name="email"
+            class="col-xs-12 col-sm-12 col-md-12"
             value="{{$edit_profile->email}}"
         >
         </p>
 
-        <p>Address: 
+        <p>Address:
         <textarea
             name="address"
             placeholder="Address"
+            class="col-xs-12 col-sm-12 col-md-12"
             >{{$edit_profile->address}}</textarea>
         </p>
 
         <p>Gender
-            <select name = "gender">
+            <select name = "gender" class="col-xs-12 col-sm-12 col-md-12">
                 <option value = "Male" {{$edit_profile->gender == "Male" ? 'selected':''}}>Male</option>
                 <option value = "Female">Female</option>
             </select>
         </p>
 
         <p>Congregation
-        <select name = "congregation">
+        <select name = "congregation" class="col-xs-12 col-sm-12 col-md-12">
             @foreach ($congregations as $selection )
                 <option value = "{{$selection->name}}" {{$edit_profile->congregation == $selection->name ? 'selected':''}}>
                     {{$selection->name}}
@@ -100,16 +105,10 @@
         </select>
         </p>
 
-        <p>
-
-
-        <button
-            type="submit">
-            Save
-        </button>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
     </form>
     </div>
-    
-</div>
-</body>
+
 @endsection

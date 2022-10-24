@@ -1,13 +1,18 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<<<<<<< HEAD
     <title>{{ config('app.name', 'Church Management System') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+=======
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
     @vite(['resources/js/app.js'])
 
     <!-- Fonts -->
@@ -16,12 +21,13 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Church Management System
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -44,6 +50,7 @@
                                 </li>
                             @endif
                         @else
+
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                             @can('role-list')
                                 <li><a class="nav-link" href="{{ route('user_type.index') }}">Manage Role</a></li>
@@ -71,7 +78,7 @@
                         @endguest
                     </ul>
                 </div>
-    
+
             </div>
         </nav>
         <main class="py-4">

@@ -3,45 +3,44 @@
 <title> Edit Event </title>
 
 @section('content')
-<body>
-<div class="container">
-    <div class="row justify-content-center">
-        <h1 class="text-3xl text-gray-700">
-            Create new Event
-        </h1>
-        <hr class="border border-1 border-gray-300 mt-10">
+
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Edit Event</h2>
+        </div>
     </div>
 
-<div class="container ">
-    <div class="row justify-content-center">
-        @if ($errors->any())
-            <div class='invalid-feedback'>
-                Something went wrong
-            </div>
-            <ul class='invalid-feedback'>
-                @foreach ($errors->all() as $error )
-                <li class="py-2">
-                    {{$error}}
-                </li>    
-                @endforeach
-            </ul>
-        @endif
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
     </div>
+</div>
 
-    <div class="card">
+{{-- Basic error catcher --}}
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
     <form
         action="{{route('event.update', $edit_event->eventId)}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('PATCH')
-      
-        <p>Name: 
+
+        <p>Name:
         <input
             type="text"
             name="name"
             value="{{$edit_event->name}}"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
         <p>Type:
@@ -49,9 +48,10 @@
             type="text"
             name="type"
             value="{{$edit_event->type}}"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
+<<<<<<< HEAD
         <p> 
             <label for="date_time">From </label>
             <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
@@ -60,6 +60,11 @@
         <p> 
             <label for="date_time">To: </label>
             <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
+=======
+        <p>
+            <label for="date_time">Event Date and Time</label>
+            <input type="datetime-local" name="date_time" class="col-xs-12 col-sm-12 col-md-12" value="{{$edit_event->date_time}}">
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         </p>
 
         <p> Venue:
@@ -67,7 +72,7 @@
             type="text"
             name="venue"
             value="{{$edit_event->venue}}"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12"">
         </p>
 
         <p> Person In Charge:
@@ -75,17 +80,12 @@
             type="text"
             name="pic"
             value="{{$edit_event->pic}}"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
-        
-        <button
-            type="submit"
-            class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-            Save
-        </button>
-    </form>
-    </div>
 
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
 </div>
-</body>
 @endsection
