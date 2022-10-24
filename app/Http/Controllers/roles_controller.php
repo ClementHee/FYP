@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\roles;
+use App\Models\member_profile;
 use Illuminate\Http\Request;
 
 class roles_controller extends Controller
@@ -11,11 +13,16 @@ class roles_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+            $vroles = roles::get();
+        
+        return view('roles.roles',compact('vroles'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
+    
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -23,9 +30,9 @@ class roles_controller extends Controller
      */
     public function create()
     {
-        //
+        return view ('roles.createroles');
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -34,9 +41,20 @@ class roles_controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:roles',
+        ]);
+    
+        $input = $request->all();
+        roles::create([
+            'name' => $request->name,
+        ]);
+        
+    
+        return redirect()->route('roles.index')
+                        ->with('success','New Type created successfully');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -45,9 +63,19 @@ class roles_controller extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $assignedtypes= roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
+        ->where("volunteer_type.roles",$id)
+        ->get('profileId');
+        
+        $roles = roles::findOrFail($id);
+        $assignedtypes = json_decode(json_encode($assignedtypes), true);
 
+        $assignedprofiles = member_profile::where('profileId',$assignedtypes)->get('name');
+       
+           
+        return view('roles.showroles',compact('roles','assignedprofiles'));
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -56,9 +84,11 @@ class roles_controller extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('roles.editroles',[
+            'edit_vroles' => roles::where('roleId',$id)->first(),
+        ]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -68,9 +98,17 @@ class roles_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate($request, [
+            'name' => 'required|unique:roles',
+        ]);
+    
+        roles::where('roleId',$id)->update([
+            'name' => $request->name,
+        ]);
 
+        return redirect(route('roles.index'));
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -79,6 +117,8 @@ class roles_controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        roles::find($id)->delete();
+        return redirect()->route('roles.index')
+                        ->with('success','User deleted successfully');
     }
 }

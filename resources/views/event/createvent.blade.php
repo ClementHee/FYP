@@ -1,31 +1,24 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layouts.app')
 
-    <title>Create Event</title>
+<title> Create Event </title>
 
-    <title>Document</title>
-
-
-</head>
+@section('content')
 <body>
-<div class="w-4/5 mx-auto">
-    <div class="text-center pt-20">
+<div class="container">
+    <div class="row justify-content-center">
         <h1 class="text-3xl text-gray-700">
             Create new Event
         </h1>
         <hr class="border border-1 border-gray-300 mt-10">
     </div>
 
-<div class="m-auto ">
-    <div class="pb-8">
+<div class="container">
+    <div class="row justify-content-center">
         @if ($errors->any())
-            <div class='bg-red-500 text-white font-bold rounded-t px-4 py-2'>
+            <div class='invalid-feedback'>
                 Something went wrong
             </div>
-            <ul class='border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-text-red-700'>
+            <ul class='invalid-feedback'>
                 @foreach ($errors->all() as $error )
                 <li class="py-2">
                     {{$error}}
@@ -34,42 +27,55 @@
             </ul>
         @endif
     </div>
+
+    <div class="card">
     <form
-        action="{{route('event.storeevent')}}"
+        action="{{route('event.store')}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
 
-      
+        <p> Name:
         <input
             type="text"
             name="name"
             placeholder="Name"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        </p>
 
+        <p>Type: 
         <input
             type="text"
             name="type"
             placeholder="Type"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-       
-            <label for="date_time">Event Date and Time</label>
-            <input type="datetime-local" name="date_time"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-            
+        </p>
+
+        <p> 
+            <label for="date_time">From </label>
+            <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        </p>
+
+        <p> 
+            <label for="date_time">To: </label>
+            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        </p>
+        
+        <p> Venue:
         <input
             type="text"
             name="venue"
             placeholder="Venue"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        </p>
+        
+        <p> Person In Charge:
         <input
             type="text"
             name="pic"
             placeholder="Person In Charge"
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-        
-       
-      
-        </br>
+        </p>
         
         <button
             type="submit"
@@ -77,6 +83,7 @@
             Create Event
         </button>
     </form>
+    </div>
 </div>
 </body>
-</html>
+@endsection

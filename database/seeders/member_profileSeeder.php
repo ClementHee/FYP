@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
 use Illuminate\Support\Str;
 use App\Models\member_profile;
 use Illuminate\Database\Seeder;

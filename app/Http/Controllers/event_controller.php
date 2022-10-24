@@ -12,6 +12,13 @@ use App\Http\Controllers\Controller;
 
 class event_controller extends Controller
 {
+    function __construct() //This function is to restrict actions based on roles 
+    {
+         $this->middleware('permission:event-list|event-create|event-edit|event-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:event-create', ['only' => ['create','store']]);
+         $this->middleware('permission:event-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:event-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +50,12 @@ class event_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:events',
+            'type' =>'required',
+            'start_datetime' => 'required',
+            'end_datetime' => 'required',
+            'venue' => 'required',
+            'pic' => 'required',
             
         ]);
      
@@ -51,7 +63,8 @@ class event_controller extends Controller
             'eventId' => Str::uuid(),
             'name' => $request->name,
             'type' => $request->type,
-            'date_time' => $request->date_time,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
             
@@ -97,10 +110,11 @@ class event_controller extends Controller
     public function update(Request $request, $id)
     {
         events::where('eventId',$id)->update([
-            'name' => $request->name,
+    
             'name' => $request->name,
             'type' => $request->type,
-            'date_time' => $request->date_time,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
         ]);

@@ -1,67 +1,47 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="ie=edge"
-    />
-    <title>
-        Church Management System
-    </title>
-    
-
-</head>
-<body>
-    <div>
-        <div>
-            <h1>
-                Profiles
-            </h1>
-            <hr>
+@extends('layouts.app')
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Church Management</h2>
         </div>
-
-        <div>
-            <a
-               href="{{route('profile.createprofile')}}">
-                Create Profile
-            </a>
+        <div class="pull-right">
+        @can('profile-create')
+            <a class="btn btn-success" href="{{ route('profile.create') }}"> Create New Profile</a>
+            @endcan
         </div>
     </div>
-    @if (session()->has('message'))
-        <div>
-            <div>
-                Warning
-            </div>
-            <div>
-                {{session()->get('message')}}
-            </div>
-        </div>
-    @endif
-
-    @foreach($profiles as $profile)
-        <div>
-            <div>
-                <div>
-                    <h2>
-                        <a href="{{route('profile.showprofile',$profile->profileId)}}">
-                            {{ $profile->name }}
-                        </a>
-                    </h2>
-
-                    <p>
-                        {{ $profile->email }}
-                        {{ $profile->handphoneNo }}
-                    </p>
-                    
-                   
-                    
-                </div>
-            </div>
-        </div>
+</div>
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+<table class="table table-bordered">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th width="280px">Action</th>
+    </tr>
+    
+    @foreach ($profiles as $key => $profile)
+    <tr>
+        <td>{{ ++$i }}</td>
+        <td>{{ $profile->name }}</td>
+        <td>
+            <a class="btn btn-info" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
+            @can('profile-edit')
+                <a class="btn btn-primary" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
+            @endcan
+            @can('profile-delete')
+                {!! Form::open(['method' => 'DELETE','route' => ['profile.destroy', $profile->profileId],'style'=>'display:inline']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+            @endcan
+        </td>
+    </tr>
     @endforeach
-</body>
-</html>
+</table>
+{!! $profiles->render() !!}
+
+@endsection
