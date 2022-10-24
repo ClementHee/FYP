@@ -30,7 +30,7 @@
 
     <div class="card">
     <form
-        action="{{route('event.storeevent')}}"
+        action="{{route('event.store')}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -51,10 +51,14 @@
             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
 
-        <p>
-        <label for="date_time">Event Date and Time: </label>
-        
-        <input type="datetime-local" name="date_time"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        <p> 
+            <label for="date_time">From </label>
+            <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+        </p>
+
+        <p> 
+            <label for="date_time">To: </label>
+            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
         
         <p> Venue:

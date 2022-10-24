@@ -14,7 +14,7 @@
 
         <div class="py-10 sm:py-20">
             <a class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400"
-               href="{{route('event.createevent')}}">
+               href="{{route('event.create')}}">
                 Create Event
             </a>
         </div>
@@ -36,7 +36,7 @@
                 <div class="card">
                     <div class="card-header">
                     <h2 class="text-gray-900 text-2xl font-bold pt-6 pb-0 sm:pt-0 hover:text-gray-700 transition-all " >
-                        <a href="{{route('event.showevent',$event->eventId)}}">
+                        <a href="{{route('event.show',$event->eventId)}}">
                             {{ $event->name }}
                         </a>
                     </h2>
@@ -44,10 +44,16 @@
 
                     <div>
                         <p>
-                        {{ $event->email }}
+                            {{ $event->email }}
                         </p>
                         <p>
-                        {{ $event->type }}
+                            {{ $event->type }}
+                        </p>
+                        <p>
+                            {{ $event->start_datetime }}
+                        </p>
+                        <p>
+                            {{ $event->end_datetime }}
                         </p>
                     </div>
                    

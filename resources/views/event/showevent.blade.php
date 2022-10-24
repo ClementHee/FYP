@@ -23,16 +23,20 @@
             </p>
 
             <p class="">
-                {{ $event->date_time }}
+                {{ $event->start_datetime }}
+            </p>
+
+            <p class="">
+                {{ $event->end_datetime }}
             </p>
         </div>
         
     </div>
        
-        <a  class="" href= "{{route('event.editevent',$event->eventId)}} ">
+        <a  class="" href= "{{route('event.edit',$event->eventId)}} ">
             Edit Event
         </a>
-        <form action=" {{route ('event.deleteevent',$event->eventId)}}" method="POST">
+        <form action=" {{route ('event.destroy',$event->eventId)}}" method="POST">
             @csrf
             @method('DELETE')
             <button class="primary-btn inline text-base sm:text-xl bg-red-500 mt-10 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-red-400">

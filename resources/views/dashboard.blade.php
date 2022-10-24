@@ -1,8 +1,7 @@
 <?php @include("{$currDir}/hooks/links-home.php"); ?>
 <?php if(!defined('PREPEND_PATH')) define('PREPEND_PATH', ''); ?>
 <?php if(!defined('datalist_db_encoding')) define('datalist_db_encoding', 'UTF-8'); ?>
-<?php include'libs/redirect.php'; ?>
-<?php include 'libs/data.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +32,7 @@
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-        <?php include'sidenav.php'; ?>
+
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
@@ -45,7 +44,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i><?php echo getLoggedMemberID(); ?></a>
+            <i class="fa fa-fw fa-sign-out"></i></a>
         </li>
       </ul>
     </div>
@@ -58,10 +57,10 @@
           <a href="index.html">Dashboard</a>
         </li>
       </ol>
-      <?php CheckMemeberDetails(); ?>
+
       <div class="row">
         <div class="col-12">
-          <?php include 'main.php'; ?>
+
         </div>
       </div>
     </div>
@@ -75,35 +74,19 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Hello <?php echo getLoggedMemberID(); ?></h5>
+            <h5 class="modal-title" id="exampleModalLabel">Hello </h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">Here are some quick options:
-            <a href="<?php echo PREPEND_PATH; ?>membership_profile.php" class="btn btn-primary btn-block"><i class="fa fa-user"></i> <strong>My profile</strong></a>
-               <?php if(getLoggedAdmin()){ ?>
-               <a href="<?php echo PREPEND_PATH; ?>admin/pageHome.php" class="btn btn-danger btn-block navbar-btn btn-sm visible-xs btn-sm"><i class="fa fa-cog"></i> <strong><?php echo $Translation['admin area']; ?></strong></a>
-               <?php } ?>
-               <?php if(!$_GET['signIn'] && !$_GET['loginFailed']){ ?>
-               <?php if(getLoggedMemberID() == $adminConfig['anonymousMember']){ ?>
-               <p class="navbar-text navbar-right">&nbsp;</p>
-               <a href="<?php echo PREPEND_PATH; ?>index.php?signIn=1" class="btn btn-success navbar-btn btn-sm navbar-right"><strong><?php echo $Translation['sign in']; ?></strong></a>
-               <p class="navbar-text navbar-right">
-                <?php echo $Translation['not signed in']; ?>
-              </p>
-              <?php }else{ ?>
-              <ul class="nav navbar-nav navbar-right hidden-xs" style="min-width: 330px;">
-              </ul>
-              <ul class="nav navbar-nav visible-xs">
-              </ul>
-              <?php } ?>
-              <?php } ?>
+           
+             
             <!--login/logout area ends-->
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Back</button>
-            <a class="btn btn-primary" href="index.php?signOut=1">Logout</a>
+            <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
           </div>
         </div>
       </div>

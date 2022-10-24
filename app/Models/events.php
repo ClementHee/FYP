@@ -15,8 +15,10 @@ class events extends Model
         'eventId',
         'name' ,
         'type',
-        'date_time',
+        'start_datetime',
+        'end_datetime',
         'venue',
+        
         'pic' 
     ];
     protected  static  function  boot()

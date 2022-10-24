@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('eventId');
             $table->string('name');
             $table->string('type');
-            $table->datetime('date_time');
+            $table->datetime('start_datetime');
+            $table->datetime('end_datetime');
             $table->string('venue');
             $table->string('pic');
             $table->timestamps();
