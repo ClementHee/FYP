@@ -30,7 +30,7 @@
 
     <div class="card">
     <form
-        action="{{route('event.updateevent', $edit_event->eventId)}}"
+        action="{{route('event.update', $edit_event->eventId)}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -53,8 +53,13 @@
         </p>
 
         <p> 
-            <label for="date_time">Event Date and Time</label>
-            <input type="datetime-local" name="date_time"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->date_time}}">
+            <label for="date_time">From </label>
+            <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
+        </p>
+
+        <p> 
+            <label for="date_time">To: </label>
+            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
         </p>
 
         <p> Venue:

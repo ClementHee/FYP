@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
+use App\Models\roles;
 
+use Illuminate\Support\Str;
 use App\Models\congregation;
 use Illuminate\Http\Request;
 use App\Models\member_profile;
+use App\Models\volunteer_type;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +29,8 @@ class profile_controller extends Controller
     public function index(Request $request)
     {
         $profiles = member_profile::orderBy('profileId','ASC')->paginate(5);
-        return view('profile.profiles',compact('profiles'))
+        $vtypes = volunteer_type::get();
+        return view('profile.profiles',compact('profiles','vtypes'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -58,7 +61,7 @@ class profile_controller extends Controller
             'address' => 'required',
         ]);
      
-        member_profile::create([
+        $np = member_profile::create([
             'profileId' => Str::uuid(),
             'name' => $request->name,
             'phone' => $request->phone,
@@ -68,9 +71,12 @@ class profile_controller extends Controller
             'congregation' => $request->congregation,
             'gender' => $request->gender,
             'designation' => $request->designation,
-   
         ]);
-        return redirect(route('profile.index'));
+
+        return view ('volunteertype.createtype',[
+            'profile_id' => member_profile::where('email',$np->email)->get('profileId')->first(),
+            'vroles' => roles::get()
+        ]);
     }
 
     /**
@@ -81,9 +87,14 @@ class profile_controller extends Controller
      */
     public function show($profileId)
     {
-        return view('profile.showprofile',[
-            'profile'=>member_profile::findOrFail($profileId)
-        ]);
+        $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
+            ->where("volunteer_type.profileId",$profileId)
+            ->get();
+        
+        $profile = member_profile::findOrFail($profileId);
+        
+        return view('profile.showprofile',compact('profile','allocatedtypes'));
+        
     }
 
     /**

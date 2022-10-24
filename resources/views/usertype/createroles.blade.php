@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Role</h2>
+            <h2>Create New Role</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('user_type.index') }}"> Back</a>
@@ -20,16 +20,19 @@
         </ul>
     </div>
 @endif
-{!! Form::model($edit_vroles, ['method' => 'PATCH','route' => ['roles.update', $edit_vroles->roleId]]) !!}
+{!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Type:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}</div>
+            <strong>Name:</strong>
+            {!! Form::text('name', array('placeholder' => 'Name','class' => 'form-control')) !!}
+        </div>
     </div>
+    
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
-    {!! Form::close() !!}
+{!! Form::close() !!}
+
 @endsection

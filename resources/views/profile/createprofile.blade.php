@@ -30,7 +30,7 @@
 
     <div class="card">
     <form
-        action="{{route('profile.storeprofile')}}"
+        action="{{route('profile.store')}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf

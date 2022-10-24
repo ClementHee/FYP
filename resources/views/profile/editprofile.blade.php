@@ -30,7 +30,7 @@
 
     <div class="card">
     <form
-        action="{{route('profile.updateprofile', $edit_profile->profileId)}}"
+        action="{{route('profile.update', $edit_profile->profileId)}}"
         method="POST"
         enctype="multipart/form-data">
         @csrf

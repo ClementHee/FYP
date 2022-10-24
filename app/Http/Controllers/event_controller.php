@@ -50,7 +50,12 @@ class event_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:events',
+            'type' =>'required',
+            'start_datetime' => 'required',
+            'end_datetime' => 'required',
+            'venue' => 'required',
+            'pic' => 'required',
             
         ]);
      
@@ -58,7 +63,8 @@ class event_controller extends Controller
             'eventId' => Str::uuid(),
             'name' => $request->name,
             'type' => $request->type,
-            'date_time' => $request->date_time,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
             
@@ -104,10 +110,11 @@ class event_controller extends Controller
     public function update(Request $request, $id)
     {
         events::where('eventId',$id)->update([
-            'name' => $request->name,
+    
             'name' => $request->name,
             'type' => $request->type,
-            'date_time' => $request->date_time,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
         ]);
