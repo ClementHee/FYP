@@ -6,7 +6,7 @@
             <h2> Show Role</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('user_type.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>
         </div>
     </div>
 </div>

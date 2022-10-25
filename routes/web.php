@@ -29,12 +29,9 @@ Route::get('/', [HomeController::class,'index']);
 Auth::routes();
 #self defined prefix
 
-
-
-
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('profile', profile_controller::class);
-    Route::resource('user_type', user_role_permission_controller::class);
+    Route::resource('usertype', user_role_permission_controller::class);
     Route::resource('roles', roles_controller::class);
     Route::resource('vtypes', volunteer_type_controller::class);
     Route::resource('users', user_controller::class);
@@ -42,11 +39,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('memberprofile', profile_controller::class);
 });
 
-<<<<<<< HEAD
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
->>>>>>> master

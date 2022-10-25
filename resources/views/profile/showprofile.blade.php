@@ -24,7 +24,6 @@
             <div class="form-group">
                 <strong>Email:</strong>
                 {{ $profile->email }}
-<<<<<<< HEAD
             </p>
           
           @if(!empty($allocatedtypes))
@@ -55,36 +54,3 @@
   
 </body>
 @endsection
-=======
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Home Number:</strong>
-                {{ $profile->phone}}
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Phone Number:</strong>
-                {{ $profile->handphoneNo }}
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Address:</strong>
-                {{ $profile->address }}
-            </div>
-        </div>
-
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
-        </div>
-
-    </div>
-    </body>
-@endsection
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd

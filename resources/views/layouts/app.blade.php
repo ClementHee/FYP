@@ -24,6 +24,7 @@
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
+                    
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,7 +49,7 @@
 
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                             @can('role-list')
-                                <li><a class="nav-link" href="{{ route('user_type.index') }}">Manage Role</a></li>
+                                <li><a class="nav-link" href="{{ route('usertype.index') }}">Manage Role</a></li>
                             @endcan
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Volunteer Types</a></li>
                             <li><a class="nav-link" href="{{ route('profile.index') }}">Manage Profiles</a></li>

@@ -50,7 +50,6 @@
             class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
-<<<<<<< HEAD
         <p> 
             <label for="date_time">From </label>
             <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
@@ -59,12 +58,6 @@
         <p> 
             <label for="date_time">To: </label>
             <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-=======
-        <p>
-        <label class="col-xs-12 col-sm-12 col-md-12" for="date_time">Event Date and Time: </label>
-
-        <input type="datetime-local" name="date_time"  class="col-xs-12 col-sm-12 col-md-12">
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         </p>
 
         <p> Venue:

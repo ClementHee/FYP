@@ -17,7 +17,6 @@
             <div class="form-group">
                 <strong>Name:</strong>
                 {{ $event->name }}
-<<<<<<< HEAD
             </p>
 
             <p class="">
@@ -27,9 +26,7 @@
             <p class="">
                 {{ $event->end_datetime }}
             </p>
-=======
             </div>
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -65,7 +62,6 @@
         </div>
 
     </div>
-<<<<<<< HEAD
        
         <a  class="" href= "{{route('event.edit',$event->eventId)}} ">
             Edit Event
@@ -79,9 +75,7 @@
         </form>
     </div>
     </body>
-@endsection
-=======
+
 
 </body>
 @endsection
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd

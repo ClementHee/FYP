@@ -60,13 +60,8 @@ class user_role_permission_controller extends Controller
 
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-<<<<<<< HEAD
     
         return redirect()->route('usertype.index')
-=======
-
-        return redirect()->route('roles.index')
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
                         ->with('success','Role created successfully');
     }
     /**
@@ -81,13 +76,8 @@ class user_role_permission_controller extends Controller
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
-<<<<<<< HEAD
     
         return view('usertype.showroles',compact('role','rolePermissions'));
-=======
-
-        return view('roles.showroles',compact('role','rolePermissions'));
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
     }
 
     /**
@@ -103,13 +93,8 @@ class user_role_permission_controller extends Controller
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-<<<<<<< HEAD
     
         return view('usertype.editroles',compact('role','permission','rolePermissions'));
-=======
-
-        return view('roles.editroles',compact('role','permission','rolePermissions'));
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
     }
 
     /**
@@ -131,13 +116,8 @@ class user_role_permission_controller extends Controller
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
-<<<<<<< HEAD
-    
-        return redirect()->route('usertype.index')
-=======
 
-        return redirect()->route('roles.index')
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
+        return redirect()->route('usertype.index')
                         ->with('success','Role updated successfully');
     }
     /**

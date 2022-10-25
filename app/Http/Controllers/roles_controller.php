@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\roles;
 use App\Models\member_profile;
+use App\Models\volunteer_type;
 use Illuminate\Http\Request;
 
 class roles_controller extends Controller
@@ -16,8 +17,7 @@ class roles_controller extends Controller
     public function index(Request $request)
     {
         
-            $vroles = roles::get();
-        
+        $vroles = roles::get();
         return view('roles.roles',compact('vroles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     
@@ -62,17 +62,17 @@ class roles_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $assignedtypes= roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
-        ->where("volunteer_type.roles",$id)
-        ->get('profileId');
+    {   
         
-        $roles = roles::findOrFail($id);
-        $assignedtypes = json_decode(json_encode($assignedtypes), true);
+        $assignedtypes= volunteer_type::where('roles',$id)->get('profileId');
 
+        $roles = roles::findOrFail($id);
+
+        $assignedtypes = json_decode(json_encode($assignedtypes), true);
+        
         $assignedprofiles = member_profile::where('profileId',$assignedtypes)->get('name');
        
-           
+        
         return view('roles.showroles',compact('roles','assignedprofiles'));
     }
     

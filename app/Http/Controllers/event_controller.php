@@ -51,7 +51,6 @@ class event_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-<<<<<<< HEAD
             'name' => 'required|unique:events',
             'type' =>'required',
             'start_datetime' => 'required',
@@ -59,10 +58,6 @@ class event_controller extends Controller
             'venue' => 'required',
             'pic' => 'required',
             
-=======
-            'name' => 'required',
-
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         ]);
 
         events::create([
