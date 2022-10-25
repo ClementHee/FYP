@@ -6,13 +6,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<<<<<<< HEAD
     <title>{{ config('app.name', 'Church Management System') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-=======
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
     @vite(['resources/js/app.js'])
 
     <!-- Fonts -->
