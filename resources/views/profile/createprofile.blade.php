@@ -3,32 +3,31 @@
 <title> Create Profile </title>
 
 @section('content')
-<body class="">
-<div class="container">
-    <div class="row justify-content-center">
-        <h1 class="">
-            Create new profile
-        </h1>
-        <hr class="border border-1 border-gray-300 mt-10">
+
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Create New Profile</h2>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
+        </div>
     </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        @if ($errors->any())
-            <div class='invalid-feedback'>
-                Something went wrong
-            </div>
-            <ul class='invalid-feedback'>
-                @foreach ($errors->all() as $error )
-                <li class="">
-                    {{$error}}
-                </li>    
-                @endforeach
-            </ul>
-        @endif
-</div>
+{{-- Basic error catcher --}}
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-    <div class="card">
     <form
         action="{{route('profile.store')}}"
         method="POST"
@@ -37,18 +36,18 @@
 
         <p> Designation:
         <input
-        type="text"
-        name="designation"
-        placeholder="Designation"
-        class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12"
+            type="text"
+            name="designation"
+            placeholder="Designation">
         </p>
 
         <p> Name:
         <input
+            class="col-xs-12 col-sm-12 col-md-12"
             type="text"
             name="name"
-            placeholder="Name"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            placeholder="Name">
         </p>
 
         <p> Home Number:
@@ -56,7 +55,7 @@
             type="text"
             name="phone"
             placeholder="Phone"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
         <p> Phone Number:
@@ -64,7 +63,7 @@
             type="text"
             name="handphoneNo"
             placeholder="Mobile Phone"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
         <p> Email:
@@ -72,43 +71,37 @@
             type="email"
             name="email"
             placeholder="Email"
-            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
         <p> Address:
         <textarea
             name="address"
             placeholder="Address"
-            class="py-10 bg-transparent block border-b-2 w-full h-50 text-xl outline-none"></textarea>
+            class="col-xs-12 col-sm-12 col-md-12"></textarea>
         </p>
 
         <p> Gender
-            <select name = "gender" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3">
-                
+            <select name = "gender" class="col-xs-12 col-sm-12 col-md-12">
+
                 <option value = "Male">Male</option>
                 <option value = "Female">Female</option>
-                
+
             </select>
         </p>
 
         <p> Congregation
-        <select name = "congregation" class="bg-transparent block border-b-2 inline text-2xl outline-none py-3 ml-20">
+        <select name = "congregation" class="col-xs-12 col-sm-12 col-md-12">
             @foreach ($congregations as $selection )
                 <option value = "{{$selection->name}}">{{$selection->name}}</option>
             @endforeach
-            
+
         </select>
         </p>
-        
-        
 
-        <button
-            type="submit"
-            class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-            Create Profile
-        </button>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
     </div>
-</div>
-</body>
 @endsection

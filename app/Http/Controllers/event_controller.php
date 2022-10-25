@@ -12,23 +12,24 @@ use App\Http\Controllers\Controller;
 
 class event_controller extends Controller
 {
-    function __construct() //This function is to restrict actions based on roles 
+    function __construct() //This function is to restrict actions based on roles
     {
          $this->middleware('permission:event-list|event-create|event-edit|event-delete', ['only' => ['index','store']]);
          $this->middleware('permission:event-create', ['only' => ['create','store']]);
          $this->middleware('permission:event-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:event-delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view ('event.events',[
-            'events' => events::orderby('updated_at','desc')->get(),
-        ]);
+        $events = events::orderby('updated_at','desc')->paginate (5);
+        return view ('event.events',compact('events'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -50,6 +51,7 @@ class event_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
+<<<<<<< HEAD
             'name' => 'required|unique:events',
             'type' =>'required',
             'start_datetime' => 'required',
@@ -57,8 +59,12 @@ class event_controller extends Controller
             'venue' => 'required',
             'pic' => 'required',
             
+=======
+            'name' => 'required',
+
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         ]);
-     
+
         events::create([
             'eventId' => Str::uuid(),
             'name' => $request->name,
@@ -67,8 +73,8 @@ class event_controller extends Controller
             'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
-            
-   
+
+
         ]);
         return redirect(route('event.index'));
     }
@@ -96,7 +102,7 @@ class event_controller extends Controller
     {
         return view ('event.editevent',[
             'edit_event' => events::where('eventId',$id)->first(),
-      
+
         ]);
     }
 

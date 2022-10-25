@@ -899,6 +899,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v9.36.4",
             "source": {
                 "type": "git",
@@ -909,6 +910,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/15ce569fd93124e8e2257c24e3ed85b9ef9951d6",
                 "reference": "15ce569fd93124e8e2257c24e3ed85b9ef9951d6",
+=======
+            "version": "v9.36.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "0bcd350eec1974c9f912f129368587ef7e43722b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0bcd350eec1974c9f912f129368587ef7e43722b",
+                "reference": "0bcd350eec1974c9f912f129368587ef7e43722b",
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
                 "shasum": ""
             },
             "require": {
@@ -997,7 +1010,11 @@
                 "league/flysystem-read-only": "^3.3",
                 "league/flysystem-sftp-v3": "^3.0",
                 "mockery/mockery": "^1.5.1",
+<<<<<<< HEAD
                 "orchestra/testbench-core": "^7.11",
+=======
+                "orchestra/testbench-core": "^7.8",
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
                 "pda/pheanstalk": "^4.0",
                 "phpstan/phpstan": "^1.4.7",
                 "phpunit/phpunit": "^9.5.8",
@@ -1081,7 +1098,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2022-10-20T16:11:03+00:00"
+=======
+            "time": "2022-10-18T18:46:20+00:00"
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         },
         {
             "name": "laravel/sanctum",
@@ -2971,6 +2992,7 @@
         },
         {
             "name": "spatie/laravel-permission",
+<<<<<<< HEAD
             "version": "5.5.14",
             "source": {
                 "type": "git",
@@ -2981,6 +3003,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/87850d72185278b65a33b58b6016dd3564d3a583",
                 "reference": "87850d72185278b65a33b58b6016dd3564d3a583",
+=======
+            "version": "5.5.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "5e96846341cb883bbe74f735502b743ee9898669"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5e96846341cb883bbe74f735502b743ee9898669",
+                "reference": "5e96846341cb883bbe74f735502b743ee9898669",
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
                 "shasum": ""
             },
             "require": {
@@ -3041,7 +3075,11 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/spatie/laravel-permission/tree/5.5.14"
+=======
+                "source": "https://github.com/spatie/laravel-permission/tree/5.5.10"
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
             },
             "funding": [
                 {
@@ -3049,7 +3087,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2022-10-21T04:50:01+00:00"
+=======
+            "time": "2022-10-19T02:25:19+00:00"
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         },
         {
             "name": "symfony/console",
@@ -5311,6 +5353,7 @@
                 }
             ],
             "time": "2022-10-07T08:04:03+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "thiagoprz/eloquent-composite-key",
@@ -5358,6 +5401,8 @@
                 "source": "https://github.com/thiagoprz/eloquent-composite-key/tree/1.0.1"
             },
             "time": "2022-04-20T19:12:31+00:00"
+=======
+>>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
