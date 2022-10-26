@@ -1,7 +1,4 @@
 @extends('layouts.app')
-
-<title> Create User </title>
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -26,7 +23,7 @@
 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-
+        
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -57,4 +54,5 @@
     </div>
 </div>
 {!! Form::close() !!}
+<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
 @endsection

@@ -3,31 +3,32 @@
 <title> Create Event </title>
 
 @section('content')
-
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Create New Event</h2>
-        </div>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-3xl text-gray-700">
+            Create new Event
+        </h1>
+        <hr class="border border-1 border-gray-300 mt-10">
     </div>
 
-    <div class="pull-right">
-        <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
+<div class="container">
+    <div class="row justify-content-center">
+        @if ($errors->any())
+            <div class='invalid-feedback'>
+                Something went wrong
+            </div>
+            <ul class='invalid-feedback'>
+                @foreach ($errors->all() as $error )
+                <li class="py-2">
+                    {{$error}}
+                </li>    
+                @endforeach
+            </ul>
+        @endif
     </div>
-</div>
 
-{{-- Basic error catcher --}}
-@if (count($errors) > 0)
-<div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
+    <div class="card">
     <form
         action="{{route('event.store')}}"
         method="POST"
@@ -39,15 +40,15 @@
             type="text"
             name="name"
             placeholder="Name"
-            class="col-xs-12 col-sm-12 col-md-12">
+            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
 
-        <p>Type:
+        <p>Type: 
         <input
             type="text"
             name="type"
             placeholder="Type"
-            class="col-xs-12 col-sm-12 col-md-12">
+            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
 
         <p> 
@@ -59,25 +60,30 @@
             <label for="date_time">To: </label>
             <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
-
+        
         <p> Venue:
         <input
             type="text"
             name="venue"
             placeholder="Venue"
-            class="col-xs-12 col-sm-12 col-md-12">
+            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
-
+        
         <p> Person In Charge:
         <input
             type="text"
             name="pic"
             placeholder="Person In Charge"
-            class="col-xs-12 col-sm-12 col-md-12">
+            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
         </p>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+        
+        <button
+            type="submit"
+            class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+            Create Event
+        </button>
     </form>
+    </div>
+</div>
+</body>
 @endsection

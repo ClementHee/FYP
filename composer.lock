@@ -1081,7 +1081,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2022-10-25T15:43:46+00:00"
+=======
+            "time": "2022-10-20T16:11:03+00:00"
+>>>>>>> parent of 9c43f4a (merged)
         },
         {
             "name": "laravel/sanctum",

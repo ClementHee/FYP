@@ -4,34 +4,33 @@
 
 @section('content')
 <body>
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2> Profile Data</h2>
-            </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <a href="{{URL::previous()}}">
+                < Back to previous page
+            </a>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
+        <div class="card">
+        <h4 class="card-header">
+            {{ $profile->name }}
+        </h4>
+
+         <div>
+            <p>
                 {{ $profile->name }}
-            </div>
-        </div>
+            </p>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Email:</strong>
+            <p>
                 {{ $profile->email }}
             </p>
-          
+
           @if(!empty($allocatedtypes))
           @foreach($allocatedtypes as $v)
             <label class="label label-success">{{ $v->name }},</label>
           @endforeach
         @endif
-         
+
 
          </div>
        </div>
@@ -48,9 +47,9 @@
             <button>
                 Delete
             </button>
-        </form>    
+        </form>
     </div>
     <!-- Button trigger modal -->
-  
+
 </body>
 @endsection

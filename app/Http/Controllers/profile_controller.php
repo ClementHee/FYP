@@ -19,7 +19,6 @@ class profile_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     function __construct()
     {
          $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show']]);
@@ -61,7 +60,7 @@ class profile_controller extends Controller
             'email' => 'required|email',
             'address' => 'required',
         ]);
-     
+
         $np = member_profile::create([
             'profileId' => Str::uuid(),
             'name' => $request->name,
@@ -72,7 +71,6 @@ class profile_controller extends Controller
             'congregation' => $request->congregation,
             'gender' => $request->gender,
             'designation' => $request->designation,
-
         ]);
 
         return view ('volunteertype.createtype',[
@@ -92,11 +90,11 @@ class profile_controller extends Controller
         $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
             ->where("volunteer_type.profileId",$profileId)
             ->get();
-        
+
         $profile = member_profile::findOrFail($profileId);
-        
+
         return view('profile.showprofile',compact('profile','allocatedtypes'));
-        
+
     }
 
     /**
@@ -145,7 +143,7 @@ class profile_controller extends Controller
      */
     public function destroy($id)
     {
-        
+
         member_profile::destroy($id);
         DB::table("volunteer_type")->where('profileId',$id)->delete();
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');

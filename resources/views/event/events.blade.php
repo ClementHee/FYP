@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
-<title> Manage Event </title>
+<title> Events </title>
 
 @section('content')
-
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <h2 class="">
-                Event Management
-            </h2>
+<body class="w-full h-full bg-gray-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="text-3xl text-gray-700">
+                Events
+            </h1>
+            <hr class="border border-1 border-gray-300 mt-10">
         </div>
 
         <div class="py-10 sm:py-20">
@@ -18,11 +19,15 @@
             </a>
         </div>
     </div>
-
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
+    @if (session()->has('message'))
+        <div class="container">
+            <div class = "invalid-feedback">
+                Warning
+            </div>
+            <div class="invalid-feedback">
+                {{session()->get('message')}}
+            </div>
+        </div>
     @endif
 
     @foreach($events as $event)
@@ -57,6 +62,5 @@
             </div>
         </div>
     @endforeach
-</table>
-
+</body>
 @endsection
