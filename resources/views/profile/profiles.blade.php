@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Church Management</h2>
+            <h2>Profile Management</h2>
         </div>
         <div class="pull-right">
         @can('profile-create')
@@ -19,19 +19,19 @@
 @endif
 <table class="table table-bordered">
     <tr>
-        <th>No</th>
+        <th>No.</th>
         <th>Name</th>
         <th width="280px">Action</th>
     </tr>
-    
+
     @foreach ($profiles as $key => $profile)
     <tr>
         <td>{{ ++$i }}</td>
         <td>{{ $profile->name }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
             @can('profile-edit')
-                <a class="btn btn-primary" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
+                <a class="btn btn-two" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
             @endcan
             @can('profile-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['profile.destroy', $profile->profileId],'style'=>'display:inline']) !!}

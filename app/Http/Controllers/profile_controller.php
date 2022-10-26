@@ -19,6 +19,7 @@ class profile_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     function __construct()
     {
          $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show']]);
@@ -71,6 +72,7 @@ class profile_controller extends Controller
             'congregation' => $request->congregation,
             'gender' => $request->gender,
             'designation' => $request->designation,
+
         ]);
 
         return view ('volunteertype.createtype',[
@@ -108,7 +110,7 @@ class profile_controller extends Controller
         return view ('profile.editprofile',[
             'edit_profile' => member_profile::where('profileId',$id)->first(),
             'congregations' => congregation::get()
-          
+
         ]);
     }
 
@@ -143,7 +145,9 @@ class profile_controller extends Controller
      */
     public function destroy($id)
     {
+        
         member_profile::destroy($id);
+        DB::table("volunteer_type")->where('profileId',$id)->delete();
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
 }

@@ -4,24 +4,25 @@
 
 @section('content')
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <a href="{{URL::previous()}}">
-                < Back to previous page
-            </a>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2> Profile Data</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name:</strong>
+                {{ $profile->name }}
+            </div>
         </div>
 
-        <div class="card">
-        <h4 class="card-header">
-            {{ $profile->name }}
-        </h4>
-
-         <div>
-            <p>
-                {{ $profile->name }}
-            </p>
-
-            <p>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Email:</strong>
                 {{ $profile->email }}
             </p>
           

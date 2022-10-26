@@ -17,8 +17,7 @@
 @endif
 <table class="table table-bordered">
     <tr>
-        <th>No</th>
-
+        <th>No.</th>
         <th>Email</th>
         <th>Roles</th>
         <th width="280px">Action</th>
@@ -28,7 +27,7 @@
         <td>{{ ++$i }}</td>
 
         <td>{{ $user->email }}</td>
-        
+
         <td>
             @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)
@@ -37,8 +36,8 @@
             @endif
         </td>
         <td>
-            <a class="btn btn-info" href="{{ route('users.show',$user->accountId) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('users.edit',$user->accountId) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ route('users.show',$user->accountId) }}">Show</a>
+            <a class="btn btn-two" href="{{ route('users.edit',$user->accountId) }}">Edit</a>
                 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->accountId],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}

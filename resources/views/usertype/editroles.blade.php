@@ -6,7 +6,7 @@
             <h2>Edit Role</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('user_type.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -20,7 +20,7 @@
         </ul>
     </div>
 @endif
-{!! Form::model($role, ['method' => 'PATCH','route' => ['user_type.update', $role->id]]) !!}
+{!! Form::model($role, ['method' => 'PATCH','route' => ['usertype.update', $role->id]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">

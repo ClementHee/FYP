@@ -4,21 +4,18 @@
 
 @section('content')
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <a href="{{ URL::previous() }}"
-               class="text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
-                < Back to previous page
-            </a>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Event Data</h2>
+            </div>
         </div>
+    </div>
 
-    <div class="card">
-        <h4 class="card-header">
-            {{ $event->name }}
-        </h4>
-        
-        <div class="">
-            <p class="">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name:</strong>
                 {{ $event->name }}
             </p>
 
@@ -29,8 +26,41 @@
             <p class="">
                 {{ $event->end_datetime }}
             </p>
+            </div>
         </div>
-        
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Type:</strong>
+                {{ $event->type }}
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Date Time:</strong>
+                {{ $event->date_time }}
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Venue:</strong>
+                {{ $event->venue }}
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Person In Charge:</strong>
+                {{ $event->pic }}
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
+        </div>
+
     </div>
        
         <a  class="" href= "{{route('event.edit',$event->eventId)}} ">
@@ -45,4 +75,7 @@
         </form>
     </div>
     </body>
+
+
+</body>
 @endsection
