@@ -60,7 +60,7 @@ class user_role_permission_controller extends Controller
 
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-    
+
         return redirect()->route('usertype.index')
                         ->with('success','Role created successfully');
     }
@@ -76,7 +76,7 @@ class user_role_permission_controller extends Controller
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
-    
+
         return view('usertype.showroles',compact('role','rolePermissions'));
     }
 
@@ -93,7 +93,7 @@ class user_role_permission_controller extends Controller
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-    
+
         return view('usertype.editroles',compact('role','permission','rolePermissions'));
     }
 

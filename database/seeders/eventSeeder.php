@@ -21,12 +21,13 @@ class eventSeeder extends Seeder
                 'eventId' => Str::uuid(),
                 'name' => 'Event Uno',
                 'type' => 'Service',
-                'date_time' => '10/10/10 10:00:00',
+                'start_datetime' => '10/10/10 10:00:00',
+                'end_datetime' => '10/10/10 15:00:00',
                 'venue' => 'Hall A',
                 'pic' => 'Irvin',
-                
+
             ],
-            
+
         ];
         foreach($events as $key => $value) {
             events::create($value);

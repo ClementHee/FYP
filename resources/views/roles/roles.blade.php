@@ -36,15 +36,15 @@
             <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        
+
         @foreach ($vroles as $vrole)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $vrole->name }}</td>
             <td>
-                <a class="btn btn-info" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
                 @can('role-edit')
-                    <a class="btn btn-primary" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
+                    <a class="btn btn-two" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
                 @endcan
                 @can('role-delete')
                     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
@@ -56,6 +56,6 @@
         @endforeach
     </table>
 
-   
+
 </body>
 @endsection

@@ -54,9 +54,4 @@
     </div>
 </div>
 {!! Form::close() !!}
-<<<<<<< HEAD
-
 @endsection
-=======
-@endsection
->>>>>>> fbdbbe68f596037dbaebab6e032193c6e7ae08dd
