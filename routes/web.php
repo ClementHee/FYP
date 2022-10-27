@@ -23,6 +23,7 @@ use App\Http\Controllers\user_role_permission_controller;
 |
 */
 Route::get('/', [HomeController::class,'index']);
+Route::get('/home', [HomeController::class,'index']);
 //Route::get('/blog',[usersController::class,'index']);
 
 
