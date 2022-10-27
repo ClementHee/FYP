@@ -21,7 +21,7 @@
         <div class="form-group">
             <strong>Members Allocated: </strong>
             @foreach ( $assignedprofiles as $assignedprofile )
-                {{ $assignedprofile->name }}
+                {{ $assignedprofile->name }},
             @endforeach
             
         </div>

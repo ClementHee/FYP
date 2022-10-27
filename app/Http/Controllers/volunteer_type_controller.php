@@ -102,8 +102,22 @@ class volunteer_type_controller extends Controller
     public function update(Request $request, $id)
     {
         
-        $vprofile = volunteer_type::where('profileId','=',$id)->get();
-      
+        $vprofile = volunteer_type::where('profileId',$id)->get();
+        
+        if(count($vprofile)==0){
+            
+            foreach ($request->types as $key=>$name){
+                $insert = [
+                    'profileId' =>$id,
+                    'roles' => $request -> types[$key]  
+                ];
+                    
+                DB::table('volunteer_type')->insert($insert); 
+                
+            }
+            
+        }
+        else{
         foreach($vprofile as $row){
             if($request->types!=null){
                 foreach ($request->types as $key=>$name){
@@ -115,13 +129,20 @@ class volunteer_type_controller extends Controller
                         DB::table('volunteer_type')->insert($insert); 
                     }
                     else{
-                    volunteer_type::where('profileId','=',$id)->whereNotin('roles',$request->types)->delete();  
+                        volunteer_type::where('profileId','=',$id)->where('roles',$request -> types[$key])->delete();  
+                        $insert = [
+                            'profileId' =>$id,
+                            'roles' => $request -> types[$key]  
+                        ];
+                        DB::table('volunteer_type')->insert($insert); 
                     }
                 } 
-            }else{
+            }
+            else{
                 volunteer_type::where('profileId','=',$id)->delete();  
             }
         }
+    }
         
         
         return redirect()->route('profile.show',$id);
