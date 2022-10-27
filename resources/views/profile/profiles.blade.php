@@ -29,9 +29,9 @@
         <td>{{ ++$i }}</td>
         <td>{{ $profile->name }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
             @can('profile-edit')
-                <a class="btn btn-primary" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
+                <a class="btn btn-two" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
             @endcan
             @can('profile-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['profile.destroy', $profile->profileId],'style'=>'display:inline']) !!}
