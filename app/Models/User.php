@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use App\Models\member_profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -56,5 +57,15 @@ class User extends Authenticatable
         static::creating(function  ($model)  {
             $model->accountId = (string) Str::uuid();
         });
+    }
+    
+    /**
+     * Get the user associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function mprofile()
+    {
+        return $this->hasOne(member_profile::class, 'profileId', 'profileId');
     }
 }

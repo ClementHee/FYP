@@ -29,7 +29,7 @@
         <td>{{ ++$i }}</td>
         <td>{{ $profile->name }}</td>
         <td>
-            <a class="btn btn-primary" href="{{ route('profile.show',$profile->profileId) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('profile.show',auth()->user()->email) }}">Show</a>
             @can('profile-edit')
                 <a class="btn btn-two" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
             @endcan

@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', user_controller::class);
     Route::resource('event',event_controller::class);
     Route::resource('memberprofile', profile_controller::class);
+    Route::get('/check', [profile_controller::class,'check']);
 });
+
 
 

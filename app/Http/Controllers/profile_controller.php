@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\roles;
+use App\Models\User;
 
+use App\Models\roles;
 use Illuminate\Support\Str;
 use App\Models\congregation;
 use Illuminate\Http\Request;
@@ -87,8 +88,21 @@ class profile_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($profileId)
+    public function show($email)
     {
+        $createdprofile = member_profile::join('user_account','user_account.email','=','member_profiles.email')
+            ->where('user_account.email',$email)
+            ->get();
+        
+        if(count($createdprofile)==0){
+            return view ('profile.createprofile',[
+                'congregations' => congregation::get(),
+                'email' => $email
+            ]);
+        }else{
+            $profileId = $createdprofile[0]->profileId;
+        }
+        
         $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
             ->where("volunteer_type.profileId",$profileId)
             ->get();
@@ -150,4 +164,6 @@ class profile_controller extends Controller
         DB::table("volunteer_type")->where('profileId',$id)->delete();
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
+
+
 }

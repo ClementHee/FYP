@@ -70,8 +70,12 @@
         <input
             type="email"
             name="email"
-            placeholder="Email"
-            class="col-xs-12 col-sm-12 col-md-12">
+            class="col-xs-12 col-sm-12 col-md-12"
+            @if (isset($email))
+                value="{{$email}}" readonly 
+            @else
+                placeholder="Email"
+            @endif>
         </p>
 
         <p> Address:

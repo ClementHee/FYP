@@ -64,12 +64,10 @@ class roles_controller extends Controller
     public function show($id)
     {   
         
-        $assignedtypes= volunteer_type::where('roles',$id)->get('profileId');
-        
 
         $roles = roles::findOrFail($id);
 
-        $assignedtypes = json_decode(json_encode($assignedtypes), true);
+        
         
         
         $assignedprofiles = volunteer_type::join("member_profiles","volunteer_type.profileId","=","member_profiles.profileId")
