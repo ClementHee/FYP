@@ -11,12 +11,11 @@
             </h2>
         </div>
 
-        <div class="py-10 sm:py-20">
-            <a class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400"
-               href="{{route('event.create')}}">
-                Create Event
-            </a>
-        </div>
+        <div class="pull-right my-4">
+            @can('event-create')
+                <a class="btn btn-success" href="{{ route('event.create') }}"> Create New Event</a>
+                @endcan
+            </div>
     </div>
 
     @if ($message = Session::get('success'))
@@ -25,38 +24,36 @@
     </div>
     @endif
 
-    @foreach($events as $event)
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                    <h2 class="text-gray-900 text-2xl font-bold pt-6 pb-0 sm:pt-0 hover:text-gray-700 transition-all " >
-                        <a href="{{route('event.show',$event->eventId)}}">
-                            {{ $event->name }}
-                        </a>
-                    </h2>
-                    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Time Start</th>
+            <th>Time End</th>
+            <th width="280px">Action</th>
+        </tr>
 
-                    <div>
-                        <p>
-                            {{ $event->email }}
-                        </p>
-                        <p>
-                            {{ $event->type }}
-                        </p>
-                        <p>
-                            {{ $event->start_datetime }}
-                        </p>
-                        <p>
-                            {{ $event->end_datetime }}
-                        </p>
-                    </div>
-                   
-                    
-                </div>
-            </div>
-        </div>
-    @endforeach
-</table>
+        @foreach ($events as $key => $event)
+        <tr>
+            <td>{{ ++$i }}</td>
+            <td>{{ $event->name }}</td>
+            <td>{{ $event->type }}</td>
+            <td>{{ $event->start_datetime }}</td>
+            <td>{{ $event->end_datetime }}</td>
+            <td>
+                <a class="btn btn-primary" href="{{ route('event.show',$event->eventId) }}">Show</a>
+                @can('event-edit')
+                    <a class="btn btn-two" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
+                @endcan
+                @can('event-delete')
+                    {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                @endcan
+            </td>
+        </tr>
+        @endforeach
+    </table>
 
 @endsection

@@ -25,32 +25,33 @@
                 <strong>Email:</strong>
                 {{ $profile->email }}
             </p>
-          
+
           @if(!empty($allocatedtypes))
           @foreach($allocatedtypes as $v)
             <label class="label label-success">{{ $v->name }},</label>
           @endforeach
         @endif
-         
+
 
          </div>
        </div>
-
-        <a  href= "{{route('profile.edit',$profile->profileId)}} ">
+    </div>
+    <div>
+        <a class= "btn btn-primary my-4" href= "{{route('profile.edit',$profile->profileId)}} ">
             Edit Profile
         </a>
-        <a  href= "{{route('vtypes.edit',$profile->profileId)}} ">
+        <a  class= "btn btn-primary" href= "{{route('vtypes.edit',$profile->profileId)}} ">
             Edit Roles
         </a>
         <form action=" {{route ('profile.destroy',$profile->profileId)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button>
+            <button  class= "btn btn-danger" >
                 Delete
             </button>
-        </form>    
+        </form>
     </div>
     <!-- Button trigger modal -->
-  
+
 </body>
 @endsection

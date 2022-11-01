@@ -22,7 +22,7 @@
                 @foreach ($errors->all() as $error )
                 <li class="py-2">
                     {{$error}}
-                </li>    
+                </li>
                 @endforeach
             </ul>
         @endif
@@ -39,8 +39,8 @@
                         name="profileId"
                         value= "{{$profile_id}}"
                         class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-              
-                    
+
+
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -22,17 +22,17 @@
                 @foreach ($errors->all() as $error )
                 <li class="py-2">
                     {{$error}}
-                </li>    
+                </li>
                 @endforeach
             </ul>
         @endif
     </div>
 
     <div class="card">
-    
+
 
         <title> Edit Volunteer Type </title>
-        
+
         @section('content')
         <body>
         <div class="container">
@@ -42,7 +42,7 @@
                 </h1>
                 <hr class="border border-1 border-gray-300 mt-10">
             </div>
-        
+
         <div class="container">
             <div class="row justify-content-center">
                 @if ($errors->any())
@@ -53,12 +53,12 @@
                         @foreach ($errors->all() as $error )
                         <li class="py-2">
                             {{$error}}
-                        </li>    
+                        </li>
                         @endforeach
                     </ul>
                 @endif
             </div>
-        
+
             <div class="container">
 
                 {!! Form::model($volunteer_type, ['method' => 'PATCH','route' => ['vtypes.update', $profileId]]) !!}
@@ -71,10 +71,10 @@
                                 name="profileId"
                                 value= {{$profileId}}
                                 class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-                      
-                            
+
+
                         </div>
-                    
+
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Roles:</strong>
@@ -85,7 +85,7 @@
                                     <input type="checkbox" class="form-check-input" id="" name="types[]" value="{{$value->roleId}}" @if (in_array($value->roleId,$volunteer_type))
                                         checked='checked'
                                     @endif>
-                                    {{$value->name}} 
+                                    {{$value->name}}
                                     </label>
                                 </div>
                             <br/>
@@ -101,13 +101,13 @@
             </div>
         </div>
         </body>
-       
 
-       
-       
+
+
+
         @endsection
     </div>
-    
+
 </div>
 </body>
 @endsection

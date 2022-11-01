@@ -14,65 +14,51 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="pull-right my-4">
+                <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
+            </div>
+
             <div class="form-group">
                 <strong>Name:</strong>
                 {{ $event->name }}
             </p>
 
-            <p class="">
-                {{ $event->start_datetime }}
-            </p>
-
-            <p class="">
-                {{ $event->end_datetime }}
-            </p>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Type:</strong>
                 {{ $event->type }}
             </div>
-        </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Date Time:</strong>
-                {{ $event->date_time }}
+                <strong>Start Time:</strong>
+                {{ $event->start_datetime }}
             </div>
-        </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>End Time:</strong>
+                {{ $event->end_datetime }}
+            </div>
+
             <div class="form-group">
                 <strong>Venue:</strong>
                 {{ $event->venue }}
             </div>
-        </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Person In Charge:</strong>
                 {{ $event->pic }}
             </div>
-        </div>
-
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
-        </div>
-
     </div>
-       
-        <a  class="" href= "{{route('event.edit',$event->eventId)}} ">
+
+        <a  class="btn btn-primary" href= "{{route('event.edit',$event->eventId)}} ">
             Edit Event
         </a>
-        <form action=" {{route ('event.destroy',$event->eventId)}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="primary-btn inline text-base sm:text-xl bg-red-500 mt-10 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-red-400">
-                Delete
-            </button>
-        </form>
+
+        @can('profile-delete')
+                {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+            @endcan
+
     </div>
     </body>
 

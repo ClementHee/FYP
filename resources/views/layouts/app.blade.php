@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Church Management System') }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     @vite(['resources/js/app.js'])
 
     <!-- Fonts -->
@@ -22,17 +22,17 @@
                     Church Management System
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                    
-                </button>
+                  </button>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto"></ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -46,10 +46,8 @@
                                 </li>
                             @endif
                         @else
-                           
-                                <li><a class="nav-link" href="{{ route('profile.show',auth()->user()->email) }}">Profile</a></li>
-                           
-                            
+
+                            <li><a class="nav-link" href="{{ route('profile.show',auth()->user()->email) }}">Profile</a></li>
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                             @can('role-list')
                                 <li><a class="nav-link" href="{{ route('usertype.index') }}">Manage Role</a></li>
@@ -69,7 +67,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
                                         @csrf
                                     </form>
                                 </div>
@@ -80,9 +78,12 @@
 
             </div>
         </nav>
+
+
         <main class="py-4">
-            <div class="container">
+            <div class="container pull-left">
                 @yield('content')
+
             </div>
         </main>
     </div>

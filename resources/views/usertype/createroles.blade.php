@@ -5,8 +5,8 @@
         <div class="pull-left">
             <h2>Create New Role</h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('user_type.index') }}"> Back</a>
+        <div class="pull-right my-4">
+            <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
             {!! Form::text('name', array('placeholder' => 'Name','class' => 'form-control')) !!}
         </div>
     </div>
-    
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
