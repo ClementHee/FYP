@@ -47,6 +47,7 @@
                             @endif
                         @else
 
+<<<<<<< HEAD
                             <li><a class="nav-link" href="{{ route('showsingle',auth()->user()->email) }}">Profile</a></li>
                             @can('Show User')
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
@@ -63,6 +64,16 @@
                             @can('Show Event')
                             <li><a class="nav-link" href="{{ route('event.index') }}">Manage Event</a></li>
                             @endcan
+=======
+                            <li><a class="nav-link" href="{{ route('profile.show',auth()->user()->email) }}">Profile</a></li>
+                            <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+                            @can('role-list')
+                                <li><a class="nav-link" href="{{ route('usertype.index') }}">Manage Role</a></li>
+                            @endcan
+                            <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Volunteer Types</a></li>
+                            <li><a class="nav-link" href="{{ route('profile.index') }}">Manage Profiles</a></li>
+                            <li><a class="nav-link" href="{{ route('event.index') }}">Manage Event</a></li>
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

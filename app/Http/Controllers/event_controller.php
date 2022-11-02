@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 
 class event_controller extends Controller
 {
+<<<<<<< HEAD
     
     function __construct() //This function is to restrict actions based on roles
     {
@@ -19,6 +20,14 @@ class event_controller extends Controller
          $this->middleware('permission:Create Event', ['only' => ['create','store']]);
          $this->middleware('permission:Edit Event', ['only' => ['edit','update']]);
          $this->middleware('permission:Delete Event', ['only' => ['destroy']]);
+=======
+    function __construct() //This function is to restrict actions based on roles
+    {
+         $this->middleware('permission:event-list|event-create|event-edit|event-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:event-create', ['only' => ['create','store']]);
+         $this->middleware('permission:event-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:event-delete', ['only' => ['destroy']]);
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     }
 
     /**

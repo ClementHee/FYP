@@ -23,10 +23,17 @@ class profile_controller extends Controller
 
     function __construct()
     {
+<<<<<<< HEAD
          $this->middleware('permission:Show Profile|Create Profile|Edit Profile|Delete Profile', ['only' => ['index','show','showsingle']]);
          $this->middleware('permission:Create Profile', ['only' => ['create','store']]);
          $this->middleware('permission:Edit Profile', ['only' => ['edit','update']]);
          $this->middleware('permission:Delete Profile', ['only' => ['destroy']]);
+=======
+         $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show','showsingle']]);
+         $this->middleware('permission:profile-create', ['only' => ['create','store']]);
+         $this->middleware('permission:profile-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:profile-delete', ['only' => ['destroy']]);
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     }
     public function index(Request $request)
     {
@@ -76,7 +83,11 @@ class profile_controller extends Controller
 
         ]);
 
+<<<<<<< HEAD
         return view ('volunteertype.assigntype',[
+=======
+        return view ('volunteertype.createtype',[
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
             'profile_id' => member_profile::where('email',$np->email)->get('profileId')->first(),
             'vroles' => roles::get()
         ]);
@@ -88,7 +99,11 @@ class profile_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function show($id)
+=======
+    public function show($email)
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     {
         $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
             ->where("volunteer_type.profileId",$id)
@@ -152,7 +167,11 @@ class profile_controller extends Controller
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
 
+<<<<<<< HEAD
     public function showsingle($email)
+=======
+    public function showsingle($id)
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     {
         $createdprofile = member_profile::join('user_account','user_account.email','=','member_profiles.email')
         ->where('user_account.email',$email)

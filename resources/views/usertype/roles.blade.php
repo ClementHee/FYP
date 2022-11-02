@@ -30,10 +30,17 @@
         <td>{{ $role->name }}</td>
         <td>
             <a class="btn btn-primary" href="{{ route('usertype.show',$role->id) }}">Show</a>
+<<<<<<< HEAD
             @can('Edit Role')
                 <a class="btn btn-two" href="{{ route('usertype.edit',$role->id) }}">Edit</a>
             @endcan
             @can('Delete Role')
+=======
+            @can('role-edit')
+                <a class="btn btn-two" href="{{ route('usertype.edit',$role->id) }}">Edit</a>
+            @endcan
+            @can('role-delete')
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
                 {!! Form::open(['method' => 'DELETE','route' => ['usertype.destroy', $role->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}

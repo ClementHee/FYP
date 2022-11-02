@@ -14,6 +14,7 @@ class roles_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     function __construct()
     {
          $this->middleware('permission:Show Volunteer Type|Create Volunteer Type|Edit Volunteer Type|Delete Volunteer Type', ['only' => ['index','store']]);
@@ -22,6 +23,8 @@ class roles_controller extends Controller
          $this->middleware('permission:Delete Volunteer Type    ', ['only' => ['destroy']]);
     }
 
+=======
+>>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     public function index(Request $request)
     {
         
