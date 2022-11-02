@@ -90,24 +90,11 @@ class profile_controller extends Controller
      */
     public function show($email)
     {
-        $createdprofile = member_profile::join('user_account','user_account.email','=','member_profiles.email')
-            ->where('user_account.email',$email)
-            ->get();
-        
-        if(count($createdprofile)==0){
-            return view ('profile.createprofile',[
-                'congregations' => congregation::get(),
-                'email' => $email
-            ]);
-        }else{
-            $profileId = $createdprofile[0]->profileId;
-        }
-        
         $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
-            ->where("volunteer_type.profileId",$profileId)
+            ->where("volunteer_type.profileId",$id)
             ->get();
         
-        $profile = member_profile::findOrFail($profileId);
+        $profile = member_profile::findOrFail($id);
         
         return view('profile.showprofile',compact('profile','allocatedtypes'));
         
@@ -167,13 +154,27 @@ class profile_controller extends Controller
 
     public function showsingle($id)
     {
-        $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
-            ->where("volunteer_type.profileId",$id)
-            ->get();
-        
-        $profile = member_profile::findOrFail($id);
-        
-        return view('profile.showprofile',compact('profile','allocatedtypes'));
+        $createdprofile = member_profile::join('user_account','user_account.email','=','member_profiles.email')
+        ->where('user_account.email',$email)
+        ->get();
+    
+    if(count($createdprofile)==0){
+        return view ('profile.createprofile',[
+            'congregations' => congregation::get(),
+            'email' => $email
+        ]);
+    }else{
+        $profileId = $createdprofile[0]->profileId;
+    }
+    
+    $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
+        ->where("volunteer_type.profileId",$profileId)
+        ->get();
+    
+    $profile = member_profile::findOrFail($profileId);
+    
+    return view('profile.showprofile',compact('profile','allocatedtypes'));
+    
         
     }
 
