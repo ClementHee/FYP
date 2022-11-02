@@ -42,7 +42,6 @@
             <td>{{ $vrole->name }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
-<<<<<<< HEAD
                
                     <a class="btn btn-two" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
                
@@ -50,16 +49,6 @@
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
               
-=======
-                @can('role-edit')
-                    <a class="btn btn-two" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
-                @endcan
-                @can('role-delete')
-                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                @endcan
->>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
             </td>
         </tr>
         @endforeach

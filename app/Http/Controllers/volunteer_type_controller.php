@@ -37,11 +37,7 @@ class volunteer_type_controller extends Controller
     public function create()
     {
         $alltypes = roles::get();
-<<<<<<< HEAD
         return view('volunteertype.assigntype',compact('alltypes'));
-=======
-        return view('volunteertype.createtype',compact('alltypes'));
->>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     }
     
     /**

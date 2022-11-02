@@ -13,17 +13,10 @@ class user_controller extends Controller
     function __construct() //This function is to restrict actions based on roles
     {
        
-<<<<<<< HEAD
         $this->middleware('permission:Show User|Create User|Edit User|Delete User', ['only' => ['index','store']]);
         $this->middleware('permission:Create User', ['only' => ['create','store']]);
         $this->middleware('permission:Edit User', ['only' => ['edit','update']]);
         $this->middleware('permission:Delete User', ['only' => ['destroy']]);
-=======
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:user-create', ['only' => ['create','store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
->>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     }
     /**
      * Display a listing of the resource.

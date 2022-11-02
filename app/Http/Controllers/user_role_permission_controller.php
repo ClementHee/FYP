@@ -14,7 +14,6 @@ class user_role_permission_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
     
     function __construct()
     {
@@ -22,14 +21,6 @@ class user_role_permission_controller extends Controller
          $this->middleware('permission:Create Role', ['only' => ['create','store']]);
          $this->middleware('permission:Edit Role', ['only' => ['edit','update']]);
          $this->middleware('permission:Delete Role', ['only' => ['destroy']]);
-=======
-    function __construct()
-    {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
->>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
     }
 
     /**
