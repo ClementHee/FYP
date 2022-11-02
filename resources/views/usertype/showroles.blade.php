@@ -5,12 +5,14 @@
         <div class="pull-left">
             <h2> Show Role</h2>
         </div>
-        <div class="pull-right">
+        <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>
         </div>
     </div>
 </div>
 <div class="row">
+
+
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>

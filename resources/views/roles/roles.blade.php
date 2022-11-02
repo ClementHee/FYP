@@ -9,10 +9,9 @@
             <h1 class="text-3xl text-gray-700">
                 Volunteer Type
             </h1>
-            <hr class="border border-1 border-gray-300 mt-10">
         </div>
 
-        <div class="py-10 sm:py-20">
+        <div class="pull-right my-4">
             <a class="btn btn-success"
                href="{{route('roles.create')}}">
                 Create  Type

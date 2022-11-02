@@ -5,7 +5,7 @@
         <div class="pull-left">
             <h2> Show Roles</h2>
         </div>
-        <div class="pull-right">
+        <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
         </div>
     </div>
@@ -23,7 +23,7 @@
             @foreach ( $assignedprofiles as $assignedprofile )
                 {{ $assignedprofile->name }},
             @endforeach
-            
+
         </div>
     </div>
 </div>

@@ -5,8 +5,8 @@
         <div class="pull-left">
             <h2>Create New Type</h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+        <div class="pull-right my-4">
+            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        
+
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -31,7 +31,7 @@
             {!! Form::text('name', null, array('placeholder' => 'Type','class' => 'form-control')) !!}
         </div>
     </div>
-    
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>

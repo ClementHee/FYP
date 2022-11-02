@@ -5,7 +5,7 @@
         <div class="pull-left">
             <h2>Edit Role</h2>
         </div>
-        <div class="pull-right">
+        <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>
         </div>
     </div>

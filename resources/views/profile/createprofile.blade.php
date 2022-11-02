@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="pull-right">
+        <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
         </div>
     </div>
@@ -72,7 +72,7 @@
             name="email"
             class="col-xs-12 col-sm-12 col-md-12"
             @if (isset($email))
-                value="{{$email}}" readonly 
+                value="{{$email}}" readonly
             @else
                 placeholder="Email"
             @endif>

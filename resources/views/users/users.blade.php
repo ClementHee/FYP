@@ -5,7 +5,7 @@
         <div class="pull-left">
             <h2>Users Management</h2>
         </div>
-        <div class="pull-right">
+        <div class="pull-right my-4">
             <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
         </div>
     </div>
