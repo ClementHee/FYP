@@ -17,8 +17,7 @@ class events extends Model
         'type',
         'start_datetime',
         'end_datetime',
-        'venue',
-        
+        'venue',  
         'pic' 
     ];
     protected  static  function  boot()

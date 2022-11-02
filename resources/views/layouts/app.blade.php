@@ -47,9 +47,7 @@
                             @endif
                         @else
                            
-                                <li><a class="nav-link" href="{{ route('profile.show',auth()->user()->email) }}">Profile</a></li>
-                           
-                            
+                            <li><a class="nav-link" href="{{ route('profile.show',auth()->user()->email) }}">Profile</a></li>
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                             @can('role-list')
                                 <li><a class="nav-link" href="{{ route('usertype.index') }}">Manage Role</a></li>

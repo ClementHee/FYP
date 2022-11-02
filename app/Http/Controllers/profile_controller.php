@@ -23,7 +23,7 @@ class profile_controller extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index','show','showsingle']]);
          $this->middleware('permission:profile-create', ['only' => ['create','store']]);
          $this->middleware('permission:profile-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:profile-delete', ['only' => ['destroy']]);
@@ -164,6 +164,19 @@ class profile_controller extends Controller
         DB::table("volunteer_type")->where('profileId',$id)->delete();
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
     }
+
+    public function showsingle($id)
+    {
+        $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
+            ->where("volunteer_type.profileId",$id)
+            ->get();
+        
+        $profile = member_profile::findOrFail($id);
+        
+        return view('profile.showprofile',compact('profile','allocatedtypes'));
+        
+    }
+
 
 
 }
