@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
-            $table->uuid('eventId');
-            $table->string('name');
-            
-            $table->datetime('start_datetime');
-            $table->datetime('end_datetime');
-            $table->string('venue');
-            $table->string('eventtype');
-            $table->string('pic');
+        Schema::create('event_roles', function (Blueprint $table) {
+            $table->foreignId('eventtypeId')->references('eventtypeId')->on('event_roles')->onDelete('cascade')->onUpdate('cascade')->primary();
+            $table->foreignId('roles')->references('roleId')->on('roles')->onDelete('cascade')->onUpdate('cascade')->primary();
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('event_roles');
     }
 };

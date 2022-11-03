@@ -43,13 +43,7 @@
             class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
-        <p>Type:
-        <input
-            type="text"
-            name="type"
-            value="{{$edit_event->type}}"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+        
 
         <p>
             <label for="date_time">From </label>

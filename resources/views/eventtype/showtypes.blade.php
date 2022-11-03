@@ -1,0 +1,38 @@
+@extends('layouts.app')
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2> Show Events</h2>
+        </div>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Name: </strong>
+            {{ $eventtypes->name }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Events in this category: </strong>
+            @foreach ( $assignedevents as $assignedevent )
+                {{ $assignedevent->name }},
+            @endforeach
+
+        </div>
+        <div class="form-group">
+            <strong>Roles needed: </strong>
+            @foreach ( $rolesneeded as $roleneeded )
+                {{ $roleneeded->name }},
+            @endforeach
+
+        </div>
+    </div>
+    <div class="pull-right my-4">
+        <a class="btn btn-primary" href="{{ route('eventtypes.index') }}"> Back</a>
+    </div>
+</div>
+@endsection

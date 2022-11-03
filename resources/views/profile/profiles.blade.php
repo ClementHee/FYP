@@ -6,11 +6,7 @@
             <h2>Profile Management</h2>
         </div>
         <div class="pull-right my-4">
-<<<<<<< HEAD
         @can('Create Profile')
-=======
-        @can('profile-create')
->>>>>>> 83fa7c8866df46d97e6ba3293944129fa04f10c1
             <a class="btn btn-success" href="{{ route('profile.create') }}"> Create New Profile</a>
             @endcan
         </div>

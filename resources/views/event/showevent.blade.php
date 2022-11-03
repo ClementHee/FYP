@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <strong>Type:</strong>
-                {{ $event->type }}
+                {{ $event->eventtype }}
             </div>
 
             <div class="form-group">

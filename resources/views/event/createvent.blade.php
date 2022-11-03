@@ -42,13 +42,7 @@
             class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
-        <p>Type:
-        <input
-            type="text"
-            name="type"
-            placeholder="Type"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+        
 
         <p>
             <label for="date_time">From </label>
@@ -75,7 +69,14 @@
             placeholder="Person In Charge"
             class="col-xs-12 col-sm-12 col-md-12">
         </p>
-
+        <p> Event Type
+            <select name = "eventtype" class="col-xs-12 col-sm-12 col-md-12">
+                @foreach ($eventtypes as $selection )
+                    <option value = "{{$selection->name}}">{{$selection->name}}</option>
+                @endforeach
+    
+            </select>
+            </p>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

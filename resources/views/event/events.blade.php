@@ -12,7 +12,7 @@
         </div>
 
         <div class="pull-right my-4">
-            @can('event-create')
+            @can('Create Event')
                 <a class="btn btn-success" href="{{ route('event.create') }}"> Create New Event</a>
                 @endcan
             </div>
@@ -38,15 +38,15 @@
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $event->name }}</td>
-            <td>{{ $event->type }}</td>
+            <td>{{ $event->eventtype }}</td>
             <td>{{ $event->start_datetime }}</td>
             <td>{{ $event->end_datetime }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('event.show',$event->eventId) }}">Show</a>
-                @can('event-edit')
+                @can('Edit Event')
                     <a class="btn btn-two" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
                 @endcan
-                @can('event-delete')
+                @can('Delete Event')
                     {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}

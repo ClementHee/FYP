@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\events;
 
 use Illuminate\Support\Str;
-
+use App\Models\event_types;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -40,7 +40,10 @@ class event_controller extends Controller
      */
     public function create()
     {
-        return view ('event.createvent');
+        return view ('event.createvent',[
+            'eventtypes' => event_types::get()
+        ]);
+       
     }
 
     /**
@@ -53,22 +56,24 @@ class event_controller extends Controller
     {
         $request->validate([
             'name' => 'required|unique:events',
-            'type' =>'required',
+            
             'start_datetime' => 'required',
             'end_datetime' => 'required',
             'venue' => 'required',
             'pic' => 'required',
+            'eventtype' => 'required',
             
         ]);
 
         events::create([
             'eventId' => Str::uuid(),
             'name' => $request->name,
-            'type' => $request->type,
+            
             'start_datetime' => $request->start_datetime,
             'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
+            'eventtype' => $request->eventtype,
 
 
         ]);
@@ -114,11 +119,13 @@ class event_controller extends Controller
         events::where('eventId',$id)->update([
     
             'name' => $request->name,
-            'type' => $request->type,
+            
             'start_datetime' => $request->start_datetime,
             'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
             'pic' => $request->pic,
+            'eventtype' => $request->eventtype,
+
         ]);
 
         return redirect(route('event.index'));
