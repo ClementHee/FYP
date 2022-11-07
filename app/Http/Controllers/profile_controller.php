@@ -10,6 +10,7 @@ use App\Models\congregation;
 use Illuminate\Http\Request;
 use App\Models\member_profile;
 use App\Models\volunteer_type;
+use App\Models\not_availabletime;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -95,8 +96,8 @@ class profile_controller extends Controller
             ->get();
         
         $profile = member_profile::findOrFail($id);
-        
-        return view('profile.showprofile',compact('profile','allocatedtypes'));
+        $not_availtime = not_availabletime::where('profileId',$id)->get();
+        return view('profile.showprofile',compact('profile','allocatedtypes','not_availtime'));
         
     }
 
@@ -172,10 +173,17 @@ class profile_controller extends Controller
         ->get();
     
     $profile = member_profile::findOrFail($profileId);
-    
-    return view('profile.showprofile',compact('profile','allocatedtypes'));
+    $not_availtime = not_availabletime::where('profileId',$profileId)->get();
+       
+    return view('profile.showprofile',compact('profile','allocatedtypes','not_availtime'));
     
         
+    }
+
+    public function create_na($id)
+    {
+        $profileId = $id;
+        return view('notavailtime.setnatime',compact('profileId'));
     }
 
 
