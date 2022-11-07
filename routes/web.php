@@ -11,9 +11,12 @@ use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\roles_controller;
 use App\Http\Controllers\volunteer_type_controller;
 use App\Http\Controllers\user_role_permission_controller;
+<<<<<<< Updated upstream
 use App\Http\Controllers\event_types_controller;
 use App\Http\Controllers\event_type_roles_controller;
 use App\Http\Controllers\na_time_controller;
+use App\Http\Controllers\CalenderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +50,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('event',event_controller::class);
     Route::resource('eventtypes',event_types_controller::class);
     Route::resource('eventroles',event_type_roles_controller::class);
+    Route::get('calendar-event', [CalenderController::class, 'index']);
+    Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 });
 
 
