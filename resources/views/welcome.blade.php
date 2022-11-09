@@ -14,7 +14,7 @@
         <div id='full_calendar_events'></div>
     </div>
     {{-- Scripts --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!---<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -30,7 +30,7 @@
                 editable: true,
                 editable: true,
                 events: SITEURL + "/calendar-event",
-                displayEventTime: true,
+                displayEventTime: false,
                 eventRender: function (event, element, view) {
                     if (event.allDay === 'true') {
                         event.allDay = true;
@@ -108,6 +108,6 @@
         function displayMessage(message) {
             toastr.success(message, 'Event');            
         }
-    </script>
+    </script>---->
 </body>
 </html>

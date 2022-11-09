@@ -103,6 +103,7 @@ class event_controller extends Controller
     {
         return view ('event.editevent',[
             'edit_event' => events::where('eventId',$id)->first(),
+            'eventtypes' => event_types::get()
 
         ]);
     }

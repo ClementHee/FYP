@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class event_roles extends Model
+class schedule extends Model
 {
     use HasFactory;
-    protected $primarykey= 'eventtypeId';
-    
-    protected $table = 'event_roles';
+    protected $primarykey= 'eventId';
     protected $fillable = [
-        'eventtypeId',
-        'roles'
-    
+        'eventId',
+        'eventdate',
+        'roles',
+        'profileId'
     ];
+
+    
 }

@@ -30,17 +30,17 @@
 
     <div class="card">
 
-            <div class="container">
+        <div class="container">
 
-                {!! Form::model($event_type_roles, ['method' => 'PATCH','route' => ['eventroles.update', $eventtype]]) !!}
+                {!! Form::model($eventtype, ['method' => 'PATCH','route' => ['eventroles.update', $eventtypeId]]) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="d-none">
-                            <strong>Profile ID:</strong>
+                            <strong>Event ID:</strong>
                             <input
                                 type="text"
-                                name="profileId"
-                                value= {{$eventtype}}
+                                name="eventtypeId"
+                                value= {{$eventtypeId}}
                                 class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
 
@@ -52,8 +52,8 @@
                             <br/>
                             @foreach($alltypes as $value)
                                 <div clas="form-check">
-                                    <label class="form-check-label" for="{{$value->role}}">
-                                    <input type="checkbox" class="form-check-input" id="" name="types[]" value="{{$value->roleId}}" @if (in_array($value->roleId,$event_type_roles))
+                                    <label class="form-check-label" for="{{$value->roleId}}">
+                                    <input type="checkbox" class="form-check-input" id="" name="r[]" value="{{$value->roleId}}" @if (in_array($value->roleId,$eventtype))
                                         checked='checked'
                                     @endif>
                                     {{$value->name}}
@@ -67,16 +67,11 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
-            </div>
+          
                 {!! Form::close() !!}
-            </div>
+           
         </div>
         </body>
-
-
-
-
-        
     </div>
 
 </div>

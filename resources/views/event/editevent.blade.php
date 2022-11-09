@@ -52,7 +52,7 @@
 
         <p>
             <label for="date_time">To: </label>
-            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
+            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->end_datetime}}">
         </p>
 
         <p> Venue:
@@ -60,7 +60,7 @@
             type="text"
             name="venue"
             value="{{$edit_event->venue}}"
-            class="col-xs-12 col-sm-12 col-md-12"">
+            class="col-xs-12 col-sm-12 col-md-12">
         </p>
 
         <p> Person In Charge:
@@ -70,7 +70,14 @@
             value="{{$edit_event->pic}}"
             class="col-xs-12 col-sm-12 col-md-12">
         </p>
-
+        <p> Event Type
+            <select name = "eventtype" class="col-xs-12 col-sm-12 col-md-12">
+                @foreach ($eventtypes as $selection )
+                    <option value = "{{$selection->name}}">{{$selection->name}}</option>
+                @endforeach
+    
+            </select>
+            </p>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>

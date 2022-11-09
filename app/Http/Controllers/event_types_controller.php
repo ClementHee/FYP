@@ -93,16 +93,9 @@ class event_types_controller extends Controller
      */
     public function edit($id)   
     {
-        $eventtype=$id;
-     
-        $event_type_roles = DB::table("event_roles")->where("event_roles.eventtypeId",$id)
-            ->pluck('event_roles.roles','event_roles.roles')
-            ->all();
-        
-        
-        $alltypes = roles::all();
-       
-        return view('eventtype.editeventroles',compact('eventtype','alltypes','event_type_roles'));
+       return view ('eventtype.edittype',[
+            'edit_type' => event_types::where('eventtypeId',$id)->first(),
+        ]);
     }
     
     /**

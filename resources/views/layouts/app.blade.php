@@ -63,6 +63,8 @@
                             @can('Show Event')
                             <li><a class="nav-link" href="{{ route('event.index') }}">Manage Event</a></li>
                             @endcan
+
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" h="#"ref role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     My Account
