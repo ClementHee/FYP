@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <h1 class="text-3xl text-gray-700">
-            Create Volunteer Type
+            Assign Roles Needed
         </h1>
         <hr class="border border-1 border-gray-300 mt-10">
     </div>

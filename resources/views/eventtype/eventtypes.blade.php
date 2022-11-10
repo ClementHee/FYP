@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <h1 class="text-3xl text-gray-700">
-                Volunteer Type
+                Event Type
             </h1>
         </div>
 

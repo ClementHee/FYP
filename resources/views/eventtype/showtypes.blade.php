@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2> Show Events</h2>
+            <h2> Show Event Type</h2>
         </div>
         
     </div>

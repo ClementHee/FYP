@@ -27,7 +27,7 @@
 
     <input
             type="text"
-            name="xsadsa"
+            name="eventId"
             value="{{$id}}"
             class="d-none">
     <table id = "schedule" class="table table-bordered">

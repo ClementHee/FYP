@@ -44,8 +44,8 @@
             <td>
                 <a class="btn btn-primary" href="{{ route('event.show',$event->eventId) }}">Show</a>
                 @can('Edit Event')
-                    <a class="btn btn-two" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
-                  <a class="btn btn-two" href="{{ route('generateschedule',$event->eventId) }}">Test Event</a>
+                  <a class="btn btn-two" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
+
                 @endcan
                 @can('Delete Event')
                     {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}

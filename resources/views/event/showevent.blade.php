@@ -53,12 +53,18 @@
             Edit Event
         </a>
 
-        @can('profile-delete')
+        <a class="btn btn-two" href="{{ route('generateschedule',$event->eventId) }}">Generate Schedule</a>
+        <a class="btn btn-two" href="{{ route('schedule.show',$event->eventId) }}">Show Schedule</a>
+
+            {!! Form::open(['method' => 'DELETE','route' => ['schedule.destroy', $event->eventId],'style'=>'display:inline']) !!}
+                {!! Form::submit('Delete Schedule', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+
+
                 {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
-            @endcan
-
+  
     </div>
     </body>
 
