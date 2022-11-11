@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2022 at 02:24 PM
+-- Generation Time: Nov 11, 2022 at 03:10 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -76,6 +76,51 @@ INSERT INTO `events` (`eventId`, `name`, `start_datetime`, `end_datetime`, `venu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_roles`
+--
+
+CREATE TABLE `event_roles` (
+  `eventtypeId` bigint(20) UNSIGNED NOT NULL,
+  `roles` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_roles`
+--
+
+INSERT INTO `event_roles` (`eventtypeId`, `roles`) VALUES
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
+(6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_types`
+--
+
+CREATE TABLE `event_types` (
+  `eventtypeId` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_types`
+--
+
+INSERT INTO `event_types` (`eventtypeId`, `name`) VALUES
+(2, 'Weekly Services'),
+(6, 'Monthly services');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -117,7 +162,8 @@ INSERT INTO `member_profiles` (`profileId`, `name`, `phone`, `handphoneNo`, `ema
 ('0b6173b7-1525-47ac-8b1c-7db5901f865a', 'John x', '012356789', '01284357', 'johndoe@eail.com', 'This is address text, can\'t think of one now', 'English Congregation', 'male', 'Mr', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
 ('115e6d2b-f2e8-4270-a99b-6f2225458e36', 'Jane Smith', '08421324987', '01234657987654', 'janesmith@email.com', 'Address for janesmith', 'Bahasa Malaysia Congregation', 'Female', 'Mrs', '2022-11-08 21:41:08', '2022-11-08 21:41:08'),
 ('31053304-7b57-49e0-9c36-f7d4da7f1034', 'Admin', '082123456', '0123456987', 'admin@cms.com', 'This is an address', 'English Congregation', 'Male', 'Mr', '2022-11-02 06:49:22', '2022-11-02 06:49:22'),
-('6706edf5-187a-4cc9-8fe9-a04d56960576', 'John Doe', '0123456789', '012384357', 'johndoe@email.com', 'This is an address text, can\'t think of one now', 'English Congregation', 'male', 'Mr', '2022-11-02 06:18:01', '2022-11-02 06:18:01');
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 'John Doe', '0123456789', '012384357', 'johndoe@email.com', 'This is an address text, can\'t think of one now', 'English Congregation', 'male', 'Mr', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+('6d0a47e0-ae72-4df8-bc09-143163e26677', 'joshua', '-', '0163554898', 'joshualiew007@gmail.com', '95.taman sakura indah, batu kawa, lorong desa wira 6', 'Chinese Congregation', 'Male', 'mr', '2022-11-11 05:31:26', '2022-11-11 05:31:26');
 
 -- --------------------------------------------------------
 
@@ -185,6 +231,25 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (2, 'App\\Models\\User', '7aec1c78-7c05-43a0-9c58-f08c8ca9f87f'),
 (2, 'App\\Models\\User', '850ed003-00c3-43b0-bccf-b0134aa66278'),
 (2, 'App\\Models\\User', 'bd80af20-edd7-46ac-91d5-cac2069d6b00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `not_availabletime`
+--
+
+CREATE TABLE `not_availabletime` (
+  `profileId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `na_time` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `not_availabletime`
+--
+
+INSERT INTO `not_availabletime` (`profileId`, `na_time`) VALUES
+('31053304-7b57-49e0-9c36-f7d4da7f1034', '2022-11-17'),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', '2023-01-01');
 
 -- --------------------------------------------------------
 
@@ -364,6 +429,65 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE `schedules` (
+  `eventId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eventdate` date NOT NULL,
+  `roles` bigint(20) UNSIGNED NOT NULL,
+  `profileId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`eventId`, `eventdate`, `roles`, `profileId`) VALUES
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 3, '0b6173b7-1525-47ac-8b1c-7db5901f865a'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 3, '0b6173b7-1525-47ac-8b1c-7db5901f865a'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 1, '115e6d2b-f2e8-4270-a99b-6f2225458e36'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 3, '115e6d2b-f2e8-4270-a99b-6f2225458e36'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 1, '115e6d2b-f2e8-4270-a99b-6f2225458e36'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 1, '115e6d2b-f2e8-4270-a99b-6f2225458e36'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 3, '115e6d2b-f2e8-4270-a99b-6f2225458e36'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 2, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 4, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 1, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 2, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 4, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 5, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 2, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 3, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 4, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 1, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 2, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 4, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 5, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 2, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 4, '31053304-7b57-49e0-9c36-f7d4da7f1034'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 6, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 7, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 8, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 6, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 7, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-09', 8, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 6, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 7, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 8, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 6, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 7, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-23', 8, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 6, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 7, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 8, '6706edf5-187a-4cc9-8fe9-a04d56960576'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-02', 5, '6d0a47e0-ae72-4df8-bc09-143163e26677'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-16', 5, '6d0a47e0-ae72-4df8-bc09-143163e26677'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', '2022-10-30', 5, '6d0a47e0-ae72-4df8-bc09-143163e26677');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_account`
 --
 
@@ -436,7 +560,8 @@ INSERT INTO `volunteer_type` (`profileId`, `roles`) VALUES
 ('31053304-7b57-49e0-9c36-f7d4da7f1034', 5),
 ('6706edf5-187a-4cc9-8fe9-a04d56960576', 6),
 ('6706edf5-187a-4cc9-8fe9-a04d56960576', 7),
-('6706edf5-187a-4cc9-8fe9-a04d56960576', 8);
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 8),
+('6d0a47e0-ae72-4df8-bc09-143163e26677', 5);
 
 --
 -- Indexes for dumped tables
@@ -455,6 +580,20 @@ ALTER TABLE `congregations`
 ALTER TABLE `events`
   ADD PRIMARY KEY (`eventId`),
   ADD KEY `eventtype` (`eventtype`);
+
+--
+-- Indexes for table `event_roles`
+--
+ALTER TABLE `event_roles`
+  ADD PRIMARY KEY (`eventtypeId`,`roles`),
+  ADD KEY `roles` (`roles`);
+
+--
+-- Indexes for table `event_types`
+--
+ALTER TABLE `event_types`
+  ADD PRIMARY KEY (`eventtypeId`,`name`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -492,6 +631,13 @@ ALTER TABLE `model_has_roles`
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
+-- Indexes for table `not_availabletime`
+--
+ALTER TABLE `not_availabletime`
+  ADD PRIMARY KEY (`profileId`,`na_time`),
+  ADD KEY `profileId` (`profileId`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -526,6 +672,14 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`eventId`,`eventdate`,`roles`),
+  ADD KEY `schedules_roles_foreign` (`roles`),
+  ADD KEY `schedules_profileid_foreign` (`profileId`);
+
+--
 -- Indexes for table `user_account`
 --
 ALTER TABLE `user_account`
@@ -555,6 +709,12 @@ ALTER TABLE `volunteer_type`
 --
 ALTER TABLE `congregations`
   MODIFY `congId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `event_types`
+--
+ALTER TABLE `event_types`
+  MODIFY `eventtypeId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -603,6 +763,13 @@ ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`eventtype`) REFERENCES `event_types` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `event_roles`
+--
+ALTER TABLE `event_roles`
+  ADD CONSTRAINT `event_roles_ibfk_1` FOREIGN KEY (`roles`) REFERENCES `roles` (`roleId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `event_roles_ibfk_2` FOREIGN KEY (`eventtypeId`) REFERENCES `event_types` (`eventtypeId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `member_profiles`
 --
 ALTER TABLE `member_profiles`
@@ -621,11 +788,25 @@ ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `user_type` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `not_availabletime`
+--
+ALTER TABLE `not_availabletime`
+  ADD CONSTRAINT `not_availabletime_ibfk_1` FOREIGN KEY (`profileId`) REFERENCES `member_profiles` (`profileId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `user_type` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD CONSTRAINT `schedules_eventid_foreign` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `schedules_profileid_foreign` FOREIGN KEY (`profileId`) REFERENCES `member_profiles` (`profileId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `schedules_roles_foreign` FOREIGN KEY (`roles`) REFERENCES `roles` (`roleId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `volunteer_type`
