@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2022 at 07:19 AM
+-- Generation Time: Nov 11, 2022 at 02:24 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,9 +43,9 @@ CREATE TABLE `congregations` (
 --
 
 INSERT INTO `congregations` (`congId`, `name`, `language`, `serviceTime`, `location`, `pic`, `created_at`, `updated_at`) VALUES
-(1, 'Bahasa Malaysia Congregation', 'Bahasa Malaysia', '09:00:00', 'This is a location for congregation 1', 'Mr Bob', '2022-10-18 23:03:08', '2022-10-18 23:03:08'),
-(2, 'Chinese Congregation', 'Chinese', '09:00:00', 'This is a location for congregation 2', 'Mr Robert', '2022-10-18 23:03:08', '2022-10-18 23:03:08'),
-(3, 'English Congregation', 'English', '09:00:00', 'This is a location for congregation 3', 'Mr Builder', '2022-10-18 23:03:08', '2022-10-18 23:03:08');
+(1, 'Bahasa Malaysia Congregation', 'Bahasa Malaysia', '09:00:00', 'This is a location for congregation 1', 'Mr Bob', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(2, 'Chinese Congregation', 'Chinese', '09:00:00', 'This is a location for congregation 2', 'Mr Robert', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(3, 'English Congregation', 'English', '09:00:00', 'This is a location for congregation 3', 'Mr Builder', '2022-11-02 06:18:01', '2022-11-02 06:18:01');
 
 -- --------------------------------------------------------
 
@@ -56,10 +56,10 @@ INSERT INTO `congregations` (`congId`, `name`, `language`, `serviceTime`, `locat
 CREATE TABLE `events` (
   `eventId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL,
   `venue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eventtype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -69,8 +69,9 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`eventId`, `name`, `type`, `start_datetime`, `end_datetime`, `venue`, `pic`, `created_at`, `updated_at`) VALUES
-('a3e452e0-4049-48df-b4fc-6749738476f4', 'This Event', 'Service', '2022-10-21 23:39:00', '2022-10-21 23:39:00', 'Hall Big', 'Mr A', '2022-10-20 07:41:33', '2022-10-20 07:55:36');
+INSERT INTO `events` (`eventId`, `name`, `start_datetime`, `end_datetime`, `venue`, `eventtype`, `pic`, `created_at`, `updated_at`) VALUES
+('7b3909cc-8b4c-4de0-8c52-4fea488c4819', 'Event Uno', '2010-10-10 10:00:00', '2010-10-10 15:00:00', 'Hall A', 'Monthly services', 'Irvin', '2022-11-02 06:18:01', '2022-11-10 08:01:59'),
+('8abc423a-67a0-4f01-9904-e5ead0fd6199', 'Sunday Services', '2022-10-02 09:00:00', '2022-10-30 09:00:00', 'Hall A', 'Weekly Services', 'Irvin', '2022-11-03 02:22:54', '2022-11-08 18:53:16');
 
 -- --------------------------------------------------------
 
@@ -113,10 +114,10 @@ CREATE TABLE `member_profiles` (
 --
 
 INSERT INTO `member_profiles` (`profileId`, `name`, `phone`, `handphoneNo`, `email`, `address`, `congregation`, `gender`, `designation`, `created_at`, `updated_at`) VALUES
-('266d8ac4-fd95-4833-b4c6-ea2bdc35138a', 'User Two', '01239123312', '123123123132', 'usertwo@cms.com', 'sadsasa', 'Bahasa Malaysia Congregation', 'Male', 'Mr', '2022-10-31 00:42:18', '2022-10-31 00:42:18'),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 'Peter Ting', '01293123', '12312312312312', 'peterting@email.com', 'This is an email for Peter', 'English Congregation', 'Male', 'Mr', '2022-10-26 22:16:43', '2022-10-26 22:17:32'),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 'Irvin', '23123131', '2312312312312', 'sdfjdsk@dksfjsfd.com', 'sadasas', 'Bahasa Malaysia Congregation', 'Male', 'Mr', '2022-10-24 23:02:57', '2022-10-26 19:25:08'),
-('e801a385-8e04-4228-9bcb-29d1be13cd1c', 'John Doe', '0821234', '012345677', 'johndoe@email.com', 'address for john doe', 'Chinese Congregation', 'Female', 'Mr', '2022-10-26 19:58:07', '2022-10-26 19:58:07');
+('0b6173b7-1525-47ac-8b1c-7db5901f865a', 'John x', '012356789', '01284357', 'johndoe@eail.com', 'This is address text, can\'t think of one now', 'English Congregation', 'male', 'Mr', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+('115e6d2b-f2e8-4270-a99b-6f2225458e36', 'Jane Smith', '08421324987', '01234657987654', 'janesmith@email.com', 'Address for janesmith', 'Bahasa Malaysia Congregation', 'Female', 'Mrs', '2022-11-08 21:41:08', '2022-11-08 21:41:08'),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 'Admin', '082123456', '0123456987', 'admin@cms.com', 'This is an address', 'English Congregation', 'Male', 'Mr', '2022-11-02 06:49:22', '2022-11-02 06:49:22'),
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 'John Doe', '0123456789', '012384357', 'johndoe@email.com', 'This is an address text, can\'t think of one now', 'English Congregation', 'male', 'Mr', '2022-11-02 06:18:01', '2022-11-02 06:18:01');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2022_10_11_062500_create_event_table', 1),
 (8, '2022_10_12_024630_create_roles_table', 1),
 (9, '2022_10_12_030733_create_volunteer_type_table', 1),
-(10, '2022_10_18_032214_create_permission_tables', 1);
+(10, '2022_10_18_032214_create_permission_tables', 1),
+(11, '2022_11_03_074216_create_event_type', 2),
+(13, '2022_11_03_013343_create_crud_events_table', 3),
+(14, '2022_11_09_163835_create_schedule_table', 4);
 
 -- --------------------------------------------------------
 
@@ -176,11 +180,11 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', '0'),
-(1, 'App\\Models\\User', '50115ebf-c271-4237-9b69-1e564de81f18'),
-(3, 'App\\Models\\User', '0'),
-(3, 'App\\Models\\User', '012d29a2-e30a-4692-998f-3905596c2f6d'),
-(3, 'App\\Models\\User', '76d04b49-122b-41b5-8507-5d41b8ae62a9'),
-(3, 'App\\Models\\User', 'b4d56914-4c21-407f-a165-762c4272dbff');
+(1, 'App\\Models\\User', 'e66c89ca-62fc-47ab-b21a-3a7981e316aa'),
+(2, 'App\\Models\\User', '0'),
+(2, 'App\\Models\\User', '7aec1c78-7c05-43a0-9c58-f08c8ca9f87f'),
+(2, 'App\\Models\\User', '850ed003-00c3-43b0-bccf-b0134aa66278'),
+(2, 'App\\Models\\User', 'bd80af20-edd7-46ac-91d5-cac2069d6b00');
 
 -- --------------------------------------------------------
 
@@ -213,22 +217,30 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'role-list', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(2, 'role-create', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(3, 'role-edit', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(4, 'role-delete', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(5, 'profile-list', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(6, 'profile-create', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(7, 'profile-edit', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(8, 'profile-delete', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(9, 'event-list', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(10, 'event-create', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(11, 'event-edit', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(12, 'event-delete', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(13, 'user-list', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(14, 'user-create', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(15, 'user-edit', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19'),
-(16, 'user-delete', 'web', '2022-10-18 20:12:19', '2022-10-18 20:12:19');
+(1, 'Show Role', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(2, 'Create Role', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(3, 'Edit Role', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(4, 'Delete Role', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(5, 'Show Profile', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(6, 'Create Profile', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(7, 'Edit Profile', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(8, 'Delete Profile', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(9, 'Show Event', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(10, 'Create Event', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(11, 'Edit Event', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(12, 'Delete Event', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(13, 'Show User', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(14, 'Create User', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(15, 'Edit User', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(16, 'Delete User', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(17, 'Show Volunteer Type', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(18, 'Create Volunteer Type', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(19, 'Edit Volunteer Type', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(20, 'Delete Volunteer Type', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(21, 'Show Event Types', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(22, 'Edit Event Types', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(23, 'Delete Event Types', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(24, 'Create Event Types', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01');
 
 -- --------------------------------------------------------
 
@@ -267,18 +279,20 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`roleId`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Preacher', '2022-10-20 07:42:40', '2022-10-24 22:24:50'),
-(2, 'Service Leader', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(3, 'Worship Leader', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(4, 'Backup Vocalist', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(5, 'Guitar', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(6, 'Piano', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(7, 'Bass', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(8, 'Drums', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(9, 'Sunday School Teacher', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(10, 'Usher', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(11, 'Member', '2022-10-20 07:42:40', '2022-10-20 07:42:40'),
-(12, 'Soundman', '2022-10-24 01:27:27', '2022-10-24 01:27:27');
+(1, 'Preacher', '2022-11-02 06:18:01', '2022-11-03 00:12:03'),
+(2, 'Service Leader', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(3, 'Worship Leader', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(4, 'Backup Vocalist', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(5, 'Guitar', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(6, 'Piano', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(7, 'Bass', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(8, 'Drums', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(9, 'Sunday School Teacher', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(10, 'Usher', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(11, 'Member', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(12, 'Recurring Service', '2022-11-02 23:57:22', '2022-11-02 23:57:22'),
+(13, 'Service', '2022-11-03 00:02:19', '2022-11-03 00:02:19'),
+(14, 'Staff', '2022-11-10 05:41:30', '2022-11-10 05:41:30');
 
 -- --------------------------------------------------------
 
@@ -297,34 +311,55 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
-(1, 3),
+(1, 2),
 (2, 1),
 (3, 1),
 (4, 1),
 (5, 1),
+(5, 2),
 (5, 3),
 (6, 1),
-(6, 3),
+(6, 2),
 (7, 1),
-(7, 3),
+(7, 2),
 (8, 1),
-(8, 3),
+(8, 2),
 (9, 1),
+(9, 2),
 (9, 3),
 (10, 1),
-(10, 3),
+(10, 2),
 (11, 1),
-(11, 3),
+(11, 2),
 (12, 1),
-(12, 3),
+(12, 2),
 (13, 1),
-(13, 3),
+(13, 2),
 (14, 1),
-(14, 3),
+(14, 2),
 (15, 1),
-(15, 3),
+(15, 2),
 (16, 1),
-(16, 3);
+(16, 2),
+(17, 1),
+(17, 2),
+(17, 3),
+(18, 1),
+(18, 2),
+(19, 1),
+(19, 2),
+(19, 3),
+(20, 1),
+(20, 2),
+(21, 1),
+(21, 2),
+(21, 3),
+(22, 1),
+(22, 2),
+(23, 1),
+(23, 2),
+(24, 1),
+(24, 2);
 
 -- --------------------------------------------------------
 
@@ -347,10 +382,10 @@ CREATE TABLE `user_account` (
 --
 
 INSERT INTO `user_account` (`accountId`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-('012d29a2-e30a-4692-998f-3905596c2f6d', 'usertwo@cms.com', NULL, '$2y$10$bq78sX2Nw8vB163OtiZhGOjkTLZJkyE10TlSd1DFejT67GEiC9wm.', NULL, '2022-10-26 19:37:20', '2022-10-26 19:37:20'),
-('50115ebf-c271-4237-9b69-1e564de81f18', 'admin@cms.com', NULL, '$2y$10$IKY1ApizlBc.ndJlHr77eODgF3ViTDoKPJvr7xtF007hm1mgldVb2', 'F5ikTATNuMTiN4zvOrW1duWn1ZHPvBpbxWQz8TO2CkgpIySWjKEmKTRS6oWe', '2022-10-18 20:12:23', '2022-10-18 20:12:23'),
-('76d04b49-122b-41b5-8507-5d41b8ae62a9', 'staff@cms.com', NULL, '$2y$10$sqpVrZSEf01we9vkW/LLKuCdT3qs3j7.gNz2EF0dKTZCQ.DOTJ8DG', NULL, '2022-10-18 22:26:06', '2022-10-18 22:47:40'),
-('b4d56914-4c21-407f-a165-762c4272dbff', 'peterting@email.com', NULL, '$2y$10$ccAqEYZuOgY3NV8esdJdE.s7bmW.IVFLJhDrlsfg/oeCL.UO25TSC', NULL, '2022-10-30 07:56:52', '2022-10-30 08:02:50');
+('7aec1c78-7c05-43a0-9c58-f08c8ca9f87f', 'staff2@cms.com', NULL, '$2y$10$IofLkNGurywaFkegqP6I/ePBBR2.xkrl9Sm3TqgydEsG1F/yJhI2e', NULL, '2022-11-10 07:21:11', '2022-11-10 07:21:11'),
+('850ed003-00c3-43b0-bccf-b0134aa66278', 'staff4@cms.com', NULL, '$2y$10$WVnsY65fSCSPHxbb.qtncO1Mi.ZnHK/P.nkR5Uv8vkAVX/7YRDEo.', NULL, '2022-11-10 08:00:42', '2022-11-10 08:00:42'),
+('bd80af20-edd7-46ac-91d5-cac2069d6b00', 'staff3@cms.com', NULL, '$2y$10$T.e3hR1J1ve03L85fk10iOgVbYY0dAB0xwJ/DI/lM3KlG8RYtAxUO', NULL, '2022-11-10 07:56:11', '2022-11-10 07:56:11'),
+('e66c89ca-62fc-47ab-b21a-3a7981e316aa', 'admin@cms.com', NULL, '$2y$10$2gzdqM8rSBYpCcJ3o.PWmeD9oyaF062aMv2d.Hedo7q5dJSB3Q70a', NULL, '2022-11-02 06:18:01', '2022-11-02 06:18:01');
 
 -- --------------------------------------------------------
 
@@ -371,8 +406,9 @@ CREATE TABLE `user_type` (
 --
 
 INSERT INTO `user_type` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'web', '2022-10-18 20:12:23', '2022-10-18 20:12:23'),
-(3, 'Staff', 'web', '2022-10-18 22:23:16', '2022-10-18 22:23:16');
+(1, 'Admin', 'web', '2022-11-02 06:18:01', '2022-11-02 06:18:01'),
+(2, 'Staff', 'web', '2022-11-10 05:46:20', '2022-11-10 05:46:20'),
+(3, 'Volunteer', 'web', '2022-11-10 08:17:56', '2022-11-10 08:17:56');
 
 -- --------------------------------------------------------
 
@@ -381,7 +417,7 @@ INSERT INTO `user_type` (`id`, `name`, `guard_name`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `volunteer_type` (
-  `profileId` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profileId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -390,29 +426,17 @@ CREATE TABLE `volunteer_type` (
 --
 
 INSERT INTO `volunteer_type` (`profileId`, `roles`) VALUES
-('266d8ac4-fd95-4833-b4c6-ea2bdc35138a', 2),
-('266d8ac4-fd95-4833-b4c6-ea2bdc35138a', 4),
-('266d8ac4-fd95-4833-b4c6-ea2bdc35138a', 7),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 2),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 3),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 4),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 5),
-('2f20fcae-1eb5-4759-9ac9-e37ffc9e2aca', 6),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 1),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 2),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 3),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 4),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 5),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 6),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 7),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 8),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 10),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 11),
-('5dc57c3a-6852-42a4-87a4-181c3d9a68ae', 12),
-('ae4f430c-e9c5-4e03-881b-6fb473d78c31', 6),
-('b2621370-fe6a-4538-bdf0-e275256c366a', 8),
-('d82c0c74-b22a-4c5e-8b58-edb3f7dace14', 11),
-('e801a385-8e04-4228-9bcb-29d1be13cd1c', 11);
+('0b6173b7-1525-47ac-8b1c-7db5901f865a', 3),
+('115e6d2b-f2e8-4270-a99b-6f2225458e36', 1),
+('115e6d2b-f2e8-4270-a99b-6f2225458e36', 3),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 1),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 2),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 3),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 4),
+('31053304-7b57-49e0-9c36-f7d4da7f1034', 5),
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 6),
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 7),
+('6706edf5-187a-4cc9-8fe9-a04d56960576', 8);
 
 --
 -- Indexes for dumped tables
@@ -422,7 +446,15 @@ INSERT INTO `volunteer_type` (`profileId`, `roles`) VALUES
 -- Indexes for table `congregations`
 --
 ALTER TABLE `congregations`
-  ADD PRIMARY KEY (`congId`);
+  ADD PRIMARY KEY (`congId`,`name`),
+  ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`eventId`),
+  ADD KEY `eventtype` (`eventtype`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -435,7 +467,9 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `member_profiles`
 --
 ALTER TABLE `member_profiles`
-  ADD UNIQUE KEY `member_profiles_profileid_unique` (`profileId`);
+  ADD PRIMARY KEY (`profileId`),
+  ADD KEY `congregation` (`congregation`),
+  ADD KEY `profileId` (`profileId`);
 
 --
 -- Indexes for table `migrations`
@@ -532,13 +566,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -550,7 +584,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `roleId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `roleId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_type`
@@ -561,6 +595,18 @@ ALTER TABLE `user_type`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`eventtype`) REFERENCES `event_types` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `member_profiles`
+--
+ALTER TABLE `member_profiles`
+  ADD CONSTRAINT `member_profiles_ibfk_1` FOREIGN KEY (`congregation`) REFERENCES `congregations` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `model_has_permissions`
@@ -585,6 +631,7 @@ ALTER TABLE `role_has_permissions`
 -- Constraints for table `volunteer_type`
 --
 ALTER TABLE `volunteer_type`
+  ADD CONSTRAINT `volunteer_type_profileid_foreign` FOREIGN KEY (`profileId`) REFERENCES `member_profiles` (`profileId`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `volunteer_type_roles_foreign` FOREIGN KEY (`roles`) REFERENCES `roles` (`roleId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
