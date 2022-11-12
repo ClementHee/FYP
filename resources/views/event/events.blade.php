@@ -56,5 +56,5 @@
         </tr>
         @endforeach
     </table>
-
+    {!! $events->render('pagination::bootstrap-4') !!}
 @endsection

@@ -19,13 +19,13 @@ class roles_controller extends Controller
          $this->middleware('permission:Show Volunteer Type|Create Volunteer Type|Edit Volunteer Type|Delete Volunteer Type', ['only' => ['index','store']]);
          $this->middleware('permission:Create Volunteer Type', ['only' => ['create','store']]);
          $this->middleware('permission:Edit Volunteer Type', ['only' => ['edit','update']]);
-         $this->middleware('permission:Delete Volunteer Type    ', ['only' => ['destroy']]);
+         $this->middleware('permission:Delete Volunteer Type', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
         
-        $vroles = roles::get();
+        $vroles = roles::orderBy('name','ASC')->paginate(10);
         return view('roles.roles',compact('vroles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     
@@ -55,7 +55,7 @@ class roles_controller extends Controller
     
         $input = $request->all();
         roles::create([
-            'name' => $request->name,
+            'name' => ucwords($request->name),
         ]);
         
     

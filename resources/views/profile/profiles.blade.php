@@ -46,6 +46,6 @@
     </tr>
     @endforeach
 </table>
-{!! $profiles->render() !!}
+{!! $profiles->render('pagination::bootstrap-4') !!}
 
 @endsection

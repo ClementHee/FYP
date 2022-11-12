@@ -53,7 +53,7 @@
         </tr>
         @endforeach
     </table>
-
+    {!! $vroles->render('pagination::bootstrap-4') !!}
 
 </body>
 @endsection

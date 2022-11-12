@@ -59,7 +59,7 @@ class user_role_permission_controller extends Controller
             'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
+        $role = Role::create(['name' => ucwords($request->input('name'))]);
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('usertype.index')
@@ -113,7 +113,7 @@ class user_role_permission_controller extends Controller
         ]);
 
         $role = Role::find($id);
-        $role->name = $request->input('name');
+        $role->name = ucwords($request->input('name'));
         $role->save();
 
         $role->syncPermissions($request->input('permission'));

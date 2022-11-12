@@ -45,6 +45,6 @@
     </tr>
 @endforeach
 </table>
-{!! $data->render() !!}
+{!! $data->render('pagination::bootstrap-4') !!}
 
 @endsection

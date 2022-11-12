@@ -28,7 +28,7 @@ class event_controller extends Controller
      */
     public function index(Request $request)
     {
-        $events = events::orderby('updated_at','desc')->paginate (5);
+        $events = events::orderby('start_datetime','asc')->paginate (5);
         return view ('event.events',compact('events'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -67,8 +67,7 @@ class event_controller extends Controller
 
         events::create([
             'eventId' => Str::uuid(),
-            'name' => $request->name,
-            
+            'name' => ucwords($request->name),
             'start_datetime' => $request->start_datetime,
             'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,
@@ -118,9 +117,7 @@ class event_controller extends Controller
     public function update(Request $request, $id)
     {
         events::where('eventId',$id)->update([
-    
-            'name' => $request->name,
-            
+            'name' => ucwords($request->name),
             'start_datetime' => $request->start_datetime,
             'end_datetime' => $request->end_datetime,
             'venue' => $request->venue,

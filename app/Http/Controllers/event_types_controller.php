@@ -58,7 +58,7 @@ class event_types_controller extends Controller
     
         $input = $request->all();
         event_types::create([
-            'name' => $request->name,
+            'name' => ucwords($request->name),
         ]);
         
         return view ('eventtype.assigntype',[

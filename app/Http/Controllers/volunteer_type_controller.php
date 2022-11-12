@@ -60,8 +60,7 @@ class volunteer_type_controller extends Controller
         }
         $profiles = member_profile::orderBy('profileId','ASC')->paginate(5);
         
-        return view('profile.profiles',compact('profiles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return redirect()->route('profile.index');
     
 
     }
@@ -120,6 +119,7 @@ class volunteer_type_controller extends Controller
         else{
         foreach($vprofile as $row){
             if($request->types!=null){
+                volunteer_type::where('profileId',$id)->delete();  
                 foreach ($request->types as $key=>$name){
                     if(!$row->roles==$request -> types[$key] ){
                         $insert = [

@@ -42,6 +42,6 @@
     </tr>
     @endforeach
 </table>
-{!! $roles->render() !!}
+{!! $roles->render('pagination::bootstrap-4') !!}
 
 @endsection

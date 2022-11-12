@@ -31,7 +31,7 @@ class profile_controller extends Controller
     }
     public function index(Request $request)
     {
-        $profiles = member_profile::orderBy('profileId','ASC')->paginate(5);
+        $profiles = member_profile::orderBy('created_at','ASC')->paginate(5);
         $vtypes = volunteer_type::get();
         return view('profile.profiles',compact('profiles','vtypes'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -66,7 +66,7 @@ class profile_controller extends Controller
      
         $np = member_profile::create([
             'profileId' => Str::uuid(),
-            'name' => $request->name,
+            'name' => ucwords($request->name),
             'phone' => $request->phone,
             'handphoneNo' => $request->handphoneNo,
             'email' => $request->email,
@@ -126,7 +126,7 @@ class profile_controller extends Controller
     public function update(Request $request, $id)
     {
         member_profile::where('profileId',$id)->update([
-            'name' => $request->name,
+            'name' => ucwords($request->name),
             'phone' => $request->phone,
             'handphoneNo' => $request->handphoneNo,
             'email' => $request->email,
