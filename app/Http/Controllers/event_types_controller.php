@@ -28,7 +28,7 @@ class event_types_controller extends Controller
     public function index(Request $request)
     { 
         
-        $eventtypes = event_types::get();
+        $eventtypes = event_types::orderby('name','asc')->paginate(5);
         return view('eventtype.eventtypes',compact('eventtypes'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
