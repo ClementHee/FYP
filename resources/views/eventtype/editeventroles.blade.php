@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title> Edit Volunteer Type </title>
+<title> Edit Volunteer Roles </title>
 
 @section('content')
 <body>
@@ -67,9 +67,9 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
-          
+
                 {!! Form::close() !!}
-           
+
         </div>
         </body>
     </div>

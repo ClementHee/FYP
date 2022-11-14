@@ -1,13 +1,14 @@
 @extends('layouts.app')
+<title> System Role Managment</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Role Management</h2>
+            <h2>System Role Management</h2>
         </div>
         <div class="pull-right my-4">
         @can('Create Role')
-            <a class="btn btn-success" href="{{ route('usertype.create') }}"> Create New Role</a>
+            <a class="btn btn-success" href="{{ route('usertype.create') }}"> Create New System Role</a>
             @endcan
         </div>
     </div>
@@ -17,7 +18,7 @@
         <p>{{ $message }}</p>
     </div>
 @endif
-<table class="table table-bordered">
+<table class="table table-striped table-condensed">
     <tr>
         <th>No</th>
         <th>Name</th>

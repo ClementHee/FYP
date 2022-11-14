@@ -28,7 +28,7 @@
         @endif
     </div>
 
-    <div class="card">
+    <div>
         {!! Form::open(array('route' => 'vtypes.store','method'=>'POST')) !!}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-<title> Volunteer Type </title>
+<title> Volunteer Roles </title>
 
 @section('content')
 <body class="w-full h-full bg-gray-100">
     <div class="container">
         <div class="row justify-content-center">
-            <h1 class="text-3xl text-gray-700">
-                Volunteer Type
-            </h1>
+            <h2>
+                Volunteer Roles
+            </h2>
         </div>
 
         <div class="pull-right my-4">
             <a class="btn btn-success"
                href="{{route('roles.create')}}">
-                Create  Type
+                Create  Volunteer Roles
             </a>
         </div>
     </div>
@@ -28,8 +28,8 @@
             </div>
         </div>
     @endif
-
-    <table class="table table-bordered">
+<div class="table table-responsive">
+    <table class="table table-striped table-sm">
         <tr>
             <th>No</th>
             <th>Name</th>
@@ -41,19 +41,20 @@
             <td>{{ ++$i }}</td>
             <td>{{ $vrole->name }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
-               
-                    <a class="btn btn-two" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
-               
-                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-              
+                <a class="btn btn-primary my-1" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
+
+                <a class="btn btn-two my-1" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
+
+                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger my-1']) !!}
+                {!! Form::close() !!}
+
             </td>
         </tr>
         @endforeach
     </table>
-    {!! $vroles->render('pagination::bootstrap-4') !!}
+</div>
+    {!! $vroles->render('pagination::bootstrap-5') !!}
 
 </body>
 @endsection

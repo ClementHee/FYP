@@ -1,9 +1,10 @@
 @extends('layouts.app')
+<title> New Volunteer Role</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Create New Type</h2>
+            <h2>Create New Volunteer Role</h2>
         </div>
         <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
@@ -22,9 +23,6 @@
 @endif
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-    </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Type</strong>

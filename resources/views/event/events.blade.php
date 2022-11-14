@@ -24,7 +24,8 @@
     </div>
     @endif
 
-    <table class="table table-bordered">
+    <div class="table-responsive">
+    <table class="table table-striped table-sm">
         <tr>
             <th>No.</th>
             <th>Name</th>
@@ -42,19 +43,20 @@
             <td>{{ $event->start_datetime }}</td>
             <td>{{ $event->end_datetime }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('event.show',$event->eventId) }}">Show</a>
+                <a class="btn btn-primary my-2" href="{{ route('event.show',$event->eventId) }}">Show</a>
                 @can('Edit Event')
-                  <a class="btn btn-two" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
+                  <a class="btn btn-two my-2" href="{{ route('event.edit',$event->eventId) }}">Edit</a>
 
                 @endcan
                 @can('Delete Event')
                     {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger my-2']) !!}
                     {!! Form::close() !!}
                 @endcan
             </td>
         </tr>
         @endforeach
     </table>
-    {!! $events->render('pagination::bootstrap-4') !!}
+    </div>
+    {!! $events->render('pagination::bootstrap-5') !!}
 @endsection

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-<title> Create Volunteer Type </title>
+<title> Assign Volunteer Type </title>
 
 @section('content')
 <body>
 <div class="container">
     <div class="row justify-content-center">
         <h1 class="text-3xl text-gray-700">
-            Create Volunteer Type
+            Assign Volunteer Type
         </h1>
         <hr class="border border-1 border-gray-300 mt-10">
     </div>
@@ -28,7 +28,7 @@
         @endif
     </div>
 
-    <div class="card">
+    <div>
         {!! Form::open(array('route' => 'vtypes.store','method'=>'POST')) !!}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">

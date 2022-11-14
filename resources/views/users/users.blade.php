@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>Users Managment</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -15,11 +16,12 @@
     <p>{{ $message }}</p>
 </div>
 @endif
-<table class="table table-bordered">
+<div class="table-responsive">
+<table class="table table-striped table-sm">
     <tr>
         <th>No.</th>
         <th>Email</th>
-        <th>Roles</th>
+        <th> System Roles</th>
         <th width="280px">Action</th>
     </tr>
 @foreach ($data as $key => $user)
@@ -36,15 +38,16 @@
             @endif
         </td>
         <td>
-            <a class="btn btn-primary" href="{{ route('users.show',$user->accountId) }}">Show</a>
-            <a class="btn btn-two" href="{{ route('users.edit',$user->accountId) }}">Edit</a>
+            <a class="btn btn-primary my-1" href="{{ route('users.show',$user->accountId) }}">Show</a>
+            <a class="btn btn-two my-1" href="{{ route('users.edit',$user->accountId) }}">Edit</a>
                 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->accountId],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger my-1']) !!}
                 {!! Form::close() !!}
         </td>
     </tr>
 @endforeach
 </table>
-{!! $data->render('pagination::bootstrap-4') !!}
+</div>
+{!! $data->render('pagination::bootstrap-5') !!}
 
 @endsection

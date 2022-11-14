@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title> {{ $roles->name }}</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -12,19 +13,18 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name: </strong>
-            {{ $roles->name }}
+        <div class="list-group">
+            <h3>{{ $roles->name }}</h3>
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+        <ol class="list-group list-group-numbered">
             <strong>Members Allocated: </strong>
             @foreach ( $assignedprofiles as $assignedprofile )
-                {{ $assignedprofile->name }},
+                <li class="list-group-item">{{ $assignedprofile->name }}</li>
             @endforeach
 
-        </div>
+        </ol>
     </div>
 </div>
 @endsection

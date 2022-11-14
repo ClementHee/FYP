@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title> Create Volunteer Type </title>
+<title> Assign Volunteer Roles </title>
 
 @section('content')
 <body>
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="d-none">
-                    
+
                     <input
                         type="text"
                         name="eventtypeId"

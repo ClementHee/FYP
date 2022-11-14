@@ -35,51 +35,53 @@
         @csrf
         @method('PATCH')
 
-        <p>Name:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Name:</span>
         <input
             type="text"
             name="name"
             value="{{$edit_event->name}}"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+            class="form-control">
+        </div>
 
-        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="date_time">From: </label>
+            <input type="datetime-local" name="start_datetime"  class="form-control" value="{{$edit_event->start_datetime}}">
+        </div>
 
-        <p>
-            <label for="date_time">From </label>
-            <input type="datetime-local" name="start_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->start_datetime}}">
-        </p>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="date_time">To: </label>
+            <input type="datetime-local" name="end_datetime" class="form-control" value="{{$edit_event->end_datetime}}">
+        </div>
 
-        <p>
-            <label for="date_time">To: </label>
-            <input type="datetime-local" name="end_datetime"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_event->end_datetime}}">
-        </p>
-
-        <p> Venue:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Venue:</span>
         <input
             type="text"
             name="venue"
             value="{{$edit_event->venue}}"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+            class="form-control">
+        </div>
 
-        <p> Person In Charge:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Person In Charge:</span>
         <input
             type="text"
             name="pic"
             value="{{$edit_event->pic}}"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
-        <p> Event Type
-            <select name = "eventtype" class="col-xs-12 col-sm-12 col-md-12">
+            class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Event Type:</span>
+            <select name = "eventtype" class="form-control">
                 @foreach ($eventtypes as $selection )
                     <option value = "{{$selection->name}}">{{$selection->name}}</option>
                 @endforeach
-    
+
             </select>
-            </p>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-4">Save</button>
         </div>
     </form>
 </div>

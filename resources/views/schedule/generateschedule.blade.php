@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
-<title> Manage Event </title>
+<title> Generate Schedule </title>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12 margin-tb">
+        <div class="col-xs-12 col-sm-12 col-md-12 margin-tb">
             <h2 class="">
-                Event Management
+                Generate Schedule
             </h2>
         </div>
 
         <div class="pull-right my-4">
             @can('Create Event')
                 <a class="btn btn-success" id="export_button"> Export</a>
-                @endcan
-            </div>
+            @endcan
         </div>
+    </div>
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -30,14 +30,16 @@
             name="eventId"
             value="{{$id}}"
             class="d-none">
-    <table id = "schedule" class="table table-bordered">
-        
-        <tr>
+
+<div class="table-responsive">
+    <table id = "schedule" class="table table-striped table-sm">
+
+        <tr class="text-center">
             <th>Time</th>
             @foreach ($rolesneeded as $roles)
                 <th>
-                    
-                    <select  name ="roles[]" class="col-xs-12 col-sm-12 col-md-12">
+
+                    <select  name ="roles[]" class="form-control">
                         <option name="role" value="{{$roles->roleId}}" >{{$roles->name}}</option>
                     </select>
                 </th>
@@ -46,11 +48,11 @@
         @foreach ($dates as $date)
         <tr>
             <td>
-                <input type="date" name="date[]"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{date('Y-m-d',strtotime($date))}}">
+                <input type="date" name="date[]"  class="form-control" value="{{date('Y-m-d',strtotime($date))}}">
             </td>
             @foreach ($rolesneeded as $roles)
                 <td>
-                    <select name ="volunteers[]" class="col-xs-12 col-sm-12 col-md-12">
+                    <select name ="volunteers[]" class="form-control">
                         @foreach($allvolunteertype as $key => $name)
                             @if($allvolunteertype[$key]->roles==$roles->roleId)
                                 <option value="{{$allvolunteertype[$key]->profileId}}">{{$allvolunteertype[$key]->name}}</option>
@@ -61,12 +63,15 @@
             @endforeach
         </tr>
         @endforeach
-        
+
     </table>
+</div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-    {!! Form::close() !!}   
+    {!! Form::close() !!}
+
+
  <script>
     function html_table_to_excel(type)
     {
@@ -85,4 +90,5 @@
         html_table_to_excel('xlsx');
     });
  </script>
+
 @endsection

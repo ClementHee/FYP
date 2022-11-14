@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-<title> Create Event </title>
+<title> Set Not Available Time </title>
 
 @section('content')
 
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Create New Event</h2>
+            <h2>Set Not Available Time</h2>
         </div>
     </div>
 
@@ -27,11 +27,9 @@
     </ul>
 </div>
 @endif
+
 {!! Form::open(array('route' => 'not_availabletime.store','method'=>'POST')) !!}
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-    </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="d-none">
             <strong>Profile ID:</strong>
@@ -39,12 +37,12 @@
                 type="text"
                 name="profileId"
                 value= "{{$profileId}}"
-                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                class>
 
 
         </div>
         <div class="form-group">
-            <strong>Not available Time</strong>
+            <strong>Not available time</strong>
             {!! Form::date('na_time', null, array('placeholder' => 'Type','class' => 'form-control')) !!}
         </div>
     </div>
@@ -54,5 +52,5 @@
     </div>
 </div>
 {!! Form::close() !!}
-    
+
 @endsection

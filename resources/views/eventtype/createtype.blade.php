@@ -1,9 +1,10 @@
 @extends('layouts.app')
+<title> New Event Set Type</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Create New Event Type</h2>
+            <h2>Create New Event Set Type</h2>
         </div>
         <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('eventtypes.index') }}"> Back</a>

@@ -34,74 +34,84 @@
         enctype="multipart/form-data">
         @csrf
 
-        <p> Designation:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Designation:</span>
         <input
-            class="col-xs-12 col-sm-12 col-md-12"
+            class="form-control"
             type="text"
             name="designation"
-            placeholder="Designation">
-        </p>
+            placeholder="Mr">
+        </div>
 
-        <p> Name:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Name:</span>
         <input
-            class="col-xs-12 col-sm-12 col-md-12"
+            class="form-control"
             type="text"
             name="name"
             placeholder="Name">
-        </p>
+        </div>
 
-        <p> Home Number:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Home Number:</span>
         <input
             type="text"
             name="phone"
             placeholder="Phone"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+            class="form-control">
+        </div>
 
-        <p> Phone Number:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Phone Number:</span>
         <input
             type="text"
             name="handphoneNo"
             placeholder="Mobile Phone"
-            class="col-xs-12 col-sm-12 col-md-12">
-        </p>
+            class="form-control">
+        </div>
 
-        <p> Email:
+        <div class="input-group mb-3">
+            <span class="input-group-text">Email</span>
         <input
             type="email"
             name="email"
-            class="col-xs-12 col-sm-12 col-md-12"
+            class="form-control"
             @if (isset($email))
                 value="{{$email}}" readonly
             @else
                 placeholder="Email"
             @endif>
-        </p>
+        </div>
 
-        <p> Address:
+        <div class="input-group mb-3">
+            <span class="input-group-text"> Address: </span>
         <textarea
             name="address"
+            rows="3"
             placeholder="Address"
-            class="col-xs-12 col-sm-12 col-md-12"></textarea>
-        </p>
+            class="form-control">
+        </textarea>
+        </div>
 
-        <p> Gender
-            <select name = "gender" class="col-xs-12 col-sm-12 col-md-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Gender</span>
+            <select name = "gender" class="form-control">
 
                 <option value = "Male">Male</option>
                 <option value = "Female">Female</option>
 
             </select>
-        </p>
+        </div>
 
-        <p> Congregation
-        <select name = "congregation" class="col-xs-12 col-sm-12 col-md-12">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Congregation</span>
+        <select name = "congregation" class="form-control">
             @foreach ($congregations as $selection )
                 <option value = "{{$selection->name}}">{{$selection->name}}</option>
             @endforeach
 
         </select>
-        </p>
+    </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>

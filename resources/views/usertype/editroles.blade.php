@@ -1,9 +1,10 @@
 @extends('layouts.app')
+<title> Edit System Role</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Role</h2>
+            <h2>Edit System Role</h2>
         </div>
         <div class="pull-right my-4">
             <a class="btn btn-primary" href="{{ route('usertype.index') }}"> Back</a>

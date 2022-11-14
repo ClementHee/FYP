@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title> Edit Event </title>
+<title> Edit Not Available Time </title>
 
 @section('content')
 
@@ -35,15 +35,13 @@
         @csrf
         @method('PATCH')
 
-        <p>
-            <label for="date_time">Not Available Time </label>
-            <input type="date" name="na_time"  class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" value="{{$edit_natime->na_time}}">
-        </p>
-
-        
+        <strong>
+            <label class = "form-group" for="date_time">Not available time </label>
+            <input type="date" name="na_time"  class="form-control" value="{{$edit_natime->na_time}}">
+        </strong>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary my-4">Save</button>
         </div>
     </form>
 </div>

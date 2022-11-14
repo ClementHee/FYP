@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title> Profile Management</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -17,7 +18,8 @@
             <p>{{ $message }}</p>
     </div>
 @endif
-<table class="table table-bordered">
+<div class="table-responsive table-sm">
+<table class="table table-striped">
     <tr>
         <th>No.</th>
         <th>Name</th>
@@ -32,13 +34,13 @@
         <td>{{ $profile->name }}</td>
         @can('Edit Profile')
         <td>
-            <a class="btn btn-primary" href="{{ route('profile.show',$profile->profileId)}}">Show</a>
-           
-                <a class="btn btn-two" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
-            
+            <a class="btn btn-primary my-1" href="{{ route('profile.show',$profile->profileId)}}">Show</a>
+
+                <a class="btn btn-two my-1" href="{{ route('profile.edit',$profile->profileId) }}">Edit</a>
+
             @can('Delete Profile')
                 {!! Form::open(['method' => 'DELETE','route' => ['profile.destroy', $profile->profileId],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger my-1']) !!}
                 {!! Form::close() !!}
             @endcan
         </td>
@@ -46,6 +48,7 @@
     </tr>
     @endforeach
 </table>
-{!! $profiles->render('pagination::bootstrap-4') !!}
+</div>
+{!! $profiles->render('pagination::bootstrap-5') !!}
 
 @endsection

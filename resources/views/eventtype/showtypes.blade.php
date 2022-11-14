@@ -1,11 +1,12 @@
 @extends('layouts.app')
+<title> Show Event Sets </title>
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2> Show Event Type</h2>
+            <h2> Show Event Sets</h2>
         </div>
-        
+
     </div>
 </div>
 <div class="row">
