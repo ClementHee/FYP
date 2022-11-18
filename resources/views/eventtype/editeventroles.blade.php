@@ -4,15 +4,11 @@
 
 @section('content')
 <body>
-<div class="container">
+<div class="col-xs-12 col-sm-12 col-md-12">
     <div class="row justify-content-center">
-        <h1 class="text-3xl text-gray-700">
-            Edit Roles Needed
-        </h1>
-        <hr class="border border-1 border-gray-300 mt-10">
+        <h1> Edit Roles Needed </h1>
     </div>
 
-<div class="container ">
     <div class="row justify-content-center">
         @if ($errors->any())
             <div class='invalid-feedback'>
@@ -28,52 +24,32 @@
         @endif
     </div>
 
-    <div class="card">
-
-        <div class="container">
-
+        <div class="container border border-0">
                 {!! Form::model($eventtype, ['method' => 'PATCH','route' => ['eventroles.update', $eventtypeId]]) !!}
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="d-none">
-                            <strong>Event ID:</strong>
-                            <input
-                                type="text"
-                                name="eventtypeId"
-                                value= {{$eventtypeId}}
-                                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-
-
-                        </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Roles:</strong>
-                            <br/>
-                            @foreach($alltypes as $value)
-                                <div clas="form-check">
-                                    <label class="form-check-label" for="{{$value->roleId}}">
-                                    <input type="checkbox" class="form-check-input" id="" name="r[]" value="{{$value->roleId}}" @if (in_array($value->roleId,$eventtype))
-                                        checked='checked'
-                                    @endif>
-                                    {{$value->name}}
-                                    </label>
-                                </div>
-                            <br/>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
+                <div class="d-none">
+                    <strong>Event ID:</strong>
+                    <input type="text" name="eventtypeId" value= {{$eventtypeId}}>
                 </div>
 
-                {!! Form::close() !!}
+                <div class="">
+                        <ul class="list-group">
+                            <strong>Roles:</strong> <br/>
+                            @foreach($alltypes as $value)
+                                <li class="list-group-item">
+                                    <label class="form-check-label stretched-link">
+                                        {{ Form::checkbox('r[]', $value->roleId, in_array($value->roleId, $eventtype) ? true : false, array('class' => 'name')) }}
+                                        {{$value->name}}
+                                    </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            {!! Form::close() !!}
         </div>
-        </body>
-    </div>
-
 </div>
 </body>
 @endsection
