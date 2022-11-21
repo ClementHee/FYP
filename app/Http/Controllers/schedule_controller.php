@@ -11,6 +11,7 @@ use App\Models\event_types;
 use Illuminate\Http\Request;
 use App\Models\member_profile;
 use App\Models\volunteer_type;
+use App\Models\not_availabletime;
 use Illuminate\Support\Facades\DB;
 
 class schedule_controller extends Controller
@@ -122,11 +123,11 @@ class schedule_controller extends Controller
     {
         schedule::where('eventId',$id)->delete();
         return redirect()->route('event.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','Schedule deleted successfully');
     }
 
     public function assignSchedule($id){
-
+        
         $schedule = schedule::where('eventId',$id)->get();
         
         if (count($schedule)!=0){
@@ -164,10 +165,30 @@ class schedule_controller extends Controller
         }else{
             $dates[]=$x->format('d F Y');
         }
+        //date('d-m-Y', strtotime($user->from_date));
+        $natime = not_availabletime::get();
+ 
+        $ct=[];
+        $pi=[];
+        foreach ($natime as $nt){
+      
+            $ct[]= Carbon::parse($nt->na_time)->format('d F Y');
+        }
+      
+        $same_date = array_intersect($dates,$ct);
+        for($i=0;$i<count($same_date);$i++){
+            $same_date[$i] = Carbon::parse($same_date[0])->format('Y-m-d');
+        }
+        $notavailblemembers = not_availabletime::where('na_time',$same_date)->get('profileId');
+        foreach($notavailblemembers as $nm){
+            $pi[]=$nm->profileId;
+        }
         
         $allvolunteertype =  member_profile::join("volunteer_type","member_profiles.profileId","=","volunteer_type.profileId")
+        ->whereNotIn('member_profiles.profileId',$pi)
         ->get();
-  
+        
+   
         return view('schedule.generateschedule',compact('id','rolesneeded','eventtype','eventtypeId','dates','allvolunteertype'));
     }
 }

@@ -1,8 +1,13 @@
 @extends('layouts.app')
 <title>Dashboard</title>
+
+
+
+
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
@@ -14,9 +19,7 @@
                         </div>
                     @endif
 
-                    <div class="" id=" ">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida nulla in urna viverra aliquam. Donec ullamcorper fringilla tellus, et placerat lectus egestas ac. Mauris non efficitur velit. Duis tincidunt volutpat tristique. Aliquam quis finibus urna. Mauris sit amet mattis justo. Nunc ornare aliquam est id placerat. Proin id nisl ac sapien posuere lacinia consectetur nec nulla. Proin non elit gravida, venenatis ante nec, fringilla velit. Nam a volutpat urna, aliquam semper lorem. Nam molestie, nunc vel auctor tempor, diam mi pellentesque ex, vitae feugiat enim purus vitae elit.
-                    </div>
+                    
                     <br>
 
                     <div class="accordion" id="accordionDashboard">
@@ -76,10 +79,13 @@
                           </div>
                         </div>
                       </div>
-
                 </div>
+                
             </div>
+            
         </div>
     </div>
 </div>
+
+
 @endsection

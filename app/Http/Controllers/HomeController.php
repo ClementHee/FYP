@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\events;
 use Illuminate\Http\Request;
 use App\Models\member_profile;
 
@@ -25,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('home');
+        $events=events::get();
+        return view('home',compact('events'));
     }
 }

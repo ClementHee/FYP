@@ -34,9 +34,8 @@
     </div>
     <div class="pull-right my-4">
         <a class="btn btn-primary" href="{{ route('eventtypes.index') }}"> Back</a>
+        <a class="btn btn-primary" href="{{ route('eventroles.edit',$eventtypes->eventtypeId) }}"> Assign Roles for event</a>
     </div>
-    <div class="pull-right my-4">
-        <a class="btn btn-primary" href="{{ route('eventroles.edit',$eventtypes->eventtypeId) }}"> Back</a>
-    </div>
+
 </div>
 @endsection

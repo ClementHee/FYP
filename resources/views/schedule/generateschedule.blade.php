@@ -2,6 +2,8 @@
 
 <title> Generate Schedule </title>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 @section('content')
 
     <div class="row">
@@ -39,7 +41,7 @@
             @foreach ($rolesneeded as $roles)
                 <th>
 
-                    <select  name ="roles[]" class="form-control">
+                    <select  name ="roles[]" class="form-control" >
                         <option name="role" value="{{$roles->roleId}}" >{{$roles->name}}</option>
                     </select>
                 </th>
@@ -52,7 +54,7 @@
             </td>
             @foreach ($rolesneeded as $roles)
                 <td>
-                    <select name ="volunteers[]" class="form-control">
+                    <select name ="volunteers[]" id ="{{$roles->name}} {{$date}}" class="form-control">
                         @foreach($allvolunteertype as $key => $name)
                             @if($allvolunteertype[$key]->roles==$roles->roleId)
                                 <option value="{{$allvolunteertype[$key]->profileId}}">{{$allvolunteertype[$key]->name}}</option>
@@ -73,6 +75,14 @@
 
 
  <script>
+    /*$(document).ready(function(){
+        $('select').on('change', function(event ) {
+        var prevValue = $(this).data('previous');
+        $('select').not(this).find('option[value="'+prevValue+'"]').show();    
+        var value = $(this).val();
+        $(this).data('previous',value); $('select').not(this).find('option[value="'+value+'"]').hide();
+        });
+    });*/
     function html_table_to_excel(type)
     {
         var data = document.getElementById('schedule');
@@ -89,6 +99,16 @@
     export_button.addEventListener('click', () =>  {
         html_table_to_excel('xlsx');
     });
+
+    let $form = $('form');
+
+$(document).ready(function(){
+  $form.find("select").each((i, el) => {
+    let $options = $(el).find('option');
+    let index = Math.floor(Math.random() * $options.length);
+    $options.eq(index).prop('selected', true);
+  });
+});
  </script>
 
 @endsection
