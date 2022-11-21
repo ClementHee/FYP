@@ -21,6 +21,7 @@
         </ul>
     </div>
 @endif
+
 {!! Form::model($edit_vroles, ['method' => 'PATCH','route' => ['roles.update', $edit_vroles->roleId]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">

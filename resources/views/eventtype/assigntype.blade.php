@@ -4,12 +4,11 @@
 
 @section('content')
 <body>
-<div class="container">
+<div class="col-xs-12 col-sm-12 col-md-12">
     <div class="row justify-content-center">
-        <h1 class="text-3xl text-gray-700">
-            Assign Roles Needed
-        </h1>
-        <hr class="border border-1 border-gray-300 mt-10">
+        <h2>
+            Assign Roles for Event
+        </h2>
     </div>
 
 <div class="container">
@@ -27,8 +26,9 @@
             </ul>
         @endif
     </div>
+</div>
 
-    <div class="card">
+<div class="container border border-0">
         {!! Form::open(array('route' => 'eventroles.store','method'=>'POST')) !!}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -45,17 +45,17 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Roles:</strong>
-                    <br/>
+                    <strong>Roles:</strong><br/>
+                    <ul class="list-group">
                     @foreach($vroles as $value)
-                        <div clas="form-check">
-                            <label class="form-check-label" for="{{$value->name}}">
-                            <input type="checkbox" class="form-check-input" id="" name="types[]" value="{{$value->roleId}}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <label class="form-check-label stretched-link">
+                            {{ Form::checkbox('types[]', $value->roleId, false, array('class' => 'name')) }}
                             {{$value->name}}
                             </label>
-                        </div>
-                    <br/>
+                        </li>
                     @endforeach
+                    </ul>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -63,7 +63,7 @@
             </div>
         </div>
         {!! Form::close() !!}
-    </div>
 </div>
+
 </body>
 @endsection

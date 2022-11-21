@@ -3,7 +3,7 @@
 <title> Event Set Types </title>
 
 @section('content')
-<body class="w-full h-full bg-gray-100">
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <h1 class="text-3xl text-gray-700">
@@ -48,7 +48,6 @@
                     {!! Form::open(['method' => 'DELETE','route' => ['eventtypes.destroy', $eventtype->eventtypeId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger my-2']) !!}
                     {!! Form::close() !!}
-
             </td>
         </tr>
         @endforeach

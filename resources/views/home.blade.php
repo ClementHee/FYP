@@ -19,7 +19,9 @@
                         </div>
                     @endif
 
-                    
+                    <div class="" id=" ">
+                      
+                    </div>
                     <br>
 
                     <div class="accordion" id="accordionDashboard">
@@ -35,7 +37,7 @@
 
                                     <!-- offCanvas test -->
                                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNA" aria-controls="offcanvasNA">
-                                        Set TEST example
+                                        Click
                                     </button>
 
                                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNA" aria-labelledby="offcanvasNALabel">
@@ -45,7 +47,7 @@
                                         </div>
                                         <div class="offcanvas-body">
                                         <div>
-                                            Text here
+                                            bb
                                         </div>
                                         </div>
                                     </div>
