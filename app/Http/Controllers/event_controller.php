@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 class event_controller extends Controller
 {
-    
+
     function __construct() //This function is to restrict actions based on roles
     {
          $this->middleware('permission:Show Event|Create Event|Edit Event|Delete Event', ['only' => ['index','store']]);
@@ -28,9 +28,9 @@ class event_controller extends Controller
      */
     public function index(Request $request)
     {
-        $events = events::orderby('start_datetime','asc')->paginate (5);
+        $events = events::orderby('start_datetime','asc')->paginate (10);
         return view ('event.events',compact('events'))
-        ->with('i', ($request->input('page', 1) - 1) * 5);
+        ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -43,7 +43,7 @@ class event_controller extends Controller
         return view ('event.createvent',[
             'eventtypes' => event_types::get()
         ]);
-       
+
     }
 
     /**
@@ -56,13 +56,13 @@ class event_controller extends Controller
     {
         $request->validate([
             'name' => 'required|unique:events',
-            
+
             'start_datetime' => 'required',
             'end_datetime' => 'required',
             'venue' => 'required',
             'pic' => 'required',
             'eventtype' => 'required',
-            
+
         ]);
 
         events::create([

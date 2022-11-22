@@ -14,7 +14,7 @@ class user_role_permission_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     function __construct()
     {
          $this->middleware('permission:Show Role|Create Role|Edit Role|Delete Role', ['only' => ['index','store']]);
@@ -30,9 +30,9 @@ class user_role_permission_controller extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
+        $roles = Role::orderBy('id','DESC')->paginate(10);
         return view('usertype.roles',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

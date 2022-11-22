@@ -70,7 +70,7 @@
 
         XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
 
-        XLSX.writeFile(file, 'file.' + type);
+        XLSX.writeFile(file, 'schedule.' + type);
     }
 
     const export_button = document.getElementById('export_button');

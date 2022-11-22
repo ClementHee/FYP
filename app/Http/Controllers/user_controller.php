@@ -12,7 +12,7 @@ class user_controller extends Controller
 {
     function __construct() //This function is to restrict actions based on roles
     {
-       
+
         $this->middleware('permission:Show User|Create User|Edit User|Delete User', ['only' => ['index','store']]);
         $this->middleware('permission:Create User', ['only' => ['create','store']]);
         $this->middleware('permission:Edit User', ['only' => ['edit','update']]);
@@ -25,9 +25,9 @@ class user_controller extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('accountId','DESC')->paginate(5);
+        $data = User::orderBy('accountId','DESC')->paginate(10);
         return view('users.users',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
     /**
      * Show the form for creating a new resource.
@@ -48,19 +48,19 @@ class user_controller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    
+
             'email' => 'required|email|unique:user_account,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
-    
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+
         $user = User::create($input);
         $user2 = User::where('email',$request->input('email'))->first();
         $user2->assignRole($request->input('roles'));
-    
+
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
     }
@@ -86,7 +86,7 @@ class user_controller extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-   
+
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
