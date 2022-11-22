@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace App\Http\Controllers;
 use DB;
 use App\Models\roles;
@@ -9,7 +9,7 @@ use App\Models\event_types;
 use Illuminate\Http\Request;
 use App\Models\volunteer_type;
 use App\Http\Controllers\Controller;
-    
+
 class event_types_controller extends Controller
 {
 
@@ -26,13 +26,13 @@ class event_types_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    { 
-        
-        $eventtypes = event_types::orderby('name','asc')->paginate(5);
+    {
+
+        $eventtypes = event_types::orderby('name','asc')->paginate(10);
         return view('eventtype.eventtypes',compact('eventtypes'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +43,7 @@ class event_types_controller extends Controller
     {
         return view ('eventtype.createtype');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,49 +55,49 @@ class event_types_controller extends Controller
         $this->validate($request, [
             'name' => 'required|unique:event_types',
         ]);
-    
+
         $input = $request->all();
         event_types::create([
             'name' => ucwords($request->name),
         ]);
-        
+
         return view ('eventtype.assigntype',[
             'eventtypeId' => event_types::where('name',$request->name)->get('eventtypeId')->first(),
-            
+
             'vroles' => roles::get()
-            
+
         ]);
-        
-    
+
+
 
     }
     public function show($id)
     {
         $eventtypes = event_types::findOrFail($id);
-       
+
         $rolesneeded = roles::join("event_roles","event_roles.roles","=","roles.roleId")
         ->where("event_roles.eventtypeId",$id)
         ->get();
-        
+
         $assignedevents = events::where('eventtype',$eventtypes->name)->get();
-        
+
         return view('eventtype.showtypes',compact('eventtypes','assignedevents','rolesneeded'));
     }
-    
-    
+
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)   
+    public function edit($id)
     {
        return view ('eventtype.edittype',[
             'edit_type' => event_types::where('eventtypeId',$id)->first(),
         ]);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -107,20 +107,20 @@ class event_types_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $this->validate($request, [
             'name' => 'required|unique:event_types',
         ]);
-    
+
         event_types::where('eventtypeId',$id)->update([
             'name' => $request->name,
         ]);
 
         return redirect(route('eventtypes.index'));
     }
-        
-        
-       
+
+
+
     /**
      * Remove the specified resource from storage.
      *

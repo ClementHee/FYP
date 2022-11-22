@@ -24,13 +24,13 @@ class roles_controller extends Controller
 
     public function index(Request $request)
     {
-        
+
         $vroles = roles::orderBy('name','ASC')->paginate(10);
         return view('roles.roles',compact('vroles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
-    
+            ->with('i', ($request->input('page', 1) - 1) * 10);
+
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +40,7 @@ class roles_controller extends Controller
     {
         return view ('roles.createroles');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,17 +52,17 @@ class roles_controller extends Controller
         $this->validate($request, [
             'name' => 'required|unique:roles',
         ]);
-    
+
         $input = $request->all();
         roles::create([
             'name' => ucwords($request->name),
         ]);
-        
-    
+
+
         return redirect()->route('roles.index')
                         ->with('success','New Type created successfully');
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -70,21 +70,21 @@ class roles_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        
+    {
+
 
         $roles = roles::findOrFail($id);
 
-        
-        
-        
+
+
+
         $assignedprofiles = volunteer_type::join("member_profiles","volunteer_type.profileId","=","member_profiles.profileId")
         ->where("volunteer_type.roles",$id)
         ->get();
-        
+
         return view('roles.showroles',compact('roles','assignedprofiles'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,7 +97,7 @@ class roles_controller extends Controller
             'edit_vroles' => roles::where('roleId',$id)->first(),
         ]);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -110,14 +110,14 @@ class roles_controller extends Controller
         $this->validate($request, [
             'name' => 'required|unique:roles',
         ]);
-    
+
         roles::where('roleId',$id)->update([
             'name' => $request->name,
         ]);
 
         return redirect(route('roles.index'));
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *

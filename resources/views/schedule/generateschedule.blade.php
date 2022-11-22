@@ -78,7 +78,7 @@
     /*$(document).ready(function(){
         $('select').on('change', function(event ) {
         var prevValue = $(this).data('previous');
-        $('select').not(this).find('option[value="'+prevValue+'"]').show();    
+        $('select').not(this).find('option[value="'+prevValue+'"]').show();
         var value = $(this).val();
         $(this).data('previous',value); $('select').not(this).find('option[value="'+value+'"]').hide();
         });
@@ -91,7 +91,7 @@
 
         XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
 
-        XLSX.writeFile(file, 'file.' + type);
+        XLSX.writeFile(file, 'schedule.' + type);
     }
 
     const export_button = document.getElementById('export_button');

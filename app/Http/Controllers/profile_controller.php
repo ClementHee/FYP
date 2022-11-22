@@ -31,10 +31,10 @@ class profile_controller extends Controller
     }
     public function index(Request $request)
     {
-        $profiles = member_profile::orderBy('created_at','ASC')->paginate(5);
+        $profiles = member_profile::orderBy('created_at','ASC')->paginate(10);
         $vtypes = volunteer_type::get();
         return view('profile.profiles',compact('profiles','vtypes'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -63,7 +63,7 @@ class profile_controller extends Controller
             'email' => 'required|email',
             'address' => 'required',
         ]);
-     
+
         $np = member_profile::create([
             'profileId' => Str::uuid(),
             'name' => ucwords($request->name),
@@ -94,11 +94,11 @@ class profile_controller extends Controller
         $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
             ->where("volunteer_type.profileId",$id)
             ->get();
-        
+
         $profile = member_profile::findOrFail($id);
         $not_availtime = not_availabletime::where('profileId',$id)->get();
         return view('profile.showprofile',compact('profile','allocatedtypes','not_availtime'));
-        
+
     }
 
     /**
@@ -147,7 +147,7 @@ class profile_controller extends Controller
      */
     public function destroy($id)
     {
-        
+
         member_profile::destroy($id);
         DB::table("volunteer_type")->where('profileId',$id)->delete();
         return redirect (route('profile.index'))->with('message', 'Profile Deleted');
@@ -158,7 +158,7 @@ class profile_controller extends Controller
         $createdprofile = member_profile::join('user_account','user_account.email','=','member_profiles.email')
         ->where('user_account.email',$email)
         ->get();
-    
+
     if(count($createdprofile)==0){
         return view ('profile.createprofile',[
             'congregations' => congregation::get(),
@@ -167,17 +167,17 @@ class profile_controller extends Controller
     }else{
         $profileId = $createdprofile[0]->profileId;
     }
-    
+
     $allocatedtypes = roles::join("volunteer_type","volunteer_type.roles","=","roles.roleId")
         ->where("volunteer_type.profileId",$profileId)
         ->get();
-    
+
     $profile = member_profile::findOrFail($profileId);
     $not_availtime = not_availabletime::where('profileId',$profileId)->get();
-       
+
     return view('profile.showprofile',compact('profile','allocatedtypes','not_availtime'));
-    
-        
+
+
     }
 
     public function create_na($id)

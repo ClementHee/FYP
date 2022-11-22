@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace App\Http\Controllers;
 use DB;
 use App\Models\roles;
@@ -8,10 +8,10 @@ use App\Models\member_profile;
 use App\Models\event_types;
 use App\Models\event_roles;
 use App\Http\Controllers\Controller;
-    
+
 class event_type_roles_controller extends Controller
 {
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -22,7 +22,7 @@ class event_type_roles_controller extends Controller
         $alltypes = roles::get();
         return view('eventtype.assigntype',compact('alltypes'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -31,20 +31,20 @@ class event_type_roles_controller extends Controller
      */
     public function store(Request $request)
     {
-  
+
         foreach ($request->types as $key=>$name){
-           
+
             $insert = [
                 'eventtypeId' =>json_decode($request ->eventtypeId)->eventtypeId,
                 'roles' => $request -> types[$key]
             ];
             DB::table('event_roles')->insert($insert);
         }
-        $eventtypes = event_types::orderBy('eventtypeId','ASC')->paginate(5);
-        
+        $eventtypes = event_types::orderBy('eventtypeId','ASC')->paginate(10);
+
         return view('eventtype.eventtypes',compact('eventtypes'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
-    
+            ->with('i', ($request->input('page', 1) - 1) * 10);
+
 
     }
     /**
@@ -53,21 +53,21 @@ class event_type_roles_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)   
+    public function edit($id)
     {
 
         $eventtypeId=$id;
-        
+
         $eventtype = DB::table("event_roles")->where("event_roles.eventtypeId",$id)
             ->pluck('event_roles.roles','event_roles.roles')
             ->all();
-        
-        
+
+
         $alltypes = roles::all();
-       
+
         return view('eventtype.editeventroles',compact('eventtypeId','alltypes','eventtype'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -77,57 +77,57 @@ class event_type_roles_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $nroles = event_roles::where('eventtypeId',$id)->get();
-        
+
         if(count($nroles)==0){
-            
+
             foreach ($request->r as $key=>$name){
                 $insert = [
                     'eventtypeId' =>$id,
-                    'roles' => $request -> r[$key]  
+                    'roles' => $request -> r[$key]
                 ];
-                    
-                DB::table('event_roles')->insert($insert); 
-                
+
+                DB::table('event_roles')->insert($insert);
+
             }
-            
+
         }
         else{
         foreach($nroles as $arow){
             if($request->r!=null){
-                event_roles::where('eventtypeId',$id)->delete();  
+                event_roles::where('eventtypeId',$id)->delete();
                 foreach ($request->r as $key=>$name){
                     if(!$arow->roles==$request -> r[$key] ){
                         $insert = [
                             'eventtypeId' =>$id,
-                            'roles' => $request -> r[$key]  
+                            'roles' => $request -> r[$key]
                         ];
-                        DB::table('event_roles')->insert($insert); 
+                        DB::table('event_roles')->insert($insert);
                     }
                     else{
-                  
-                        event_roles::where('eventtypeId',$id)->where('roles',$request -> r[$key])->delete();  
+
+                        event_roles::where('eventtypeId',$id)->where('roles',$request -> r[$key])->delete();
                         $insert = [
                             'eventtypeId' =>$id,
-                            'roles' => $request -> r[$key]  
+                            'roles' => $request -> r[$key]
                         ];
-                        DB::table('event_roles')->insert($insert); 
+                        DB::table('event_roles')->insert($insert);
                     }
-                } 
+                }
             }
             else{
-                event_roles::where('eventtypeId',$id)->delete();  
+                event_roles::where('eventtypeId',$id)->delete();
             }
         }
     }
-        
-        
+
+
         return redirect()->route('eventtypes.index',$id);
-                        
+
     }
-    
-        
+
+
     /**
      * Remove the specified resource from storage.
      *

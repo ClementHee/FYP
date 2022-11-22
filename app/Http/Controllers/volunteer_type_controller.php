@@ -58,10 +58,10 @@ class volunteer_type_controller extends Controller
             ];
             DB::table('volunteer_type')->insert($insert);
         }
-        $profiles = member_profile::orderBy('profileId','ASC')->paginate(5);
-        
+        $profiles = member_profile::orderBy('profileId','ASC')->paginate(10);
+
         return redirect()->route('profile.index');
-    
+
 
     }
     public function show($id)
@@ -119,7 +119,7 @@ class volunteer_type_controller extends Controller
         else{
         foreach($vprofile as $row){
             if($request->types!=null){
-                volunteer_type::where('profileId',$id)->delete();  
+                volunteer_type::where('profileId',$id)->delete();
                 foreach ($request->types as $key=>$name){
                     if(!$row->roles==$request -> types[$key] ){
                         $insert = [
