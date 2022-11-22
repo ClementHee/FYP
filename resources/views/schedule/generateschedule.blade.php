@@ -50,11 +50,11 @@
         @foreach ($dates as $date)
         <tr>
             <td>
-                <input type="date" name="date[]"  class="form-control" value="{{date('Y-m-d',strtotime($date))}}">
+                <input type="date" name="date[]"  id="date" class="form-control {{date('Y-m-d',strtotime($date))}}" value="{{date('Y-m-d',strtotime($date))}}" readonly>
             </td>
             @foreach ($rolesneeded as $roles)
                 <td>
-                    <select name ="volunteers[]" id ="{{$roles->name}} {{$date}}" class="form-control">
+                    <select name ="volunteers[]" id ="roles{{date('Y-m-d',strtotime($date))}}" class="form-control">
                         @foreach($allvolunteertype as $key => $name)
                             @if($allvolunteertype[$key]->roles==$roles->roleId)
                                 <option value="{{$allvolunteertype[$key]->profileId}}">{{$allvolunteertype[$key]->name}}</option>
@@ -101,14 +101,52 @@
     });
 
     let $form = $('form');
+    $(document).ready(function(){
+    var date=[];
+    $('tr #date').each(function(){
+        var x = new Date($(this).val());
+        var day = x.getDate();
+        var month = x.getMonth() + 1;
+        var year = x.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        date.push(year + "-" + month + "-" + day);
+    });
+    var y ={!! json_encode($ntime->toArray(), JSON_HEX_TAG) !!};
+    
+    for(var i =0; i<y.length;i++){
+        for(var c =0; c<date.length;c++){
+            if (y[i].na_time==date[c]){ 
+            $(".form-control"+"."+y[i].na_time).each(function(){
+                
+                console.log(this);
+                $('td #roles'+y[i].na_time).find('option[value="'+y[i].profileId+'"]').remove();
+               
+            });  
 
-$(document).ready(function(){
-  $form.find("select").each((i, el) => {
-    let $options = $(el).find('option');
-    let index = Math.floor(Math.random() * $options.length);
-    $options.eq(index).prop('selected', true);
-  });
-});
+        }  
+        }
+    }
+
+    $form.find("select").each((i, el) => {
+        let $options = $(el).find('option');
+        let index = Math.floor(Math.random() * $options.length);
+        $options.eq(index).prop('selected', true);
+    });
+    
+}); 
+    
+
+
+
+   
+   
+
+
  </script>
 
 @endsection

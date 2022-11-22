@@ -185,10 +185,13 @@ class schedule_controller extends Controller
         }
         
         $allvolunteertype =  member_profile::join("volunteer_type","member_profiles.profileId","=","volunteer_type.profileId")
-        ->whereNotIn('member_profiles.profileId',$pi)
+        
+        ->get();
+        $ntime =  member_profile::join("not_availabletime","member_profiles.profileId","=","not_availabletime.profileId")
+        
         ->get();
         
    
-        return view('schedule.generateschedule',compact('id','rolesneeded','eventtype','eventtypeId','dates','allvolunteertype'));
+        return view('schedule.generateschedule',compact('id','ntime','rolesneeded','eventtype','eventtypeId','dates','allvolunteertype'));
     }
 }
