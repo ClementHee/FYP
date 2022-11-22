@@ -123,7 +123,7 @@
             if (y[i].na_time==date[c]){ 
             $(".form-control"+"."+y[i].na_time).each(function(){
                 
-                console.log(this);
+               
                 $('td #roles'+y[i].na_time).find('option[value="'+y[i].profileId+'"]').remove();
                
             });  
