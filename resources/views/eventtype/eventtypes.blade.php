@@ -12,10 +12,11 @@
         </div>
 
         <div class="pull-right my-4">
+            @can('Create Event Type')
             <a class="btn btn-success"
                href="{{route('eventtypes.create')}}">
                 Create Event Set Type
-            </a>
+            </a>@endcan
         </div>
     </div>
     @if (session()->has('message'))
@@ -41,13 +42,18 @@
             <td>{{ ++$i }}</td>
             <td>{{ $eventtype->name }}</td>
             <td>
-                <a class="btn btn-primary my-2" href="{{ route('eventtypes.show',$eventtype->eventtypeId) }}">Show</a>
 
+                @can('Show Event Type')
+                    <a class="btn btn-primary my-2" href="{{ route('eventtypes.show',$eventtype->eventtypeId) }}">Show</a>
+                @endcan
+                @can('Edit Event Type')
                     <a class="btn btn-two my-2" href="{{ route('eventtypes.edit',$eventtype->eventtypeId) }}">Edit</a>
-
+                @endcan
+                @can('Delete Event Type')
                     {!! Form::open(['method' => 'DELETE','route' => ['eventtypes.destroy', $eventtype->eventtypeId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger my-2']) !!}
                     {!! Form::close() !!}
+                @endcan
             </td>
         </tr>
         @endforeach
