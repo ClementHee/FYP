@@ -13,6 +13,7 @@ use App\Models\member_profile;
 use App\Models\volunteer_type;
 use App\Models\not_availabletime;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class schedule_controller extends Controller
 {
@@ -46,8 +47,12 @@ class schedule_controller extends Controller
     {   
         $y=0;
         $i=0;
-            foreach ($request->volunteers as $key=>$name){
-           
+        
+        foreach ($request->volunteers as $key=>$name){
+            $this->validate($request, [
+                'profileId' => 'required',
+            
+            ]);
                     $insert=[
                         'eventId' => $request -> eventId,
                         'eventdate' => $request -> date[$y],
@@ -62,7 +67,7 @@ class schedule_controller extends Controller
                 }
             
         }
-        return redirect(route('event.index'));
+        return redirect(route('event.index')->with('success','User created successfully'));
         
     }
 
@@ -194,4 +199,6 @@ class schedule_controller extends Controller
    
         return view('schedule.generateschedule',compact('id','ntime','rolesneeded','eventtype','eventtypeId','dates','allvolunteertype'));
     }
+
+   
 }

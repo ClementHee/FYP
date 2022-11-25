@@ -32,6 +32,7 @@
 
         <td>
             @if(!empty($user->getRoleNames()))
+           
                 @foreach($user->getRoleNames() as $v)
                     <span class="badge rounded-pill bg-dark">{{ $v }}</span>
                 @endforeach

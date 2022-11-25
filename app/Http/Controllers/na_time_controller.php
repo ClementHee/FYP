@@ -46,7 +46,7 @@ class na_time_controller extends Controller
             'na_time' => $request->na_time
 
         ]);
-        return redirect(route('profile.index'));
+        return redirect(route('profile.show',$request->profileId));
     }
 
     /**
@@ -99,7 +99,7 @@ class na_time_controller extends Controller
             
         ]);
 
-        return redirect(route('profile.index'));
+        return redirect(route('profile.show',$id));
     }
 
     /**
@@ -108,8 +108,10 @@ class na_time_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$time)
     {
-        //
+       
+        not_availabletime::where('profileId',$id)->where('na_time',$time)->delete();
+        return redirect(route('profile.show',$id));
     }
 }

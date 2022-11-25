@@ -41,8 +41,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('calendar-event', [CalenderController::class, 'index'])->name('calendar-event');
     Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
     Route::get('not_availabletime/{profile}/{time}/edit', [na_time_controller::class,'edit'])->name('not_availabletime.editthis');
-    Route::match(['put', 'patch'],'not_availabletime/{profile}/{time}/edit', [na_time_controller::class,'update'])->name('not_availabletime.updatethis');
-    Route::get('showsingle/{profile}', [profile_controller::class,'showsingle'])->name('showsingle');
+    Route::delete('not_availabletime/{profile}/{time}', [na_time_controller::class,'destroy'])->name('not_availabletime.delete');
+    Route::match(['put', 'patch'],'not_availabletime/{profile}/{time}/edit', [na_time_controller::class,'destroy']);
+    Route::get('showprofile/{profile}', [profile_controller::class,'showsingle'])->name('showprofile');
     Route::get('create_na/{profile}', [profile_controller::class,'create_na'])->name('create_na');
     Route::resource("schedule",schedule_controller::class);
     Route::resource('profile', profile_controller::class);

@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
 <title> View Schedule </title>
-<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
 @section('content')
 
     <div class="row">
@@ -11,12 +10,7 @@
             </h2>
         </div>
 
-        <div class="pull-right my-4">
-            @can('Create Event')
-                <a class="btn btn-success" id="export_button"> Export</a>
-
-            @endcan
-        </div>
+        
     </div>
 
 
@@ -40,7 +34,7 @@
         </tr>
         @foreach ($dates as $date)
         <tr>
-            <td class="text-center">
+            <td class="text-center" id="date" >
                 {{$date->eventdate}}
             </td>
             @foreach ($rolesneeded as $role)
@@ -60,17 +54,31 @@
     </table>
 </div>
 
-    <button class="btn btn-secondary" id="export" onclick="exportPDF('content1')">Save</button>
- <script>
+<a class="btn btn-success" id="export_button_pdf"> Export to PDF</a>
+<a class="btn btn-success" id="export_button"> Export to Excel</a>
+
+
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
+    var d = $('tr #date');
+    var x = new Date(d.html()); 
+    var month = x.getMonth()+1;
+    var year = x.getFullYear();
+    month = getMonthName(month);
     function html_table_to_excel(type)
     {
+        
         var data = document.getElementById('schedule');
 
         var file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
 
         XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
 
-        XLSX.writeFile(file, 'schedule.' + type);
+        XLSX.writeFile(file, month + " "+ year + ' Schedule.' + type);
     }
 
     const export_button = document.getElementById('export_button');
@@ -79,46 +87,38 @@
         html_table_to_excel('xlsx');
     });
 
-
-
-
     var specialElementHandlers = {
     // element with id of "bypass" - jQuery style selector
     '.no-export': function (element, renderer) {
         // true = "handled elsewhere, bypass text extraction"
         return true;
-    }
-};
-
-function exportPDF(id) {
-    var doc = new jsPDF('p', 'pt', 'a4');
-    //A4 - 595x842 pts
-    //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
-
-
-    //Html source
-    var source = document.getElementById(id);
-console.log(source);
-    var margins = {
-        top: 10,
-        bottom: 10,
-        left: 10,
-        width: 595
+        }
     };
 
-    doc.fromHTML(
-        source, // HTML string or DOM elem ref.
-        margins.left,
-        margins.top, {
-            'width': margins.width,
-            'elementHandlers': specialElementHandlers
-        },
 
-        function (dispose) {
-            // dispose: object with X, Y of the last line add to the PDF
-            //          this allow the insertion of new lines after html
-            doc.save('Test.pdf');
-        }, margins);
-}
+    $('body').on("click", "#export_button_pdf", function () {
+     
+        html2canvas($('#content1')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download(month+" "+year+ " Schedule.pdf");
+            }
+        });
+    });
+
+    function getMonthName(monthNumber) {
+        const date = new Date();
+        date.setMonth(monthNumber - 1);
+
+        // Using the browser's default locale.
+        return date.toLocaleString([], { month: 'long' });
+    }
 </script>
+
 @endsection

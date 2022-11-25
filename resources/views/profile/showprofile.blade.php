@@ -39,7 +39,16 @@
                                     <a class= "btn btn-primary my-2 float-end" href= "{{route('not_availabletime.editthis',['profile'=>$profile->profileId,'time'=>$nat->na_time])}} ">
                                         Edit
                                     </a>
+                                    <form action=" {{route ('not_availabletime.delete',['profile'=>$profile->profileId,'time'=>$nat->na_time])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button  class= "btn btn-danger my-2" >
+                                            Delete Time
+                                        </button>
+                                    </form>
                                 </li>
+                                
+                                
                                 @endforeach
 
                             @endif

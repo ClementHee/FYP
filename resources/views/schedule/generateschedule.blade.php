@@ -20,11 +20,16 @@
         </div>
     </div>
 
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-    @endif
+@endif
     {!! Form::open(array('route' => 'schedule.store','method'=>'POST')) !!}
 
     <input
@@ -54,10 +59,10 @@
             </td>
             @foreach ($rolesneeded as $roles)
                 <td>
-                    <select name ="volunteers[]" id ="roles{{date('Y-m-d',strtotime($date))}}" class="form-control">
+                    <select name ="volunteers[]" id ="roles{{date('Y-m-d',strtotime($date))}}" data_name = "{{$roles->name}}"  class="form-control">
                         @foreach($allvolunteertype as $key => $name)
                             @if($allvolunteertype[$key]->roles==$roles->roleId)
-                                <option value="{{$allvolunteertype[$key]->profileId}}">{{$allvolunteertype[$key]->name}}</option>
+                                <option data_name = "{{$roles->name}}"value="{{$allvolunteertype[$key]->profileId}}">{{$allvolunteertype[$key]->name}}</option>
                             @endif
                         @endforeach
                     </select>
@@ -75,14 +80,7 @@
 
 
  <script>
-    /*$(document).ready(function(){
-        $('select').on('change', function(event ) {
-        var prevValue = $(this).data('previous');
-        $('select').not(this).find('option[value="'+prevValue+'"]').show();
-        var value = $(this).val();
-        $(this).data('previous',value); $('select').not(this).find('option[value="'+value+'"]').hide();
-        });
-    });*/
+    
     function html_table_to_excel(type)
     {
         var data = document.getElementById('schedule');
@@ -100,7 +98,23 @@
         html_table_to_excel('xlsx');
     });
 
+    $('select').on('change', function(event ) {
+        var select_row=$(this).attr('id');
+        var role_selected = $(this).attr('data_name');
+        
+        if(role_selected=="Drums" || role_selected=="Bass"){
+            var prevValue = $(this).data('previous');
+            $('td #'+select_row).not(this).find('option[value="'+prevValue+'"]').removeAttr('disabled');;
+            var value = $(this).val();
+            
+            $(this).data('previous',value); $('td #'+select_row).not(this).find('option[value="'+value+'"]').attr('disabled',true);   
+        }
+    });
+
+       
     let $form = $('form');
+    
+
     $(document).ready(function(){
     var date=[];
     $('tr #date').each(function(){
@@ -118,17 +132,15 @@
     });
     var y ={!! json_encode($ntime->toArray(), JSON_HEX_TAG) !!};
     
+    
     for(var i =0; i<y.length;i++){
         for(var c =0; c<date.length;c++){
             if (y[i].na_time==date[c]){ 
-            $(".form-control"+"."+y[i].na_time).each(function(){
-                
-               
-                $('td #roles'+y[i].na_time).find('option[value="'+y[i].profileId+'"]').remove();
-               
-            });  
-
-        }  
+                $(".form-control"+"."+y[i].na_time).each(function(){
+                    
+                    $('td #roles'+y[i].na_time).find('option[value="'+y[i].profileId+'"]').remove();
+                });  
+            }    
         }
     }
 
@@ -138,13 +150,28 @@
         $options.eq(index).prop('selected', true);
     });
     
-}); 
+    $('select[data_name="Drums"]').each(function(){
+            var select_row=$(this).attr('id');
+            var value = $(this).val();
+            
+            $('td #'+select_row).not(this).find('option[value="'+value+'"]').attr('disabled',true);   
+        
+    });   
+    
+    $form.find("select").each((i, el) => {
+        let $options = $(el).find('option:disabled');
+        if($options.prop('disabled')){
+            
+            $options.prop('selected', false);
+        } 
+        
+    });
+        
+   
+    
     
 
-
-
-   
-   
+}); 
 
 
  </script>
