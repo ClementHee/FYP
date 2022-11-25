@@ -54,14 +54,14 @@
 
                         <a class="btn btn-two my-2" href="{{ route('generateschedule',$event->eventId) }}">Generate Schedule</a>
                         <a class="btn btn-two my-2" href="{{ route('schedule.show',$event->eventId) }}">Show Schedule</a>
-
+                            @can('Delete Event')
                             {!! Form::open(['method' => 'DELETE','route' => ['schedule.destroy', $event->eventId],'style'=>'display:inline']) !!}
                                 {!! Form::submit('Delete Schedule', ['class' => 'btn btn-danger my-2']) !!}
                             {!! Form::close() !!}
 
                                 {!! Form::open(['method' => 'DELETE','route' => ['event.destroy', $event->eventId],'style'=>'display:inline']) !!}
                                     {!! Form::submit('Delete Event', ['class' => 'btn btn-danger my-2']) !!}
-                                {!! Form::close() !!}
+                                {!! Form::close() !!}@endcan
                     </div>
                 </div>
             </div>

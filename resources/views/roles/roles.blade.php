@@ -12,10 +12,12 @@
         </div>
 
         <div class="pull-right my-4">
+            @can('Create Volunteer Type')
             <a class="btn btn-success"
-               href="{{route('roles.create')}}">
-                Create  Volunteer Roles
+            href="{{route('roles.create')}}">
+             Create  Volunteer Roles
             </a>
+            @endcan
         </div>
     </div>
     @if (session()->has('message'))
@@ -41,14 +43,19 @@
             <td>{{ ++$i }}</td>
             <td>{{ $vrole->name }}</td>
             <td>
+                @can('Show Volunteer Type')
                 <a class="btn btn-primary my-1" href="{{ route('roles.show',$vrole->roleId) }}">Show</a>
+                @endcan
 
+                @can('Edit Volunteer Type')
                 <a class="btn btn-two my-1" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
+                @endcan
 
+                @can('Delete Vounteer Type')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger my-1']) !!}
                 {!! Form::close() !!}
-
+                @endcan
             </td>
         </tr>
         @endforeach

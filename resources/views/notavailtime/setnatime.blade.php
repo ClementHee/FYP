@@ -12,7 +12,7 @@
     </div>
 
     <div class="pull-right my-4">
-        <a class="btn btn-primary" href="{{ route('event.index') }}"> Back</a>
+        <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
     </div>
 </div>
 
