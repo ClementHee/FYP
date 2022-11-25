@@ -51,7 +51,7 @@
                 <a class="btn btn-two my-1" href="{{ route('roles.edit',$vrole->roleId) }}">Edit</a>
                 @endcan
 
-                @can('Delete Vounteer Type')
+                @can('Delete Volunteer Type')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $vrole->roleId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger my-1']) !!}
                 {!! Form::close() !!}

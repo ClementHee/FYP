@@ -46,7 +46,7 @@
                           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionDashboard">
                             <div class="accordion-body">
                               <p>Interested in helping out and volunteering? Head on over to your profile and set your volunteering roles and not available dates!</p>
-                              <a class="btn btn-primary" href="{{ route('showsingle',auth()->user()->email)}}" role="button">Profile</a>
+                              <a class="btn btn-primary" href="{{ route('showprofile',auth()->user()->email)}}" role="button">Profile</a>
                             </div>
                           </div>
                         </div>
