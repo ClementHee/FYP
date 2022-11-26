@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 <title> Generate Schedule </title>
+
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -79,25 +80,25 @@
     {!! Form::close() !!}
 
 
- <script>
-    
+
+<script>
     function html_table_to_excel(type)
     {
         var data = document.getElementById('schedule');
-
+   
         var file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
-
+   
         XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
-
+   
         XLSX.writeFile(file, 'schedule.' + type);
     }
-
+   
     const export_button = document.getElementById('export_button');
-
+   
     export_button.addEventListener('click', () =>  {
         html_table_to_excel('xlsx');
     });
-
+   
     $('select').on('change', function(event ) {
         var select_row=$(this).attr('id');
         var role_selected = $(this).attr('data_name');
@@ -110,11 +111,11 @@
             $(this).data('previous',value); $('td #'+select_row).not(this).find('option[value="'+value+'"]').attr('disabled',true);   
         }
     });
-
+   
        
     let $form = $('form');
     
-
+   
     $(document).ready(function(){
     var date=[];
     $('tr #date').each(function(){
@@ -143,7 +144,7 @@
             }    
         }
     }
-
+   
     $form.find("select").each((i, el) => {
         let $options = $(el).find('option');
         let index = Math.floor(Math.random() * $options.length);
@@ -154,26 +155,9 @@
             var select_row=$(this).attr('id');
             var value = $(this).val();
             
-            $('td #'+select_row).not(this).find('option[value="'+value+'"]').attr('disabled',true);   
+            $('td #'+select_row).not(this).find('option[value="'+value+'"]').attr('disabled',true).prop('selected',false);   
         
     });   
-    
-    $form.find("select").each((i, el) => {
-        let $options = $(el).find('option:disabled');
-        if($options.prop('disabled')){
-            
-            $options.prop('selected', false);
-        } 
-        
-    });
-        
-   
-    
-    
-
-}); 
-
-
- </script>
-
+   }); 
+</script>
 @endsection

@@ -49,16 +49,14 @@ class schedule_controller extends Controller
         $i=0;
         
         foreach ($request->volunteers as $key=>$name){
-            $this->validate($request, [
-                'profileId' => 'required',
             
-            ]);
-                    $insert=[
-                        'eventId' => $request -> eventId,
-                        'eventdate' => $request -> date[$y],
-                        'roles' => $request -> roles[$i],
-                        'profileId' => $request -> volunteers[$key]
-                    ];
+           
+                $insert=[
+                    'eventId' => $request -> eventId,
+                    'eventdate' => $request -> date[$y],
+                    'roles' => $request -> roles[$i],
+                    'profileId' => $request -> volunteers[$key]
+                ];
                 DB::table('schedules')->insert($insert);
                 $i+=1;
                 if($i==count($request->roles)){
@@ -67,8 +65,8 @@ class schedule_controller extends Controller
                 }
             
         }
-        return redirect(route('event.index')->with('success','User created successfully'));
-        
+       return redirect()->route('event.index')
+        ->with('success','Schedule created successfully');
     }
 
     /**

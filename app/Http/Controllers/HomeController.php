@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\events;
 use Illuminate\Http\Request;
@@ -27,6 +28,41 @@ class HomeController extends Controller
     public function index()
     {   
         $events=events::get();
-        return view('home',compact('events'));
+       
+    
+      $calendar_events = array();
+      $allevents =  events::all();
+
+      $dates=[];
+      foreach ($allevents as $aevent){
+        $dates=[];
+        $x = Carbon::parse($aevent->start_datetime);
+        if($aevent->eventtype=="Weekly Services"){
+
+            $y = Carbon::parse($aevent->end_datetime)->endOfMonth();
+            $count = floor(($x->diff($y)->days)/7);
+            for($i = 1;  $i<=$count+1 ; $i++){
+                $dates[]=$x->format('d F Y');
+                $x=$x->addDays(7);
+            }
+        }else{
+            $dates[]=$x->format('d F Y');
+        }
+   
+        for($i=0;$i<count($dates);$i++){
+            $calendar_events [] = [
+                
+                'title' => $aevent->name,
+                 
+                'start' => date('Y-m-d',strtotime($dates[$i])),
+        
+                'end' => date('Y-m-d',strtotime($dates[$i]))
+            ];
+        }
+        
+      }
+
+    return view('home',compact('events','calendar_events'));
     }
+
 }
