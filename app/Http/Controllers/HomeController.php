@@ -45,6 +45,25 @@ class HomeController extends Controller
                 $dates[]=$x->format('d F Y');
                 $x=$x->addDays(7);
             }
+        }elseif($aevent->eventtype=="Daily Services"){
+            $calendar_events [] = [
+                
+                'title' => $aevent->name,
+                 
+                'start' => $aevent->start_datetime,
+        
+                'end' => $aevent->end_datetime
+            ];
+            return view('home',compact('events','calendar_events'));
+        }
+        elseif($aevent->eventtype=="Monthly Services"){
+            $dates=[];
+            $y = Carbon::parse($eventdate[0]->end_datetime)->endOfMonth();
+            $count = floor(($x->diff($y)->days)/30);
+            for($i = 1;  $i<=$count+1 ; $i++){
+                $dates[]=$x->format('d F Y');
+                $x=$x->addMonth();
+            }
         }else{
             $dates[]=$x->format('d F Y');
         }

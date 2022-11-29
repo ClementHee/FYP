@@ -14,11 +14,6 @@
             </h2>
         </div>
 
-        <div class="pull-right my-4">
-            @can('Create Event')
-                <a class="btn btn-success" id="export_button"> Export</a>
-            @endcan
-        </div>
     </div>
 
     @if (count($errors) > 0)

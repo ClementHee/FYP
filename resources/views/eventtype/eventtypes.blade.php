@@ -12,7 +12,7 @@
         </div>
 
         <div class="pull-right my-4">
-            @can('Create Event Type')
+            @can('Create Event Types')
             <a class="btn btn-success"
                href="{{route('eventtypes.create')}}">
                 Create Event Set Type
@@ -43,13 +43,13 @@
             <td>{{ $eventtype->name }}</td>
             <td>
 
-                @can('Show Event Type')
+                @can('Show Event Types')
                     <a class="btn btn-primary my-2" href="{{ route('eventtypes.show',$eventtype->eventtypeId) }}">Show</a>
                 @endcan
-                @can('Edit Event Type')
+                @can('Edit Event Types')
                     <a class="btn btn-two my-2" href="{{ route('eventtypes.edit',$eventtype->eventtypeId) }}">Edit</a>
                 @endcan
-                @can('Delete Event Type')
+                @can('Delete Event Types')
                     {!! Form::open(['method' => 'DELETE','route' => ['eventtypes.destroy', $eventtype->eventtypeId],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger my-2']) !!}
                     {!! Form::close() !!}

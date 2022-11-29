@@ -165,6 +165,23 @@ class schedule_controller extends Controller
                 $dates[]=$x->format('d F Y');
                 $x=$x->addDays(7);
             }
+        }elseif($eventtype=="Daily Services"){
+            $dates=[];
+            $y = Carbon::parse($eventdate[0]->end_datetime);
+            $count = floor(($x->diff($y)->days));
+            for($i = 1;  $i<=$count+1 ; $i++){
+                $dates[]=$x->format('d F Y');
+                $x=$x->addDays(1);
+            }
+        }
+        elseif($eventtype=="Monthly Services"){
+            $dates=[];
+            $y = Carbon::parse($eventdate[0]->end_datetime)->endOfMonth();
+            $count = floor(($x->diff($y)->days)/30);
+            for($i = 1;  $i<=$count+1 ; $i++){
+                $dates[]=$x->format('d F Y');
+                $x=$x->addMonth();
+            }
         }else{
             $dates[]=$x->format('d F Y');
         }
