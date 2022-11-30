@@ -54,7 +54,7 @@ class HomeController extends Controller
         
                 'end' => $aevent->end_datetime
             ];
-            return view('home',compact('events','calendar_events'));
+            
         }
         elseif($aevent->eventtype=="Monthly Services"){
             $dates=[];
