@@ -167,7 +167,7 @@ class schedule_controller extends Controller
             }
         }elseif($eventtype=="Daily Services"){
             $dates=[];
-            $y = Carbon::parse($eventdate[0]->end_datetime);
+            $y = Carbon::parse($eventdate[0]->end_datetime);    
             $count = floor(($x->diff($y)->days));
             for($i = 1;  $i<=$count+1 ; $i++){
                 $dates[]=$x->format('d F Y');
